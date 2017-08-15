@@ -1,6 +1,6 @@
 **sh00t: Integrated Testing Environment for Manual Security Testers**
 
-A tool that understand Security Testing..
+A tool that understands Security Testing..
 
 **Features:**
 - Environment for Filing bug
