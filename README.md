@@ -2,7 +2,7 @@
 
 A tool that understands Security Testing..
 
-####Features:
+#### Features:
 - Environment for Filing bug
 - Mind map for Security Testing
 - Smart Suggest Test Cases
@@ -11,13 +11,13 @@ A tool that understands Security Testing..
 - Bug Templates
 - Integration with JIRA, ServiceNow
 
-####Requirements:
+#### Requirements:
 - Python 2.7
 - Django
 - Django REST Framework
 
 
-####Installation:
+#### Installation:
 **Pip:**
 * Clone the latest version: `git clone https://github.com/pavanw3b/sh00t.git
 `
