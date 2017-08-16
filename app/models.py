@@ -17,7 +17,8 @@ class Module(models.Model):
 
 class Case(models.Model):
     name = models.CharField(max_length=100)
-    modules = models.ManyToManyField(Module)
+    module = models.ForeignKey(Module, on_delete=models.CASCADE)
+
 
     def __str__(self):  # __unicode__ on Python 2
         return self.name

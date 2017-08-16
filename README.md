@@ -24,7 +24,7 @@ A tool that understands Security Testing..
 * Navigate to the folder: `cd sh00t`
 * Windows: `C:\Python27\python.exe -m pip install -r requirements.txt`
 * Mac/Linux: `pip install -r requirements.txt --user`
-* python manage.py runserver
+* `python manage.py runserver`
 * Hit [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 
 **Contribution:**
