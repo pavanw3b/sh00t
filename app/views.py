@@ -5,3 +5,8 @@ from django.shortcuts import render
 def index(request):
     context = {}
     return render(request, 'index.html', context)
+
+
+def flag(request):
+    context = {}
+    return render(request, 'flag.html', context)
