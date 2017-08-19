@@ -3,3 +3,4 @@ django
 djangorestframework
 markdown
 django-filter
+django-tinymce

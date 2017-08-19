@@ -1,35 +1,6 @@
 from django.db import models
+from tinymce.models import HTMLField
 
-
-#
-# Master Models
-#
-
-class Module(models.Model):
-    name = models.CharField(max_length=100)
-
-    def __str__(self):  # __unicode__ on Python 2
-        return self.name
-
-    class Meta:
-        ordering = ('name',)
-
-
-class Case(models.Model):
-    name = models.CharField(max_length=100)
-    module = models.ForeignKey(Module, on_delete=models.CASCADE)
-
-
-    def __str__(self):  # __unicode__ on Python 2
-        return self.name
-
-    class Meta:
-        ordering = ('name',)
-
-
-#
-# Assessment related Models
-#
 
 class Project(models.Model):
     name = models.CharField(max_length=100)
@@ -50,3 +21,28 @@ class Assessment(models.Model):
 
     class Meta:
         ordering = ('name',)
+
+
+class Bug(models.Model):
+    title = models.CharField(max_length=200)
+    body = HTMLField(null=True)
+    assessment = models.ForeignKey(Assessment, null=True, on_delete=models.SET_NULL)
+
+    def __str__(self):  # __unicode__ on Python 2
+        return self.title
+
+    class Meta:
+        ordering = ('title',)
+
+
+class Flag(models.Model):
+    title = models.CharField(max_length=100)
+    note = HTMLField(null=True)
+    done = models.BooleanField(default=False)
+
+    def __str__(self):  # __unicode__ on Python 2
+        return self.title
+
+    class Meta:
+        ordering = ('title',)
+
