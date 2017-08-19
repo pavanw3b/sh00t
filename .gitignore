@@ -9,6 +9,8 @@ __pycache__/
 # IDE
 .idea
 
+#sh00t files
+db.sqlite3
 
 # C extensions
 *.so
