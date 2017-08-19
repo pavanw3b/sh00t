@@ -11,11 +11,6 @@ A tool that understands Security Testing..
 - Bug Templates
 - Integration with JIRA, ServiceNow
 
-#### Requirements:
-- Python 2.7
-- Django
-- Django REST Framework
-
 
 #### Installation:
 **Pip:**
