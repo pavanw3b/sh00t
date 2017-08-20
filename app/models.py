@@ -26,7 +26,7 @@ class Assessment(models.Model):
         ordering = ('name',)
 
 
-class Bug(models.Model):
+class Sh0t(models.Model):
     title = models.CharField(max_length=200)
     body = HTMLField(null=True)
     assessment = models.ForeignKey(Assessment, null=True, on_delete=models.SET_NULL)
@@ -42,8 +42,8 @@ class Bug(models.Model):
 class Flag(models.Model):
     title = models.CharField(max_length=100)
     note = HTMLField(null=True)
-
-    done = models.BooleanField(default=True)
+    assessment = models.ForeignKey(Assessment, null=True, on_delete=models.SET_NULL)
+    done = models.BooleanField(default=False)
     added = models.DateTimeField(default=datetime.now)
 
     def __str__(self):  # __unicode__ on Python 2

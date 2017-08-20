@@ -18,18 +18,27 @@
                 <div class="col-lg-6">
                     <h3>New Flag</h3>
                     <form role="form" method="post">
+                        {% if "success" == submitted %}
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="alert alert-info alert-dismissable">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button> <i class="fa fa-info-circle"></i> Submitted
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
                         <div class="form-group">
                             <label>Title</label>
                             <input class="form-control" name="title">
                         </div>
                         <div class="form-group">
                             <label>Note</label>
-                            <textarea class="form-control" rows="3" name="note"></textarea>
+                            <textarea class="form-control" rows="15" name="note"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="assessment">Assessment</label>
-                            <select id="assessment" class="form-control">
-                                {% for assessment in assessments %}
+                            <select id="assessment" class="form-control" name="assessment">
+                                {% for assessment in assessments_list %}
                                     <option value="{{ assessment.id }}">{{ assessment.name }}</option>
                                 {% endfor %}
                             </select>
@@ -48,40 +57,42 @@
                             <h3 class="panel-title"><i class="fa fa-bullseye"></i> Recent Flags</h3>
                         </div>
                         <div class="panel-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>Title</th>
-                                            <th>Note</th>
-                                            <th>Done</th>
-                                            <th>Date</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {% for flag in flags %}
+                            {% if recent_flags %}
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover table-striped">
+                                        <thead>
                                             <tr>
-                                                <td>{{ flag.title }}</td>
-                                                <td>{{ flag.note }}</td>
-                                                <td>{{ flag.done }}</td>
-                                                <td>{{ flag.added }}</td>
+                                                <th>Title</th>
+                                                <th>Done</th>
+                                                <th>Assessment</th>
+                                                <th>Added</th>
                                             </tr>
-                                        {% endfor %}
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="text-right">
-                                <a href="#">View All <i class="fa fa-arrow-circle-right"></i></a>
-                            </div>
+                                        </thead>
+                                        <tbody>
+                                            {% for flag in recent_flags %}
+                                                <tr>
+                                                    <td><a href="/app/flag/{{ flag.id }}/">{{ flag.title }}</a></td>
+                                                    <td>{{ flag.done }}</td>
+                                                    <td><a href="/app/assessment/{{ flag.assessment.id}}/">{{ flag.assessment.name }}</a></td>
+                                                    <td>{{ flag.added }}</td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="text-right">
+                                    <a href="#">View All <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                            {% else %}
+                                <h4><i class="fa fa-arrow-left"></i> Add a flag</h4>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
             </div>
             <!-- /.row -->
-
         </div>
         <!-- /.container-fluid -->
-
     </div>
     <!-- /#page-wrapper -->
 {% endblock %}
