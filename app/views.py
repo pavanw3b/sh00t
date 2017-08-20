@@ -31,8 +31,8 @@ def flags(request):
         else:
             done = False
         try:
-            assessment = Assessment.objects.get(pk=assessment_id)
-            new_flag = Flag.objects.create(title=title, note=note, assessment=assessment, done=done)
+            the_assessment = Assessment.objects.get(pk=assessment_id)
+            new_flag = Flag.objects.create(title=title, note=note, assessment=the_assessment, done=done)
             new_flag.save()
             submitted = "success"
         except Assessment.DoesNotExist:
@@ -66,8 +66,8 @@ def flag(request, flag_id):
             except Assessment.DoesNotExist:
                 return redirect('/')
 
-        assessments = Assessment.objects.all()
-        context = {'flag': the_flag, 'assessments': assessments, 'submitted': submitted}
+        assessments_list = Assessment.objects.all()
+        context = {'flag': the_flag, 'assessments': assessments_list, 'submitted': submitted}
         return render(request, 'flag-single.html', context)
     except Flag.DoesNotExist:
         return redirect('/')
@@ -93,10 +93,10 @@ def sh0ts(request):
     return render(request, 'sh0ts.html', context)
 
 
-def sh0t(request, flag_id):
+def sh0t(request, sh0t_id):
     submitted = ""
     try:
-        the_sh0t = Sh0t.objects.get(pk=flag_id)
+        the_sh0t = Sh0t.objects.get(pk=sh0t_id)
 
         if "POST" == request.method:
             assessment_id = request.POST.get('assessment', '')
@@ -109,8 +109,78 @@ def sh0t(request, flag_id):
             except Assessment.DoesNotExist:
                 return redirect('/')
 
-        assessments = Assessment.objects.all()
-        context = {'sh0t': the_sh0t, 'assessments': assessments, 'submitted': submitted}
+        assessments_list = Assessment.objects.all()
+        context = {'sh0t': the_sh0t, 'assessments': assessments_list, 'submitted': submitted}
         return render(request, 'sh0t-single.html', context)
-    except Flag.DoesNotExist:
+    except sh0t.DoesNotExist:
+        return redirect('/')
+
+
+def assessments(request):
+    submitted = ""
+    if "POST" == request.method:
+        name = request.POST.get('name', '')
+        project_id = request.POST.get('project', '')
+        try:
+            the_project = Project.objects.get(pk=project_id)
+            new_assessment = Assessment.objects.create(name=name, project=the_project)
+            new_assessment.save()
+            submitted = "success"
+        except Project.DoesNotExist:
+            return redirect('/')
+    assessments_list = Assessment.objects.all()
+    projects_list = Project.objects.all()
+    context = {'assessments': assessments_list, 'projects': projects_list, 'submitted': submitted}
+    return render(request, 'assessments.html', context)
+
+
+def assessment(request, assessment_id):
+    submitted = ""
+    try:
+        the_assessment = Assessment.objects.get(pk=assessment_id)
+        if "POST" == request.method:
+            project_id = request.POST.get('project', '')
+            try:
+                the_assessment.name = request.POST.get('name', '')
+                the_assessment.project = Project.objects.get(pk=project_id)
+                the_assessment.save()
+                submitted = "success"
+            except Project.DoesNotExist:
+                return redirect('/')
+        recent_assessments = Assessment.objects.all()
+        projects_list = Project.objects.all()
+        context = {
+            'assessment': the_assessment, 'recent_assessments': recent_assessments, 'projects': projects_list,
+            'submitted': submitted
+        }
+        return render(request, 'assessment-single.html', context)
+    except Assessment.DoesNotExist:
+        return redirect('/')
+
+
+def projects(request):
+    submitted = ""
+    if "POST" == request.method:
+        name = request.POST.get('name', '')
+        new_project = Project.objects.create(name=name)
+        new_project.save()
+        submitted = "success"
+    projects_list = Project.objects.all()
+    context = {'projects': projects_list, 'submitted': submitted}
+    return render(request, 'projects.html', context)
+
+
+def project(request, project_id):
+    submitted = ""
+    try:
+        the_project = Project.objects.get(pk=project_id)
+        if "POST" == request.method:
+            the_project.name = request.POST.get('name', '')
+            the_project.save()
+            submitted = "success"
+        context = {
+            'project': the_project, 'submitted': submitted
+        }
+        return render(request, 'project-single.html', context)
+    except Project.DoesNotExist:
         return redirect('/')

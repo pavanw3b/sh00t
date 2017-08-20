@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %} Project | sh00t{% endblock %}
+
+{% block page %}
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <!-- Page Heading -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Project</h1>
+                    <ol class="breadcrumb">
+                        <li><i class="fa fa-dashboard"></i> <a href="/">Dashboard</a></li>
+                        <li><i class="fa fa-cube"></i> <a href="/app/projects/">Projects</a></li>
+                        <li class="active">{{ project.name }}</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <form role="form" method="post">
+                        {% if "success" == submitted %}
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="alert alert-info alert-dismissable">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button> <i class="fa fa-info-circle"></i> Submitted
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input class="form-control" name="name" value="{{ project.name }}">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                        {% csrf_token %}
+                    </form>
+                </div>
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <!-- /#page-wrapper -->
+{% endblock %}

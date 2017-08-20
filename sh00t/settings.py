@@ -9,7 +9,6 @@ import random
 
 
 BANNER = """
-
       _      ___   ___  _
      | |    / _ \ / _ \| |
   ___| |__ | | | | | | | |_
@@ -17,9 +16,7 @@ BANNER = """
  \__ \ | | | |_| | |_| | |_
  |___/_| |_|\___/ \___/ \__|
 
-
 Integrated Testing Environment for Manual Security Testers
-
 
 """
 

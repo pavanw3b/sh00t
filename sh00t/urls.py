@@ -10,7 +10,14 @@ urlpatterns = [
     url(r'^app/flag/([0-9]+)/$', views.flag),
     url(r'^app/sh0ts/$', views.sh0ts),
     url(r'^app/sh0t/([0-9]+)/$', views.sh0t),
+    url(r'^app/assessments/$', views.assessments),
+    url(r'^app/assessment/([0-9]+)/$', views.assessment),
+    url(r'^app/projects/$', views.projects),
+    url(r'^app/project/([0-9]+)/$', views.project),
     url(r'^admin/', admin.site.urls),
     url(r'^tinymce/', include('tinymce.urls')),
     url(r'^$', views.index, name='index'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+# Print banner on the console when the server starts
+print(settings.BANNER)
