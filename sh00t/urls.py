@@ -14,6 +14,8 @@ urlpatterns = [
     url(r'^app/assessment/([0-9]+)/$', views.assessment),
     url(r'^app/projects/$', views.projects),
     url(r'^app/project/([0-9]+)/$', views.project),
+    url(r'^app/templates/$', views.templates),
+    url(r'^app/template/([0-9]+)/$', views.template),
     url(r'^admin/', admin.site.urls),
     url(r'^tinymce/', include('tinymce.urls')),
     url(r'^$', views.index, name='index'),

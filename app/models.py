@@ -1,7 +1,7 @@
 from django.db import models
 from tinymce.models import HTMLField
 from datetime import datetime
-
+from tinymce import models as tinymce_models
 
 class Project(models.Model):
     name = models.CharField(max_length=100)
@@ -51,4 +51,15 @@ class Flag(models.Model):
 
     class Meta:
         ordering = ('title',)
+
+
+class Template(models.Model):
+    name = models.CharField(max_length=100)
+    body = tinymce_models.HTMLField()
+
+    def __str__(self):  # __unicode__ on Python 2
+        return self.name
+
+    class Meta:
+        ordering = ('name',)
 

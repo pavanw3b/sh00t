@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %} Project | sh00t{% endblock %}
+{% block title %} Template | sh00t{% endblock %}
 
 {% block page %}
     <div id="page-wrapper">
@@ -7,11 +7,11 @@
             <!-- Page Heading -->
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Project</h1>
+                    <h1 class="page-header">Template</h1>
                     <ol class="breadcrumb">
                         <li><i class="fa fa-dashboard"></i> <a href="/">Dashboard</a></li>
-                        <li><i class="fa fa-cubes"></i> <a href="/app/projects/">Projects</a></li>
-                        <li class="active">{{ project.name }}</li>
+                        <li><i class="fa fa-file-text"></i> <a href="/app/templates/">Templates</a></li>
+                        <li class="active">{{ template.name }}</li>
                     </ol>
                 </div>
             </div>
@@ -29,7 +29,10 @@
                         {% endif %}
                         <div class="form-group">
                             <label>Name</label>
-                            <input class="form-control" name="name" value="{{ project.name }}">
+                            <input class="form-control" name="name" value="{{ template.name }}">
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" rows="10" name="body">{{ template.body }}</textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">Update</button>
                         {% csrf_token %}
@@ -41,4 +44,12 @@
         <!-- /.container-fluid -->
     </div>
     <!-- /#page-wrapper -->
+{% endblock %}
+{% block extra_foot %}
+<script type="text/javascript" src="/static/tiny_mce/tiny_mce.js"></script>
+<script type="text/javascript">
+    tinyMCE.init({
+        selector: 'textarea'
+    });
+</script>
 {% endblock %}

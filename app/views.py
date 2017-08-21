@@ -1,6 +1,6 @@
 from __future__ import unicode_literals
 from django.shortcuts import render, redirect
-from .models import Assessment, Project, Sh0t, Flag
+from .models import Assessment, Project, Sh0t, Flag, Template
 
 
 def index(request):
@@ -183,4 +183,34 @@ def project(request, project_id):
         }
         return render(request, 'project-single.html', context)
     except Project.DoesNotExist:
+        return redirect('/')
+
+
+def templates(request):
+    submitted = ""
+    if "POST" == request.method:
+        name = request.POST.get('name', '')
+        body = request.POST.get('body', '')
+        new_template = Template.objects.create(name=name, body=body)
+        new_template.save()
+        submitted = "success"
+    templates_list = Template.objects.all()
+    context = {'templates': templates_list, 'submitted': submitted}
+    return render(request, 'templates.html', context)
+
+
+def template(request, template_id):
+    submitted = ""
+    try:
+        the_template = Template.objects.get(pk=template_id)
+        if "POST" == request.method:
+            the_template.name = request.POST.get('name', '')
+            the_template.body = request.POST.get('body', '')
+            the_template.save()
+            submitted = "success"
+        context = {
+            'template': the_template, 'submitted': submitted
+        }
+        return render(request, 'template-single.html', context)
+    except Template.DoesNotExist:
         return redirect('/')
