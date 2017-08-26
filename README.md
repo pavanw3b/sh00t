@@ -13,7 +13,9 @@ A tool that understands Security Testing..
 
 
 #### Installation:
-**Pip:**
+**Optional:** Set up [Virtual Environment](http://docs.python-guide.org/en/latest/dev/virtualenvs/)
+
+**[Pip](https://pypi.python.org/pypi/pip):**
 * Clone the latest version: `git clone https://github.com/pavanw3b/sh00t.git
 `
 * Navigate to the folder: `cd sh00t`
