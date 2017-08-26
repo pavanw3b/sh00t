@@ -3,5 +3,17 @@ from __future__ import unicode_literals
 from django.contrib import admin
 from .models import CaseMaster, ModuleMaster
 
-admin.site.register(CaseMaster)
-admin.site.register(ModuleMaster)
+
+class ModuleMasterAdmin(admin.ModelAdmin):
+    fields = ['name', 'description', 'order']
+    list_display = ['name', 'description', 'order', 'created', 'updated']
+    search_fields = ['name', 'description']
+
+
+class CaseMasterAdmin(admin.ModelAdmin):
+    fields = ['name', 'description', 'module', 'order']
+    list_display = ['name', 'description', 'order', 'created', 'updated']
+    search_fields = ['name', 'description']
+
+admin.site.register(ModuleMaster, ModuleMasterAdmin)
+admin.site.register(CaseMaster, CaseMasterAdmin)
