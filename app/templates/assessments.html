@@ -39,6 +39,14 @@
                                 {% endfor %}
                             </select>
                         </div>
+                        <div class="form-group">
+                            <b>Set up Flags from:</b>
+                            {% for module in modules %}
+                                <div class="checkbox">
+                                    <label><input type="checkbox" value="{{ module.id }}" name="modules" /> {{ module.name }}</label>
+                                </div>
+                            {% endfor %}
+                        </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                         {% csrf_token %}
                     </form>

@@ -20,13 +20,12 @@ Integrated Testing Environment for Manual Security Testers
 
 """
 
+NAME = "sh00t!"
+DESCRIPTION = "An integration testing framework"
+
 VERSION = 0.1
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECRET KEY Generated Random Each Time of Server Start
 SECRET_KEY = ''.join([random.SystemRandom().choice('abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+')
@@ -35,8 +34,9 @@ SECRET_KEY = ''.join([random.SystemRandom().choice('abcdefghijklmnopqrstuvwxyz01
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+LOGIN_URL = '/admin/login/'
 
+ALLOWED_HOSTS = []
 
 # Application definition
 

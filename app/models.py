@@ -3,6 +3,7 @@ from tinymce.models import HTMLField
 from datetime import datetime
 from tinymce import models as tinymce_models
 
+
 class Project(models.Model):
     name = models.CharField(max_length=100)
     added = models.DateTimeField(default=datetime.now)

@@ -18,8 +18,14 @@ urlpatterns = [
     url(r'^app/template/([0-9]+)/$', views.template),
     url(r'^admin/', admin.site.urls),
     url(r'^tinymce/', include('tinymce.urls')),
+    url(r'^api/', include('api.urls')),
+    url(r'^logout/$', views.logout_user),
     url(r'^$', views.index, name='index'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 # Print banner on the console when the server starts
 print(settings.BANNER)
+
+# Custom Admin Site Header
+admin.site.site_header = settings.NAME
+
