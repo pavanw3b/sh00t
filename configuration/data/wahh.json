@@ -458,20 +458,36 @@
         "description": "",
         "tests": {
           "Application mapping results - SMTP injection": {
-            "description": [],
+            "description": ["For each request employed in e-mail–related functionality, submit each of the following test strings as each parameter in turn, inserting your own e-mail address at the relevant position. You can use Burp Intruder to automate this, as described in step 7.1 for general fuzzing. These test strings already have special characters URL-encoded, so do not apply any additional encoding to them. <youremail>%0aCc:<youremail>\r\n<youremail>%0d%0aCc:<youremail>\r\n<youremail>%0aBcc:<youremail>\r\n<youremail>%0d%0aBcc:<youremail>\r\n%0aDATA%0afoo%0a%2e%0aMAIL+FROM:+<youremail>%0aRCPT+TO:+<youremail>\r\n%0aDATA%0aFrom:+<youremail>%0aTo:+<youremail>%0aSubject:+test%0afoo\r\n%0a%2e%0a\r\n%0d%0aDATA%0d%0afoo%0d%0a%2e%0d%0aMAIL+FROM:+<youremail>%0d%0aRCPT\r\n+TO:+\r\n<youremail>%0d%0aDATA%0d%0aFrom:+<youremail>%0d%0aTo:+<youremail>\r\n%0d%0aSubject:+test%0d%0afoo%0d%0a%2e%0d%0a\r\n",
+            "Review the results to identify any error messages the application returns. If these appear to relate to any problem in the e-mail function, investigate whether you need to fine-tune your input to exploit a vulnerability.",
+            "Monitor the e-mail address you specified to see if any e-mail messages are received.",
+            "Review closely the HTML form that generates the relevant request. It may contain clues regarding the server-side software being used. It may also contain a hidden or disabled field that is used to specify the To address of the e-mail, which you can modify directly."],
             "order": 61
           },
           "Application mapping results - Native code flaws": {
-            "description": [],
-            "order": 1
+            "description": ["Test for Buffer Overflows\nForeachitemofdatabeingtargeted,submitarangeoflongstringswith lengths somewhat longer than common buffer sizes. Target one item of data at a time to maximize the coverage of code paths in the application. You can use the character blocks payload source in Burp Intruder to automatically generate payloads of various sizes. The following buffer sizes are suitable to test:\n1100\n4200\n33000",
+            "Monitortheapplication’sresponsestoidentifyanyanomalies.Anuncon- trolled overflow is almost certain to cause an exception in the applica- tion, although diagnosing the nature of the problem remotely may be difficult. Look for any of the following anomalies:\nAn HTTP 500 status code or error message, where other malformed (but not overlong) input does not have the same effect\nAn informative message indicating that a failure occurred in some external, native code component\nA partial or malformed response being received from the server\nThe TCP connection to the server closing abruptly without returning a response\nThe entire web application no longer responding\nUnexpected data being returned by the application, possibly indicat- ing that a string in memory has lost its null terminator",
+            "Test for Integer Vulnerabilities:\nWhendealingwithnativecodecomponents,identifyanyinteger-based data, particularly length indicators, which may be used to trigger integer vulnerabilities.\nWithin each targeted item, send suitable payloads designed to trigger any vulnerabilities. For each item of data being targeted, send a series of different values in turn, representing boundary cases for the signed and unsigned versions of different sizes of integer. For Example:\n 0x7f and 0x80 (127 and 128)\n0xff and 0x100 (255 and 256)\n0x7ffff and 0x8000 (32767 and 32768)\n0xffff and 0x10000 (65535 and 65536)\n0x7fffffff and 0x80000000 (2147483647 and 2147483648)\n0xffffffff and 0x0 (4294967295 and 0)",
+            "When the data being modified is represented in hexadecimal form, send both little-endian and big-endian versions of each test case, such as ff7f and 7fff. If hexadecimal numbers are submitted in ASCII form, use the same case as the application itself uses for alphabetic characters to ensure that these are decoded correctly.",
+            "Monitor the application’s responses for anomalous events, as described in step 8.2.1.2.\nTest for Format String Vulnerabilities\nTargetingeachparameterinturn,submitstringscontaininglongsequences of different format specifiers. For example:\n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n\r\n%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s\r\n%1!n!%2!n!%3!n!%4!n!%5!n!%6!n!%7!n!%8!n!%9!n!%10!n! etc...\r\n%1!s!%2!s!%3!s!%4!s!%5!s!%6!s!%7!s!%8!s!%9!s!%10!s! etc... \nRemember to URL-encode the % character as %25.",
+            "Monitor the application’s responses for anomalous events,as described in step 8.2.1.2."],
+            "order": 62
           },
           "Application mapping results - SOAP injection": {
-            "description": [],
-            "order": 1
+            "description": ["Target each parameter in turn that you suspect is being processed via a SOAP message. Submit a rogue XML closing tag, such as </foo>. If no error occurs, your input is probably not being inserted into a SOAP message or is being sanitized in some way.",
+            "If an error was received, submit instead a valid opening and closing tag pair, such as <foo></foo>. If this causes the error to disappear, the application may be vulnerable.",
+            "If the item you submit is copied back into the application’s responses, submit the following two values in turn. If you find that either item is returned as the other, or as simply test, you can be confident that your input is being inserted into an XML-based message.\ntest<foo/>\ntest<foo></foo>",
+            "If the HTTP request contains several parameters that may be being placed into a SOAP message, try inserting the opening comment char- acter <!-- into one parameter and the closing comment character !--> into another parameter. Then switch these (because you have no way of knowing in which order the parameters appear). This can have the effect of commenting out a portion of the server’s SOAP message, which may change the application’s logic or result in a different error condition that may divulge information."],
+            "order": 63
           },
           "Application mapping results - LDAP injection": {
-            "description": [],
-            "order": 1
+            "description": [" In any functionality where user-supplied data is used to retrieve information from a directory service, target each parameter in turn to test for potential injection into an LDAP query.",
+            "Submit the * character. If a large number of results are returned, this is a good indicator that you are dealing with an LDAP query.",
+            "Try entering a number of closing parentheses:\n))))))))))\nThis input invalidates the query syntax, so if an error or other anomalous behavior results, the application may be vulnerable (although many other application functions and injection situations may behave in the same way).",
+              "Try entering various expressions designed to interfere with different types of queries, and see if these allow you to influence the results being returned. The cn attribute is supported by all LDAP implementations and is useful if you do not know any details about the directory you are querying:\n)(cn=*\r\n*))(|(cn=*\r\n*))%00",
+              "Try adding extra attributes to the end of your input, using commas to separate each item. Test each attribute in turn. An error indicates that the attribute is not valid in the present context. The following attributes are commonly used in directories queried by LDAP:cn\r\nc\r\nmail\r\ngivenname\r\no\r\nou\r\ndc\r\nl\r\nuid\r\nobjectclass\r\npostaladdress\r\ndn\r\nsn"
+            ],
+            "order": 64
           },
           "Application mapping results - XPATH injection": {
             "description": [],
