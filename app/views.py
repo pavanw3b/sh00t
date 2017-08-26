@@ -130,6 +130,7 @@ def sh0t(request, sh0t_id):
 def assessments(request):
     submitted = ""
     selected_modules = ""
+    note = ""
     if "POST" == request.method:
         name = request.POST.get('name', '')
         project_id = request.POST.get('project', '')
@@ -142,7 +143,8 @@ def assessments(request):
                 module = ModuleMaster.objects.get(id=module_id)
                 selected_cases = CaseMaster.objects.filter(module=module)
                 for case in selected_cases:
-                    new_flag = Flag(title=case.name, note="Module: " + module.name, assessment=new_assessment)
+                    note = "Module: " + module.name + "\n\n" + case.description
+                    new_flag = Flag(title=case.name, note=note, assessment=new_assessment)
                     new_flag.save()
             submitted = "success"
         except Project.DoesNotExist:

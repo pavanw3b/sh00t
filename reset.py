@@ -24,6 +24,10 @@ if "yes" == answer.lower():
         module = ModuleMaster(name=method, order=i)
         module.save()
         for case in methodology['checklist']['Functionality'][method]['tests']:
-            case = CaseMaster(name=case, module=module, order=j)
+            descriptions_json = methodology['checklist']['Functionality'][method]['tests'][case]['description']
+            descriptions = ""
+            for description in descriptions_json:
+                descriptions = descriptions + description + '\n\n'
+            case = CaseMaster(name=case, description=descriptions, module=module, order=j)
             case.save()
             j += 1
