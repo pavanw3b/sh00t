@@ -44,7 +44,7 @@ def flags(request):
             return redirect('/')
 
     assessments_list = Assessment.objects.all()
-    recent_flags = Flag.objects.all()
+    recent_flags = Flag.objects.all().order_by('added')
 
     context = {'assessments_list': assessments_list, 'recent_flags': recent_flags, 'submitted': submitted}
 

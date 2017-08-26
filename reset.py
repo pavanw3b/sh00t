@@ -17,12 +17,13 @@ except NameError:
 if "yes" == answer.lower():
     ModuleMaster.objects.all().delete()
     CaseMaster.objects.all().delete()
-
+    j = 0  # The counter in inner loop gets reset for each outer loop
     with open('configuration/data/wahh.json') as wahh_file:
         methodology = json.load(wahh_file)
-    for method in methodology['checklist']['Functionality']:
-        module = ModuleMaster(name=method)
+    for i, method in enumerate(methodology['checklist']['Functionality']):
+        module = ModuleMaster(name=method, order=i)
         module.save()
         for case in methodology['checklist']['Functionality'][method]['tests']:
-            case = CaseMaster(name=case, module=module)
+            case = CaseMaster(name=case, module=module, order=j)
             case.save()
+            j += 1
