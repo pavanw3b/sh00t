@@ -437,7 +437,7 @@
             "The application may be checking that the user-supplied file path starts with a particular directory or stem. Try appending traversal sequences after a known accepted stem in an attempt to bypass the filter.For example:\n \/images\/..\/..\/..\/..\/..\/..\/..\/etc\/passwd\r\n",
             "If these attacks are unsuccessful, try combining multiple bypasses, working initially entirely within the base directory in an attempt to understand the filters in place and the ways in which the application handles unexpected input.",
             "If you succeed in gaining read access to arbitrary files on the server, attempt to retrieve any of the following files, which may enable you to escalate your attack:\nPassword files for the operating system and application\nServer and application configuration files, to discover other vulnerabilities or fine-tune a different attack\nInclude files that may contain database credentials\nData sources used by the application, such as MySQL database files or XML files\nThe source code to server-executable pages, to perform a code review in search of bugs\nApplication log files that may contain information such as usernames and session tokens",
-              "If you succeed in gaining write access to arbitrary files on the server, examine whether any of the following attacks are feasible in order to escalate your attack:\nCreating scripts in users’ startup folders\nModifying files such as in.ftpd to execute arbitrary commands when a user next connects\nWriting scripts to a web directory with execute permissions and call- ing them from your browser"]
+              "If you succeed in gaining write access to arbitrary files on the server, examine whether any of the following attacks are feasible in order to escalate your attack:\nCreating scripts in users’ startup folders\nModifying files such as in.ftpd to execute arbitrary commands when a user next connects\nWriting scripts to a web directory with execute permissions and call- ing them from your browser"],
             "order": 58
           },
           "Script injection": {
@@ -465,11 +465,11 @@
             "order": 61
           },
           "Application mapping results - Native code flaws": {
-            "description": ["Test for Buffer Overflows\nForeachitemofdatabeingtargeted,submitarangeoflongstringswith lengths somewhat longer than common buffer sizes. Target one item of data at a time to maximize the coverage of code paths in the application. You can use the character blocks payload source in Burp Intruder to automatically generate payloads of various sizes. The following buffer sizes are suitable to test:\n1100\n4200\n33000",
-            "Monitortheapplication’sresponsestoidentifyanyanomalies.Anuncon- trolled overflow is almost certain to cause an exception in the applica- tion, although diagnosing the nature of the problem remotely may be difficult. Look for any of the following anomalies:\nAn HTTP 500 status code or error message, where other malformed (but not overlong) input does not have the same effect\nAn informative message indicating that a failure occurred in some external, native code component\nA partial or malformed response being received from the server\nThe TCP connection to the server closing abruptly without returning a response\nThe entire web application no longer responding\nUnexpected data being returned by the application, possibly indicat- ing that a string in memory has lost its null terminator",
-            "Test for Integer Vulnerabilities:\nWhendealingwithnativecodecomponents,identifyanyinteger-based data, particularly length indicators, which may be used to trigger integer vulnerabilities.\nWithin each targeted item, send suitable payloads designed to trigger any vulnerabilities. For each item of data being targeted, send a series of different values in turn, representing boundary cases for the signed and unsigned versions of different sizes of integer. For Example:\n 0x7f and 0x80 (127 and 128)\n0xff and 0x100 (255 and 256)\n0x7ffff and 0x8000 (32767 and 32768)\n0xffff and 0x10000 (65535 and 65536)\n0x7fffffff and 0x80000000 (2147483647 and 2147483648)\n0xffffffff and 0x0 (4294967295 and 0)",
+            "description": ["Test for Buffer Overflows\nFor each item of data being targeted,submit a range of long strings with lengths somewhat longer than common buffer sizes. Target one item of data at a time to maximize the coverage of code paths in the application. You can use the character blocks payload source in Burp Intruder to automatically generate payloads of various sizes. The following buffer sizes are suitable to test:\n1100\n4200\n33000",
+            "Monitor the application’s responses to identify anyanomalies. Anun controlled overflow is almost certain to cause an exception in the applica- tion, although diagnosing the nature of the problem remotely may be difficult. Look for any of the following anomalies:\nAn HTTP 500 status code or error message, where other malformed (but not overlong) input does not have the same effect\nAn informative message indicating that a failure occurred in some external, native code component\nA partial or malformed response being received from the server\nThe TCP connection to the server closing abruptly without returning a response\nThe entire web application no longer responding\nUnexpected data being returned by the application, possibly indicat- ing that a string in memory has lost its null terminator",
+            "Test for Integer Vulnerabilities:\nWhen dealing with native code components, identify any integer-based data, particularly length indicators, which may be used to trigger integer vulnerabilities.\nWithin each targeted item, send suitable payloads designed to trigger any vulnerabilities. For each item of data being targeted, send a series of different values in turn, representing boundary cases for the signed and unsigned versions of different sizes of integer. For Example:\n 0x7f and 0x80 (127 and 128)\n0xff and 0x100 (255 and 256)\n0x7ffff and 0x8000 (32767 and 32768)\n0xffff and 0x10000 (65535 and 65536)\n0x7fffffff and 0x80000000 (2147483647 and 2147483648)\n0xffffffff and 0x0 (4294967295 and 0)",
             "When the data being modified is represented in hexadecimal form, send both little-endian and big-endian versions of each test case, such as ff7f and 7fff. If hexadecimal numbers are submitted in ASCII form, use the same case as the application itself uses for alphabetic characters to ensure that these are decoded correctly.",
-            "Monitor the application’s responses for anomalous events, as described in step 8.2.1.2.\nTest for Format String Vulnerabilities\nTargetingeachparameterinturn,submitstringscontaininglongsequences of different format specifiers. For example:\n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n\r\n%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s\r\n%1!n!%2!n!%3!n!%4!n!%5!n!%6!n!%7!n!%8!n!%9!n!%10!n! etc...\r\n%1!s!%2!s!%3!s!%4!s!%5!s!%6!s!%7!s!%8!s!%9!s!%10!s! etc... \nRemember to URL-encode the % character as %25.",
+            "Monitor the application’s responses for anomalous events, as described in step 8.2.1.2.\nTest for Format String Vulnerabilities\nTargeting each parameter inturn, submit strings containing long sequences of different format specifiers. For example:\n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n\r\n%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s\r\n%1!n!%2!n!%3!n!%4!n!%5!n!%6!n!%7!n!%8!n!%9!n!%10!n! etc...\r\n%1!s!%2!s!%3!s!%4!s!%5!s!%6!s!%7!s!%8!s!%9!s!%10!s! etc... \nRemember to URL-encode the % character as %25.",
             "Monitor the application’s responses for anomalous events,as described in step 8.2.1.2."],
             "order": 62
           },
@@ -490,37 +490,58 @@
             "order": 64
           },
           "Application mapping results - XPATH injection": {
-            "description": [],
-            "order": 1
+            "description": ["Try submitting the following values, and determine whether they result in different application behavior without causing an error:\n\u2018 or count(parent::*[position()=1])=0 or \u2018a\u2019=\u2019b\r\n\u2018 or count(parent::*[position()=1])>0 or \u2018a\u2019=\u2019b",
+            " If the parameter is numeric, also try the following test strings:\n1 or count(parent::*[position()=1])=0\r\n1 or count(parent::*[position()=1])>0",
+            "If any of the preceding strings causes differential behavior within the application without causing an error, it is likely that you can extract arbitrary data by crafting test conditions to extract 1 byte of information at a time. Use a series of conditions with the following form to determine the name of the current node’s parent:\nsubstring(name(parent::*[position()=1]),1,1)=\u2019a\u2019",
+            "Having extracted the name of the parent node, use a series of conditions with the following form to extract all the data within the XML tree:\nsubstring(\/\/parentnodename[position()=1]\/child::node()[position()=1]\/text(),1,1)=\u2019a\u2019"],
+            "order": 65
           },
           "Application mapping results - Back-end request inclusion": {
-            "description": [],
-            "order": 1
+            "description": ["Locate any instance where an internal server name or IP address is specified in a parameter. Submit an arbitrary server and port, and monitor the application for a timeout. Also submit localhost, and finally your own IP address, monitoring for incoming connections on the port specified.",
+              "Target a request parameter that returns a specific page for a specific value, and try to append a new injected parameter using various syntax, including the following:\n%26foo%3dbar (URL-encoded &foo=bar)\r\n%3bfoo%3dbar (URL-encoded ;foo=bar)\r\n%2526foo%253dbar (Double URL-encoded &foo=bar)\nIf the application behaves as if the original parameter were unmodified, there is a chance of HTTP parameter injection vulnerabilities. Attempt to attack the back-end request by injecting known parameter name/ value pairs that may alter the back-end logic, as described in Chapter 10."],
+            "order": 66
           },
           "Application mapping results - XXE injection": {
-            "description": [],
-            "order": 1
+            "description": ["If users are submitting XML to the server, an external entity injection attack may be possible. If a field is known that is returned to the user, attempt to specify an external entity, as in the following example:\nPOST \/search\/128\/AjaxSearch.ashx HTTP\/1.1\r\nHost: mdsec.net\r\nContent-Type: text\/xml; charset=UTF-8\r\nContent-Length: 115\r\n\r\n<!DOCTYPE foo [ <!ENTITY xxe SYSTEM \u201Cfile:\/\/\/windows\/win.ini\u201D > ]>\r\n<Search><SearchTerm>&xxe;<\/SearchTerm><\/Search>\nIf no known field can be found, specify an external entity of “http://192.168.1.1:25” and monitor the page response time. If the page takes significantly longer to return or times out, it may be vulnerable."],
+            "order": 67
           }
         }
       },
       "Test for Logic Flaws": {
         "description": "",
         "tests": {
-          "Identify key attack surface - Multistage processes": {
-            "description": [],
-            "order": 1
+          "Identify key attack surface": {
+            "description": ["Logic flaws can take a huge variety of forms and exist within any aspect of the application’s functionality. To ensure that probing for logic flaws is feasible, you should first narrow down the attack surface to a reason- able area for manual testing.",
+            "Review the results of your application mapping exercises, and identify any instances of the following features:\nMultistage processes\r\nCritical security functions, such as login\r\nTransitions across trust boundaries (for example, moving from being anonymous to being self-registered to being logged in)\r\nContext-based functionality presented to a user\r\nChecks and adjustments made to transaction prices or quantities"],
+            "order": 68
           },
-          "Identify key attack surface - Incomplete input": {
-            "description": [],
-            "order": 1
+          "Testing Multistage processes": {
+            "description": ["When a multistage process involves a defined sequence of requests, attempt to submit these requests out of the expected sequence. Try skipping certain stages, accessing a single stage more than once, and accessing earlier stages after later ones.",
+            "The sequence of stages may be accessed via a series of GET or POST requests for distinct URLs, or they may involve submitting different sets of parameters to the same URL. You may specify the stage being requested by submitting a function name or index within a request parameter. Be sure to understand fully the mechanisms that the applica- tion is employing to deliver access to distinct stages.",
+            "In addition to interfering with the sequence of steps, try taking param- eters that are submitted at one stage of the process and submitting them at a different stage. If the relevant items of data are updated within the application’s state, you should investigate whether you can leverage this behavior to interfere with the application’s logic.",
+            "If a multistage process involves different users performing operations on the same set of data, try taking each parameter submitted by one user and submitting it as another. If they are accepted and processed as that user, explore the implications of this behavior, as described previously.",
+            "From the context of the functionality that is implemented, try to under- stand what assumptions the developers may have made and where the key attack surface lies. Try to identify ways of violating those assump- tions to cause undesirable behavior within the application.",
+            "When multistage functions are accessed out of sequence, it is common to encounter a variety of anomalous conditions within the application, such as variables with null or uninitialized values, partially defined or inconsistent state, and other unpredictable behavior. Look for inter- esting error messages and debug output, which you can use to better understand the application’s internal workings and thereby fine-tune the current or a different attack."],
+            "order": 69
+          },
+          "Testing Incomplete input": {
+            "description": ["For critical security functions within the application, which involve processing several items of user input and making a decision based on these, test the application’s resilience to requests containing incomplete input.",
+            "For each parameter in turn, remove both the name and value of the parameter from the request. Monitor the application’s responses for any divergence in its behavior and any error messages that shed light on the logic being performed.",
+            "If the request you are manipulating is part of a multistage process, follow the process through to completion, because the application may store data submitted in earlier stages within the session and then process this at a later stage."],
+            "order": 70
           },
           "Identify key attack surface - Trust boundaries": {
-            "description": [],
-            "order": 1
+            "description": [" Probe how the application handles transitions between different types of trust of the user. Look for functionality where a user with a given trust status can accumulate an amount of state relating to his identity. For example, an anonymous user could provide personal information during self-registration, or proceed through part of an account recovery process designed to establish his identity.",
+            "Try to find ways to make improper transitions across trust boundaries by accumulating relevant state in one area and then switching to a different area in a way that would not normally occur. For example, having completed part of an account recovery process, attempt to switch to an authenticated user-specific page. Test whether the application assigns you an inappropriate level of trust when you transition in this way.",
+            "Try to determine whether you can harness any higher-privileged func- tion directly or indirectly to access or infer information."],
+            "order": 71
           },
-          "Identify key attack surface - Transaction logic": {
-            "description": [],
-            "order": 1
+          "Test Transaction logic": {
+            "description": ["In cases where the application imposes transaction limits, test the effects of submitting negative values. If these are accepted, it may be possible to beat the limits by making large transactions in the opposite direction.",
+            "Examine whether you can use a series of successive transactions to bring about a state that you can exploit for a useful purpose. For example, you may be able to perform several low-value transfers between accounts to accrue a large balance that the application’s logic was intended to prevent.",
+            "If the application adjusts prices or other sensitive values based on criteria that are determined by user-controllable data or actions, first understand the algorithms used by the application, and the point within its logic where adjustments are made. Identify whether these adjustments are made on a one-time basis, or whether they are revised in response to further actions performed by the user.",
+            "Try to find ways to manipulate the application’s behavior to cause it to get into a state where the adjustments it has applied do not correspond to the original criteria intended by its designers."],
+            "order": 72
           }
         }
       },
@@ -528,12 +549,15 @@
         "description": "",
         "tests": {
           "Test segregation in shared infrastructures": {
-            "description": [],
-            "order": 1
+            "description": ["If the application is hosted in a shared infrastructure, examine the access mechanisms provided for customers of the shared environment to update and manage their content and functionality. Consider the following questions:\nDoes the remote access facility use a secure protocol and suitably hardened infrastructure?\r\nCan customers access files, data, and other resources that they do not legitimately need to access?\r\nCan customers gain an interactive shell within the hosting environ- ment and execute arbitrary commands?",
+            "If a proprietary application is used to allow customers to configure and customize a shared environment, consider targeting this application as a way to compromise the environment itself and individual applications running within it.",
+            "If you can achieve command execution, SQL injection, or arbitrary file access within one application, investigate carefully whether this provides any way to escalate your attack to target other applications."],
+            "order": 73
           },
           "Test segregation between ASP-hosted applications": {
-            "description": [],
-            "order": 1
+            "description": ["If the application belongs to an ASP-hosted service composed of a mix of shared and customized components, identify any shared com- ponents such as logging mechanisms, administrative functions, and database code components. Attempt to leverage these to compromise the shared portion of the application and thereby attack other individual applications.",
+            "If a common database is used within any kind of shared environment, perform a comprehensive audit of the database configuration, patch level, table structure, and permissions using a database scanning tool such as NGSSquirrel. Any defects within the database security model may pro- vide a way to escalate an attack from within one application to another."],
+            "order": 74
           }
         }
       },
@@ -541,32 +565,55 @@
         "description": "",
         "tests": {
           "Test for default credentials": {
-            "description": [],
-            "order": 1
+            "description": ["Review the results of your application mapping exercises to identify the web server and other technologies in use that may contain accessible administrative interfaces.",
+            "Perform a port scan of the web server to identify any administrative interfaces running on a different port than the main target application.",
+            "For any identified interfaces, consult the manufacturer’s documentation and common default password listings to obtain default credentials.",
+            "If the default credentials do not work, use the steps listed in section 4 to attempt to guess valid credentials.",
+            "If you gain access to an administrative interface, review the available functionality and determine whether it can be used to further compromise the host and attack the main application."],
+            "order": 75
           },
           "Test for default content": {
-            "description": [],
-            "order": 1
+            "description": ["Review the results of your Nikto scan (step 1.4.1) to identify any default content that may be present on the server but that is not an integral part of the application.",
+            "Use search engines and other resources such as www.exploit-db.com and www.osvdb.org to identify default content and functionality included within the technologies you know to be in use. If feasible, carry out a local installation of these, and review them for any default functionality that you may be able to leverage in your attack.",
+            "Examine the default content for any functionality or vulnerabilities that you may be able to leverage to attack the server or the application."],
+            "order": 76
           },
           "Test for dangerous HTTP methods": {
-            "description": [],
-            "order": 1
+            "description": ["Use the OPTIONS method to list the HTTP methods that the server states are available. Note that different methods may be enabled in different directories. You can perform a vulnerability scan in Paros to perform this check.",
+            "Try each reported method manually to confirm whether it can in fact be used.",
+            "If you find that some WebDAV methods are enabled, use a WebDAV-enabled client for further investigation, such as Microsoft FrontPage or the Open as Web Folder option in Internet Explorer."],
+            "order": 77
           },
           "Test for proxy functionality": {
-            "description": [],
-            "order": 1
+            "description": ["Using both GET and CONNECT requests, try to use the web server as a proxy to connect to other servers on the Internet and retrieve content from them.",
+            "Using both GET and CONNECT requests, attempt to connect to different IP addresses and ports within the hosting infrastructure.",
+              "Using both GET and CONNECT requests, attempt to connect to common port numbers on the web server itself by specifying 127.0.0.1 as the target host in the request."
+            ],
+            "order": 78
           },
           "Test for virtual hosting misconfiguration": {
-            "description": [],
-            "order": 1
+            "description": ["Submit GET requests to the root directory using the following:\r\nThe correct Host header\r\nA bogus Host header\r\nThe server\u2019s IP address in the Host header\r\nNo Host header (use HTTP\/1.0 only)",
+            "Compare the responses to these requests. A common result is that direc- tory listings are obtained when the server’s IP address is used in the Host header. You may also find that different default content is accessible.",
+            "If you observe different behavior, repeat the application mapping exer- cises described in section 1 using the hostname that generated different results. Be sure to perform a Nikto scan using the -vhost option to iden- tify any default content that may have been overlooked during initial application mapping."],
+            "order": 79
           },
           "Test for web server software bugs": {
-            "description": [],
-            "order": 1
+            "description": ["Run Nessus and any other similar scanners you have available to identify any known vulnerabilities in the web server software you are attacking.",
+              "Review resources such as Security Focus, Bugtraq, and Full Disclosure to find details of any recently discovered vulnerabilities that may not have been fixed on your target.",
+            "If the application was developed by a third party, investigate whether it ships with its own web server (often an open source server). If it does, investigate this for any vulnerabilities. Be aware that in this case, the server’s standard banner may have been modified.",
+              "If possible, consider performing a local installation of the software you are attacking, and carry out your own testing to find new vulnerabilities that have not been discovered or widely circulated."],
+            "order": 80
           },
           "Test for web application firewalling": {
-            "description": [],
-            "order": 1
+            "description": ["Submit an arbitrary parameter name to the application with a clear attack payload in the value, ideally somewhere the application includes the name and/or value in the response. If the application blocks the attack, this is likely to be due to an external defense.",
+            "If a variable can be submitted that is returned in a server response, submit a range of fuzz strings and encoded variants to identify the behavior of the application defenses to user input.",
+            "Confirm this behavior by performing the same attacks on variables within the application.",
+            "For all fuzzing strings and requests, use payload strings that are unlikely to exist in a standard signature database. Although giving examples of these is by definition impossible, avoid using /etc/passwd or /windows/ system32/config/sam as payloads for file retrieval. Also avoid using terms such as <script> in an XSS attack and using alert() or xss as XSS payloads.",
+            "If a particular request is blocked, try submitting the same parameter in a different location or context. For instance, submit the same parameter in the URL in a GET request, within the body of a POST request, and within the URL in a POST request.",
+            "On ASP.NET, also try submitting the parameter as a cookie. The API Request.Params[“foo”] will retrieve the value of a cookie named foo if the parameter foo is not found in the query string or message body.",
+            "Review all the other methods of introducing user input provided in Chapter 4, picking any that are not protected.",
+            "Determine locations where user input is (or can be) submitted in a non- standard format such as serialization or encoding. If none is available, build the attack string by concatenation and/or by spanning it across multiple variables. (Note that if the target is ASP.NET, you may be able to use HPP to concatenate the attack using multiple specifications of the same variable.)"],
+            "order": 81
           }
         }
       },
@@ -574,29 +621,47 @@
         "description": "",
         "tests": {
           "Test for DOM-based attacks": {
-            "description": [],
-            "order": 1
+            "description": ["Perform a brief code review of every piece of JavaScript received from the application. Identify any XSS or redirection vulnerabilities that can be triggered by using a crafted URL to introduce malicious data into the DOM of the relevant page. Include all standalone JavaScript files and scripts contained within HTML pages (both static and dynamically generated).",
+            "Identify all uses of the following APIs, which may be used to access DOM data that can be controlled via a crafted URL:\ndocument.location\r\ndocument.URL\r\ndocument.URLUnencoded\r\ndocument.referrer\r\nwindow.location",
+            "Trace the relevant data through the code to identify what actions are performed with it. If the data (or a manipulated form of it) is passed to one of the following APIs, the application may be vulnerable to XSS:\ndocument.write()\r\ndocument.writeln()\r\ndocument.body.innerHtml\r\neval()\r\nwindow.execScript()\r\nwindow.setInterval()\r\nwindow.setTimeout()",
+            "If the data is passed to one of the following APIs, the application may be vulnerable to a redirection attack:\r\ndocument.location\r\ndocument.URL\r\ndocument.open()\r\nwindow.location.href\r\nwindow.navigate()\r\nwindow.open()"],
+            "order": 82
           },
           "Test for local privacy vulnerabilities": {
-            "description": [],
-            "order": 1
+            "description": ["Review the logs created by your intercepting proxy to identify all the Set-Cookie directives received from the application during your test- ing. If any of these contains an expires attribute with a date that is in the future, the cookie will be stored by users’ browsers until that date. Review the contents of any persistent cookies for sensitive data.",
+            "If a persistent cookie is set that contains any sensitive data, a local attacker may be able to capture this data. Even if the data is encrypted, an attacker who captures it will be able to resubmit the cookie to the application and gain access to any data or functionality that this allows.",
+            "If any application pages containing sensitive data are accessed over HTTP, look for any cache directives within the server’s responses. If any of the following directives do not exist (either within the HTTP headers or within HTML metatags), the page concerned may be cached by one or more browsers:\nExpires: 0\nCache-control: no-cache\nPragma: no-cache",
+            "Identify any instances within the application in which sensitive data is transmitted via a URL parameter. If any cases exist, examine the browser history to verify that this data has been stored there.",
+            "For all forms that are used to capture sensitive data from the user (such as credit card details), review the form’s HTML source. If the attribute autocomplete=off is not set, within either the form tag or the tag for the individual input field, data entered is stored within browsers that support autocomplete, provided that the user has not disabled this feature.",
+            "Check for technology-specific local storage.\nCheck for Flash local objects using the BetterPrivacy plug-in for Firefox.\nCheck any Silverlight isolated storage in this directory:\nC:\\Users\\{username}\\AppData\\LocalLow\\Microsoft\\\r\nSilverlight\\\nCheck any use of HTML5 local storage."],
+            "order": 83
           },
           "Test for weak SSL ciphers": {
-            "description": [],
-            "order": 1
+            "description": ["If the application uses SSL for any of its communications, use the tool THCSSLCheck to list the ciphers and protocols supported.",
+            "If any weak or obsolete ciphers and protocols are supported, a suitably positioned attacker may be able to perform an attack to downgrade or decipher the SSL communications of an application user, gaining access to his sensitive data.",
+            "Some web servers advertise certain weak ciphers and protocols as sup- ported but refuse to actually complete a handshake using these if a client requests them. This can lead to false positives when you use the THCSSLCheck tool. You can use the Opera browser to attempt to per- form a complete handshake using specified weak protocols to confirm whether these can actually be used to access the application."],
+            "order": 84
           },
           "Check same-origin policy configuration": {
-            "description": [],
-            "order": 1
+            "description": ["Check for the \/crossdomain.xml file. If the application allows unrestricted access(byspecifying<allow-access-from domain=\u201D*\u201D \/>),Flashobjects from any other site can perform two-way interaction, riding on the ses- sions of application users. This would allow all data to be retrieved, and any user actions to be performed, by any other domain.",
+              "Check for the /clientaccesspolicy.xml file. Similar to Flash, if the <cross-domain-access> configuration is too permissive, other sites can perform two-way interaction with the site under assessment.",
+              "Test an application’s handling of cross-domain requests using XMLHttpRequest by adding an Origin header specifying a different domain and examining any Access-Control headers that are returned. The security implications of allowing two-way access from any domain, or from specified other domains, are the same as those described for the Flash cross-domain policy."
+            ],
+            "order": 85
           }
         }
       },
       "Follow Up Any Information Leakage": {
         "description": "",
         "tests": {
-          "Monitor and review responses, error messages": {
-            "description": [],
-            "order": 1
+          "Follow up on:": {
+            "description": ["In all your probing of the target application, monitor its responses for error messages that may contain useful information about the error’s cause, the technologies in use, and the application’s internal structure and functionality.",
+            " If you receive any unusual error messages, investigate these using stan- dard search engines. You can use various advanced search features to narrow down your results. For example:\n“unable to retrieve” filetype:php",
+              "Review the search results, looking both for any discussion about the error message and for any other websites in which the same message has appeared. Other applications may produce the same message in a more verbose context, enabling you to better understand what kind of conditions give rise to the error. Use the search engine cache to retrieve examples of error messages that no longer appear within the live application.",
+              "Use Google code search to locate any publicly available code that may be responsible for a particular error message. Search for snippets of error messages that may be hard-coded into the application’s source code. You can also use various advanced search features to specify the code language and other details, if these are known. For example:\nunable\\ to\\ retrieve lang:php package:mail",
+              "If you receive error messages with stack traces containing the names of library and third-party code components, search for these names on both types of search engine."
+            ],
+            "order": 86
           }
         }
       }
