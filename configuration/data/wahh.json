@@ -3,6 +3,7 @@
     "Settings": "",
     "Functionality": {
       "Map Application Content": {
+        "order": 1,
         "description": "",
         "tests": {
           "Linked content - Explore visible content": {
@@ -56,6 +57,7 @@
         }
       },
       "Analyze Application": {
+        "order": 2,
         "description": "",
         "tests": {
           "Identify functionality": {
@@ -89,6 +91,7 @@
         }
       },
       "Test Client-Side Controls": {
+        "order": 3,
         "description": "",
         "tests": {
           "Transmission of data via client - Hidden fields": {
@@ -166,6 +169,7 @@
         }
       },
       "Test the Authentication Mechanism": {
+        "order": 4,
         "description": "",
         "tests": {
           "Understand the mechanism": {
@@ -276,6 +280,7 @@
         }
       },
       "Test the Session Management Mechanism": {
+        "order": 5,
         "description": "",
         "tests": {
           "Understand the mechanism": {
@@ -352,6 +357,7 @@
         }
       },
       "Test Access Controls": {
+        "order": 6,
         "description": "",
         "tests": {
           "Understand the requirements": {
@@ -385,6 +391,7 @@
         }
       },
       "Test for Input-Based Vulnerabilities": {
+        "order": 7,
         "description": "",
         "tests": {
           "Fuzz all request parameters": {
@@ -455,6 +462,7 @@
         }
       },
       "Test for Function-Specific Input Vulnerabilities": {
+        "order": 8,
         "description": "",
         "tests": {
           "Application mapping results - SMTP injection": {
@@ -508,6 +516,7 @@
         }
       },
       "Test for Logic Flaws": {
+        "order": 9,
         "description": "",
         "tests": {
           "Identify key attack surface": {
@@ -546,6 +555,7 @@
         }
       },
       "Test for Shared Hosting Vulnerabilities": {
+        "order": 10,
         "description": "",
         "tests": {
           "Test segregation in shared infrastructures": {
@@ -562,6 +572,7 @@
         }
       },
       "Test for Application Server Vulnerabilities": {
+        "order": 11,
         "description": "",
         "tests": {
           "Test for default credentials": {
@@ -618,6 +629,7 @@
         }
       },
       "Miscellaneous Checks": {
+        "order": 12,
         "description": "",
         "tests": {
           "Test for DOM-based attacks": {
@@ -652,6 +664,7 @@
         }
       },
       "Follow Up Any Information Leakage": {
+        "order": 13,
         "description": "",
         "tests": {
           "Follow up on:": {

@@ -15,19 +15,20 @@ try:
 except NameError:
     answer = input("[No] | Yes?\n") or ""
 if "yes" == answer.lower():
+    order = ""
+    description_consolidated = ""
     ModuleMaster.objects.all().delete()
     CaseMaster.objects.all().delete()
-    j = 0  # The counter in inner loop gets reset for each outer loop
     with open('configuration/data/wahh.json') as wahh_file:
         methodology = json.load(wahh_file)
-    for i, method in enumerate(methodology['checklist']['Functionality']):
-        module = ModuleMaster(name=method, order=i)
+    for method in methodology['checklist']['Functionality']:
+        module = ModuleMaster(name=method, order=methodology['checklist']['Functionality'][method]['order'])
         module.save()
         for case in methodology['checklist']['Functionality'][method]['tests']:
+            order = methodology['checklist']['Functionality'][method]['tests'][case]['order']
             descriptions_json = methodology['checklist']['Functionality'][method]['tests'][case]['description']
-            descriptions = ""
+            description_consolidated = ""
             for description in descriptions_json:
-                descriptions = descriptions + description + '\n\n'
-            case = CaseMaster(name=case, description=descriptions, module=module, order=j)
+                description_consolidated = description_consolidated + description + '\n\n'
+            case = CaseMaster(name=case, description=description_consolidated, module=module, order=order)
             case.save()
-            j += 1
