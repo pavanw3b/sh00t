@@ -129,8 +129,6 @@ def sh0t(request, sh0t_id):
 @login_required
 def assessments(request):
     submitted = ""
-    selected_modules = ""
-    note = ""
     if "POST" == request.method:
         name = request.POST.get('name', '')
         project_id = request.POST.get('project', '')
@@ -152,11 +150,11 @@ def assessments(request):
         except ModuleMaster.DoesNotExist:
             return redirect('/')
     assessments_list = Assessment.objects.all()
-    modules_list = ModuleMaster.objects.all()
-    cases_list = CaseMaster.objects.all()
+    modules_list = ModuleMaster.objects.all().order_by('order')
+    cases_list = CaseMaster.objects.all().order_by('order')
     projects_list = Project.objects.all()
     context = {'assessments': assessments_list, 'projects': projects_list,
-               'modules': modules_list, 'cases': cases_list,'submitted': submitted}
+               'modules': modules_list, 'cases': cases_list, 'submitted': submitted}
     return render(request, 'assessments.html', context)
 
 

@@ -7,7 +7,6 @@ django.setup()
 
 from configuration.models import ModuleMaster, CaseMaster
 
-
 print("This will reset everything in the database and set up as fresh.")
 print("Are you wanna do this?")
 try:
@@ -19,8 +18,8 @@ if "yes" == answer.lower():
     description_consolidated = ""
     ModuleMaster.objects.all().delete()
     CaseMaster.objects.all().delete()
-    with open('configuration/data/wahh.json') as wahh_file:
-        methodology = json.load(wahh_file)
+    wahh_file = open('configuration/data/wahh.json', 'r')
+    methodology = json.load(wahh_file)
     for method in methodology['checklist']['Functionality']:
         module = ModuleMaster(name=method, order=methodology['checklist']['Functionality'][method]['order'])
         module.save()

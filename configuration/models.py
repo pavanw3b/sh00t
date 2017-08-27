@@ -5,8 +5,10 @@ from tinymce.models import HTMLField
 from django.contrib.auth.models import User
 from django.utils import timezone
 from datetime import datetime
+from django.utils.encoding import python_2_unicode_compatible
 
 
+@python_2_unicode_compatible
 class ModuleMaster(models.Model):
     name = models.CharField(max_length=100)
     description = HTMLField(null=True)
@@ -29,6 +31,7 @@ class ModuleMaster(models.Model):
         ordering = ('name',)
 
 
+@python_2_unicode_compatible
 class CaseMaster(models.Model):
     name = models.CharField(max_length=100)
     module = models.ForeignKey(ModuleMaster, on_delete=models.CASCADE)

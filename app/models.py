@@ -2,8 +2,10 @@ from django.db import models
 from tinymce.models import HTMLField
 from datetime import datetime
 from tinymce import models as tinymce_models
+from django.utils.encoding import python_2_unicode_compatible
 
 
+@python_2_unicode_compatible
 class Project(models.Model):
     name = models.CharField(max_length=100)
     added = models.DateTimeField(default=datetime.now)
@@ -15,6 +17,7 @@ class Project(models.Model):
         ordering = ('name',)
 
 
+@python_2_unicode_compatible
 class Assessment(models.Model):
     name = models.CharField(max_length=100)
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
@@ -27,6 +30,7 @@ class Assessment(models.Model):
         ordering = ('name',)
 
 
+@python_2_unicode_compatible
 class Sh0t(models.Model):
     title = models.CharField(max_length=200)
     body = HTMLField(null=True)
@@ -40,6 +44,7 @@ class Sh0t(models.Model):
         ordering = ('title',)
 
 
+@python_2_unicode_compatible
 class Flag(models.Model):
     title = models.CharField(max_length=100)
     note = HTMLField(null=True)
@@ -54,6 +59,7 @@ class Flag(models.Model):
         ordering = ('title',)
 
 
+@python_2_unicode_compatible
 class Template(models.Model):
     name = models.CharField(max_length=100)
     body = tinymce_models.HTMLField()
