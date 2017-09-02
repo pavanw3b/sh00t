@@ -29,7 +29,7 @@
                         {% endif %}
                         <div class="form-group">
                             <label>Name</label>
-                            <input class="form-control" name="name" value="{{ project.name }}">
+                            <input class="form-control" name="name" value="{{ project.name }}" autocomplete="off" />
                         </div>
                         <button type="submit" class="btn btn-primary">Update</button>
                         {% csrf_token %}

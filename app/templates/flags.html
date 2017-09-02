@@ -18,7 +18,7 @@
                 <div class="col-lg-8">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title"><i class="fa fa-flag"></i> Recent Open Flags</h3>
+                            <h3 class="panel-title"><i class="fa fa-flag"></i> Open Flags</h3>
                         </div>
                         <div class="panel-body">
                             {% if recent_flags %}
@@ -27,7 +27,6 @@
                                         <thead>
                                             <tr>
                                                 <th>Title</th>
-                                                <th>Done</th>
                                                 <th>Assessment</th>
                                                 <th>Added</th>
                                             </tr>
@@ -36,7 +35,6 @@
                                             {% for flag in recent_flags %}
                                                 <tr>
                                                     <td><a href="/app/flag/{{ flag.id }}/">{{ flag.title }}</a></td>
-                                                    <td>{{ flag.done }}</td>
                                                     <td><a href="/app/assessment/{{ flag.assessment.id}}/">{{ flag.assessment.name }}</a></td>
                                                     <td>{{ flag.added }}</td>
                                                 </tr>
@@ -67,7 +65,7 @@
                         {% endif %}
                         <div class="form-group">
                             <label>Title</label>
-                            <input class="form-control" name="title">
+                            <input class="form-control" name="title" autocomplete="off" />
                         </div>
                         <div class="form-group">
                             <label>Note</label>
@@ -80,9 +78,6 @@
                                     <option value="{{ assessment.id }}">{{ assessment.name }}</option>
                                 {% endfor %}
                             </select>
-                        </div>
-                        <div class="checkbox">
-                            <label><input type="checkbox" value="done" name="done">Done</label>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                         {% csrf_token %}

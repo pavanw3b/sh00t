@@ -31,20 +31,16 @@ def flags(request):
         title = request.POST.get('title', '')
         note = request.POST.get('note', '')
         assessment_id = request.POST.get('assessment', '')
-        if "done" == request.POST.get('done', ''):
-            done = True
-        else:
-            done = False
         try:
             the_assessment = Assessment.objects.get(pk=assessment_id)
-            new_flag = Flag.objects.create(title=title, note=note, assessment=the_assessment, done=done)
+            new_flag = Flag.objects.create(title=title, note=note, assessment=the_assessment)
             new_flag.save()
             submitted = "success"
         except Assessment.DoesNotExist:
             return redirect('/')
 
     assessments_list = Assessment.objects.all().order_by('added')
-    recent_flags = Flag.objects.all().order_by('added')
+    recent_flags = Flag.objects.filter(done=False).order_by('added')
 
     context = {'assessments_list': assessments_list, 'recent_flags': recent_flags, 'submitted': submitted}
 
