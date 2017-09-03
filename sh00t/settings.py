@@ -49,7 +49,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'tinymce',
     'app',
-    'configuration'
+    'configuration',
+    'rest_framework',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -118,3 +119,10 @@ STATIC_ROOT = 'staticfiles'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'app/static'),
 )
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAdminUser',
+    ],
+    'PAGE_SIZE': 10
+}
