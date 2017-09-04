@@ -15,6 +15,9 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col-lg-12"><div class="alert" id="response"></div></div>
+            </div>
+            <div class="row">
                 <div class="col-lg-12">
                     <form role="form" method="post">
                         {% if "success" == submitted %}
@@ -28,15 +31,16 @@
                         {% endif %}
                         <div class="form-group">
                             <label>Title</label>
-                            <input class="form-control" name="title" value="{{ flag.title }}" autocomplete="off" />
+                            <input class="form-control" name="title" id="title" value="{{ flag.title }}"
+                                   autocomplete="off" />
                         </div>
                         <div class="form-group">
                             <label>Note</label>
-                            <textarea class="form-control" rows="15" name="note">{{ flag.note }}</textarea>
+                            <textarea class="form-control" rows="15" name="note" id="note">{{ flag.note }}</textarea>
                         </div>
                         <div class="form-group">
                             <label for="assessment">Assessment</label>
-                            <select class="form-control" name="assessment">
+                            <select class="form-control" name="assessment" id="assessment">
                             {% for assessment in assessments %}
                                 <option value="{{ assessment.id }}"
                                 {% if assessment.id == flag.assessment.id %}
@@ -47,17 +51,58 @@
                             </select>
                         </div>
                         <div class="checkbox">
-                            <label><input type="checkbox" value="done" name="done"
+                            <label><input type="checkbox" value="done" id="done" name="done"
                                           {% if True == flag.done %} checked {% endif %}>Done</label>
                         </div>
                         <button type="submit" class="btn btn-primary">Update</button>
+                        <input type="hidden" value="{{ flag.id }}" id="id" />
                         {% csrf_token %}
                     </form>
                 </div>
             </div>
-            <!-- /.row -->
         </div>
         <!-- /.container-fluid -->
     </div>
     <!-- /#page-wrapper -->
+{% endblock %}
+{% block extra_foot %}
+<script src="/static/js/common-ajax.js"></script>
+<script type="text/javascript">
+    function sync() {
+        var response = $("#response");
+        response.removeClass('alert-success');
+        response.addClass('alert-warning').html("Syncing..");
+
+        setTimeout( function() {
+            var title = JSON.stringify($("#title").val());
+            var note = JSON.stringify($("#note").val());
+            var done = JSON.stringify(false);
+            if($("#done").is(":checked"))
+                done = JSON.stringify(true);
+            var assessment = JSON.stringify($("#assessment").val());
+
+            $.ajax({
+                url: "/api/flag/" + $("#id").val() + "/",
+                data: '{"title": '+title+', "note": '+note+', "done": '+done+', "assessment": '+assessment+'}',
+                type: 'PUT',
+                success: function() {
+                    response.removeClass('alert-warning');
+                    response.addClass('alert-success').html("Saved!!");
+                }
+            });
+        }, 1000);
+    }
+    $('#note').on('input', function() {
+        sync();
+    });
+    $('#title').on('input', function() {
+        sync();
+    });
+    $('#done').on('change', function() {
+        sync();
+    });
+    $('#assessment').on('change', function() {
+        sync();
+    });
+</script>
 {% endblock %}

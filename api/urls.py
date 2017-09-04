@@ -1,12 +1,12 @@
-from django.conf.urls import url, include
+from django.conf.urls import url
 from . import views
-from rest_framework import routers
+from rest_framework.urlpatterns import format_suffix_patterns
 
-router = routers.DefaultRouter()
-router.register(r'flags', views.FlagViewSet)
 
 urlpatterns = [
-    url(r'^template/(?P<template_id>([0-9]+))/$', views.template),
-    url(r'^', include(router.urls)),
+    url(r'^template/(?P<pk>[0-9]+)', views.template_detail),
+    url(r'^templates/', views.template_list),
+    url(r'^flag/(?P<pk>[0-9]+)', views.flag_detail),
+    url(r'^flags/', views.flag_list),
 ]
-
+urlpatterns = format_suffix_patterns(urlpatterns)

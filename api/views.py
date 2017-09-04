@@ -1,26 +1,84 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from app.models import Template
-from django.http import JsonResponse
-from django.contrib.auth.decorators import login_required
-from rest_framework import viewsets
-from .serializers import FlagSerializer
+from .serializers import FlagSerializer, TemplateSerializer
 from app.models import Flag
+from rest_framework import status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 
-@login_required
-def template(request, template_id):
-    response = {}
+@api_view(['GET', 'PUT', 'DELETE'])
+def template_detail(request, pk):
     try:
-        the_template = Template.objects.get(pk=template_id)
-        response['status'] = 200
-        response['name'] = the_template.name
-        response['body'] = the_template.body
+        template = Template.objects.get(pk=pk)
     except Template.DoesNotExist:
-        response['status'] = 404
-    return JsonResponse(response)
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = TemplateSerializer(template)
+        return Response(serializer.data)
+
+    elif request.method == 'PUT':
+        serializer = TemplateSerializer(template, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == 'DELETE':
+        template.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-class FlagViewSet(viewsets.ModelViewSet):
-    queryset = Flag.objects.all()
-    serializer_class = FlagSerializer
+@api_view(['GET', 'POST'])
+def template_list(request):
+    if request.method == 'GET':
+        templates = Template.objects.all()
+        serializer = TemplateSerializer(templates, many=True)
+        return Response(serializer.data)
+
+    elif request.method == 'POST':
+        serializer = TemplateSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def flag_detail(request, pk):
+    try:
+        flag = Flag.objects.get(pk=pk)
+    except Flag.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = FlagSerializer(flag)
+        return Response(serializer.data)
+
+    elif request.method == 'PUT':
+        serializer = FlagSerializer(flag, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == 'DELETE':
+        flag.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['GET', 'POST'])
+def flag_list(request):
+    if request.method == 'GET':
+        flags = Flag.objects.all()
+        serializer = FlagSerializer(flags, many=True)
+        return Response(serializer.data)
+
+    elif request.method == 'POST':
+        serializer = FlagSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
