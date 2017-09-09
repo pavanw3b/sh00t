@@ -7,20 +7,26 @@
  |___/_| |_|\___/ \___/ \__|
  
 
-Integrated Testing Environment for Manual Security Testers
+A platform for application security testers that emphasises on manual security.
+
 ```
+
+Sh00t
+- is a task manager that to makes sure you "check that thing".
+- provides checklists with which you will never regret for forgetting to "test that thing".
+- helps to easily handle custom bug templates that can be separated for your different needs.
 
 
 #### Features:
-- Smart suggest test cases from various testing methodologies, Web Application Hacker's Handbook, OWASP Testing guide etc. You will never forget to test ***that***.
-- Flow: Suggest Test case -> Confirm the bug -> Report
-- Manage your own bug templates and auto prepare bug report from template.
-- Handle multiple Assessments and Projects
-- Never loose any data - Everything's saved automatically
-- Integration with ServiceNow, JIRA (WIP)
+- Dynamic Task Manager to replace simple editors or task management tools that are NOT meant for Security
+- Automated, customizable Security test-cases Checklist to replace Evernote, OneNote or other tools that are NOT meant for Security
+- Manage custom bug templates for different purposes and automatically generate bug report
+- Support multiple Assessments & Projects to logically separate your different needs
+- Use like a paper - Everything's saved automatically
+- Export auto generated bug report into Markdown & submit blidnly on HackerOne! (WIP)
+- Integration with JIRA, ServiceNow (WIP)
 - Export bug report into Markdown (WIP)
 - Customize everything under-the-hood
-
 
 
 #### Installation:
@@ -49,6 +55,32 @@ Integrated Testing Environment for Manual Security Testers
 
 ### Troubleshoot:
 Sh00t is powered by Django Web Framework. If you are stuck with any errors, Googling on the error message, should help you most of the times. If you are not sure, please [file a new issue on github](https://github.com/pavanw3b/sh00t/issues/new).
+
+### Glossary:
+- **Flag:** A Flag is a target that is sh00ted at. It's a test case that needs to be tested. Flags are generated automatically based on the testing methodology chosen. The bug might or might not be found - but the goal is to aim and sh00t at it. Flag contains detailed steps for testing. If the bug is confirmed, then it's called a sh0t.
+- **Sh0t:** Sh0ts are bugs. Typically Sh0t contain technical description of the bug, Affected Files/URLs, Steps To Reproduce and Fix Recommendation. Most of the contents of Sh0t is one-click generated and only the dynamic content like Affected Parameters, Steps has to be changed. Sh0ts can belong to Assessment.
+- **Assessment:** Assessment is a testing assessment. It can be an assessment of an application, a program - up to the user the way wanted to manage. It's a part of project.
+- **Project:** Project contains assessments. Project can be a logical separation of what you do. It can be different job, bug bounty, up to you to decide.
+
+### How does it work?
+Begin with creating a new Assessment. Choose what methodology you want to test with. Today there are 330 test cases, grouped into 86 Flags, belonging to 13 Modules which are created with reference to "Web Application Hacker's Handbook" Testing Methodology. Modules & Flags can be handpicked & customized. Once Assessments are created with the Flags, now the tester has to test them either manually, or semi automated with the help of scanners, tools or however it's required, mark it "Done" on completion. While performing assessment we often come with custom test cases that is specific to certain scenario in the application. A new Flag can be created easily at any point of time.
+
+Whenever a Flag is confirmed to be a valid bug, a Sh0t can be created. One can choose a bug template that matches best, and sh00t will auto fill the bug report based on the template chosen.
+
+### How can use Sh00t?
+- Application Security Engineers: Pentesting & Vulnerability Assessments
+- Bug bounty hunters
+- Independent Security Researchers
+- Blue team, developers who fix
+- Anybody who wants to hack
+
+### Implementation details:
+- Language: Python 2.7
+- Framework: Django Web Framework
+- Dependencies: Django REST Framework, TinyMCE (Managed by /requirements.txt)
+- UI: Bootstrap - Responsive
+
+
 
 **Contribution:**
 - Pavan: [@pavanw3b](https://twitter.com/pavanw3b)
