@@ -51,8 +51,8 @@
                             <label><input type="checkbox" value="done" id="done" name="done"
                                           {% if True == flag.done %} checked {% endif %}>Done</label>
                         </div>
-                        <button type="submit" class="btn btn-primary">Update</button>
                         <input type="hidden" value="{{ flag.id }}" id="id" />
+                        <button type="submit" class="btn btn-primary">Update</button>
                         {% csrf_token %}
                     </form>
                 </div>

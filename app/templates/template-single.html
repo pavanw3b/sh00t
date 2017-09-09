@@ -34,6 +34,7 @@
                         <div class="form-group">
                             <textarea class="form-control" rows="10" name="body">{{ template.body }}</textarea>
                         </div>
+                        <input type="hidden" value="{{ template.id }}" id="id" />
                         <button type="submit" class="btn btn-primary">Update</button>
                         {% csrf_token %}
                     </form>

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from app.models import Template
-from .serializers import FlagSerializer, Sh0tSerializer, TemplateSerializer
-from app.models import Flag, Sh0t
+from .serializers import FlagSerializer, Sh0tSerializer, AssessmentSerializer, ProjectSerializer, TemplateSerializer
+from app.models import Flag, Sh0t, Assessment, Project
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -45,6 +45,7 @@ def flag_list(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 @api_view(['GET', 'PUT', 'DELETE'])
 def sh0t_detail(request, pk):
     try:
@@ -64,7 +65,7 @@ def sh0t_detail(request, pk):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     elif request.method == 'DELETE':
-        flag.delete()
+        sh0t.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
@@ -81,6 +82,83 @@ def sh0t_list(request):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def assessment_detail(request, pk):
+    try:
+        assessment = Assessment.objects.get(pk=pk)
+    except Assessment.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = AssessmentSerializer(assessment)
+        return Response(serializer.data)
+
+    elif request.method == 'PUT':
+        serializer = AssessmentSerializer(assessment, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == 'DELETE':
+        assessment.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['GET', 'POST'])
+def assessment_list(request):
+    if request.method == 'GET':
+        assessments = Assessment.objects.all()
+        serializer = AssessmentSerializer(assessments, many=True)
+        return Response(serializer.data)
+
+    elif request.method == 'POST':
+        serializer = AssessmentSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def project_detail(request, pk):
+    try:
+        project = Project.objects.get(pk=pk)
+    except Project.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = ProjectSerializer(project)
+        return Response(serializer.data)
+
+    elif request.method == 'PUT':
+        serializer = ProjectSerializer(project, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == 'DELETE':
+        project.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['GET', 'POST'])
+def project_list(request):
+    if request.method == 'GET':
+        projects = Project.objects.all()
+        serializer = ProjectSerializer(projects, many=True)
+        return Response(serializer.data)
+
+    elif request.method == 'POST':
+        serializer = ProjectSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def template_detail(request, pk):

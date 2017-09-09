@@ -11,7 +11,7 @@
                     <ol class="breadcrumb">
                         <li><i class="fa fa-dashboard"></i> <a href="/">Dashboard</a></li>
                         <li><i class="fa fa-cube"></i> <a href="/app/assessments/">Assessments</a></li>
-                        <li class="active">{{ assessment.name }}</li>
+                        <li class="active">{{ assessment.name }} <span id="response" class="small"></span></li>
                     </ol>
                 </div>
             </div>
@@ -29,11 +29,11 @@
                         {% endif %}
                         <div class="form-group">
                             <label>Name</label>
-                            <input class="form-control" name="name" value="{{ assessment.name }}" autocomplete="off">
+                            <input class="form-control" name="name" id="name" value="{{ assessment.name }}" autocomplete="off">
                         </div>
                         <div class="form-group">
                             <label for="project">Project</label>
-                            <select class="form-control" name="project">
+                            <select class="form-control" name="project" id="project">
                             {% for project in projects %}
                                 <option value="{{ project.id }}"
                                 {% if project.id == assessment.project.id %}
@@ -43,14 +43,23 @@
                             {% endfor %}
                             </select>
                         </div>
+                        <input type="hidden" value="{{ assessment.id }}" id="id" /><input type="hidden" value="{{ assessment.id }}" id="id" />
                         <button type="submit" class="btn btn-primary">Update</button>
                         {% csrf_token %}
                     </form>
                 </div>
             </div>
-            <!-- /.row -->
         </div>
-        <!-- /.container-fluid -->
     </div>
-    <!-- /#page-wrapper -->
+{% endblock %}
+{% block extra_foot %}
+<script src="/static/js/common-ajax.js"></script>
+<script type="text/javascript">
+    $('#name').on('input', function() {
+        sync('assessment');
+    });
+    $('#project').on('change', function() {
+        sync('assessment');
+    });
+</script>
 {% endblock %}

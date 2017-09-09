@@ -11,7 +11,7 @@
                     <ol class="breadcrumb">
                         <li><i class="fa fa-dashboard"></i> <a href="/">Dashboard</a></li>
                         <li><i class="fa fa-cubes"></i> <a href="/app/projects/">Projects</a></li>
-                        <li class="active">{{ project.name }}</li>
+                        <li class="active">{{ project.name }}  <span id="response" class="small"></span></li>
                     </ol>
                 </div>
             </div>
@@ -29,8 +29,9 @@
                         {% endif %}
                         <div class="form-group">
                             <label>Name</label>
-                            <input class="form-control" name="name" value="{{ project.name }}" autocomplete="off" />
+                            <input class="form-control" name="name" id="name" value="{{ project.name }}" autocomplete="off" />
                         </div>
+                        <input type="hidden" value="{{ project.id }}" id="id" />
                         <button type="submit" class="btn btn-primary">Update</button>
                         {% csrf_token %}
                     </form>
@@ -41,4 +42,12 @@
         <!-- /.container-fluid -->
     </div>
     <!-- /#page-wrapper -->
+{% endblock %}
+{% block extra_foot %}
+<script src="/static/js/common-ajax.js"></script>
+<script type="text/javascript">
+    $('#name').on('input', function() {
+        sync('project');
+    });
+</script>
 {% endblock %}

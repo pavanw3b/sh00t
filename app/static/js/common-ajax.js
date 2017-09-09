@@ -72,6 +72,31 @@ function send(target) {
             });
             break;
 
+        case "assessment":
+            var name = JSON.stringify($("#name").val());
+            var project = JSON.stringify($("#project").val());
+            $.ajax({
+                url: "/api/assessment/" + $("#id").val() + "/",
+                data: '{"name": ' + name + ', "project": ' + project + '}',
+                type: 'PUT',
+                success: function() {
+                    $("#response").html("(Saved)");
+                }
+            });
+            break;
+
+        case "project":
+            var name = JSON.stringify($("#name").val());
+            $.ajax({
+                url: "/api/project/" + $("#id").val() + "/",
+                data: '{"name": ' + name + ' }',
+                type: 'PUT',
+                success: function() {
+                    $("#response").html("(Saved)");
+                }
+            });
+            break;
+
         default:
             alert("Invalid target");
     }

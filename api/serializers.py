@@ -9,28 +9,24 @@ class ProjectSerializer(serializers.ModelSerializer):
 
 
 class AssessmentSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Assessment
         fields = ('name', 'added', 'project')
 
 
 class FlagSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Flag
         fields = ('id', 'title', 'note', 'done', 'assessment')
 
 
 class Sh0tSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Sh0t
         fields = ('title', 'body', 'added', 'assessment')
 
 
 class TemplateSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Template
         fields = ('name', 'body')
