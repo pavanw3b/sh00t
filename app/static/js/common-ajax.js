@@ -97,6 +97,20 @@ function send(target) {
             });
             break;
 
+        case "template":
+            var name = JSON.stringify($("#name").val());
+            var body = JSON.stringify($("#body").val());
+            $.ajax({
+                url: "/api/template/" + $("#id").val() + "/",
+                data: '{"name": ' + name + ', "body": '+ body +' }',
+                type: 'PUT',
+                success: function() {
+                    $("#response").html("(Saved)");
+                }
+            });
+            break;
+
+
         default:
             alert("Invalid target");
     }
