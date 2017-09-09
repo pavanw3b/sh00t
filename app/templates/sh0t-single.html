@@ -11,7 +11,7 @@
                     <ol class="breadcrumb">
                         <li><i class="fa fa-dashboard"></i> <a href="/">Dashboard</a></li>
                         <li><i class="fa fa-bullseye"></i> <a href="/app/sh0ts/">Sh0t</a></li>
-                        <li class="active">{{ sh0t.title }}</li>
+                        <li class="active">{{ sh0t.title }} <span id="response" class="small"></span></li>
                     </ol>
                 </div>
             </div>
@@ -29,15 +29,15 @@
                         {% endif %}
                         <div class="form-group">
                             <label>Title</label>
-                            <input class="form-control" name="title" value="{{ sh0t.title }}" autocomplete="off" />
+                            <input class="form-control" name="title" id="title" value="{{ sh0t.title }}" autocomplete="off" />
                         </div>
                         <div class="form-group">
                             <label>Note</label>
-                            <textarea class="form-control" rows="15" name="body">{{ sh0t.body }}</textarea>
+                            <textarea class="form-control" rows="15" id="body" name="body">{{ sh0t.body }}</textarea>
                         </div>
                         <div class="form-group">
                             <label for="assessment">Assessment</label>
-                            <select class="form-control" name="assessment">
+                            <select class="form-control" name="assessment" id="assessment">
                             {% for assessment in assessments %}
                                 <option value="{{ assessment.id }}"
                                 {% if assessment.id == sh0t.assessment.id %}
@@ -47,14 +47,27 @@
                             {% endfor %}
                             </select>
                         </div>
+                        <input type="hidden" value="{{ sh0t.id }}" id="id" />
                         <button type="submit" class="btn btn-primary">Update</button>
                         {% csrf_token %}
                     </form>
                 </div>
             </div>
-            <!-- /.row -->
         </div>
-        <!-- /.container-fluid -->
     </div>
-    <!-- /#page-wrapper -->
+{% endblock %}
+{% block extra_foot %}
+<script src="/static/js/common-ajax.js"></script>
+<script type="text/javascript">
+    /* sync() defined in common-ajax ^ above */
+    $('#body').on('input', function() {
+        sync('sh0t');
+    });
+    $('#title').on('input', function() {
+        sync('sh0t');
+    });
+    $('#assessment').on('change', function() {
+        sync('sh0t');
+    });
+</script>
 {% endblock %}

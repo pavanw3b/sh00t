@@ -10,12 +10,9 @@
                     <ol class="breadcrumb">
                         <li><i class="fa fa-dashboard"></i> <a href="/">Dashboard</a></li>
                         <li><i class="fa fa-flag"></i> <a href="/app/flags/">Flags</a></li>
-                        <li class="active">{{ flag.title }}</li>
+                        <li class="active">{{ flag.title }} <span id="response" class="small"></span></li>
                     </ol>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12"><div class="alert" id="response"></div></div>
             </div>
             <div class="row">
                 <div class="col-lg-12">
@@ -68,41 +65,17 @@
 {% block extra_foot %}
 <script src="/static/js/common-ajax.js"></script>
 <script type="text/javascript">
-    function sync() {
-        var response = $("#response");
-        response.removeClass('alert-success');
-        response.addClass('alert-warning').html("Syncing..");
-
-        setTimeout( function() {
-            var title = JSON.stringify($("#title").val());
-            var note = JSON.stringify($("#note").val());
-            var done = JSON.stringify(false);
-            if($("#done").is(":checked"))
-                done = JSON.stringify(true);
-            var assessment = JSON.stringify($("#assessment").val());
-
-            $.ajax({
-                url: "/api/flag/" + $("#id").val() + "/",
-                data: '{"title": '+title+', "note": '+note+', "done": '+done+', "assessment": '+assessment+'}',
-                type: 'PUT',
-                success: function() {
-                    response.removeClass('alert-warning');
-                    response.addClass('alert-success').html("Saved!!");
-                }
-            });
-        }, 1000);
-    }
     $('#note').on('input', function() {
-        sync();
+        sync('flag');
     });
     $('#title').on('input', function() {
-        sync();
+        sync('flag');
     });
     $('#done').on('change', function() {
-        sync();
+        sync('flag');
     });
     $('#assessment').on('change', function() {
-        sync();
+        sync('flag');
     });
 </script>
 {% endblock %}
