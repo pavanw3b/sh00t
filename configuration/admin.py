@@ -20,11 +20,12 @@ class ModuleMasterAdmin(admin.ModelAdmin):
 
 class CaseMasterAdmin(admin.ModelAdmin):
     fields = ['name', 'description', 'module', 'order']
-    list_display = ['name', 'description', 'module', 'get_methodology', 'order', 'created', 'updated']
+    list_display = ['name', 'description', 'module', 'methodology', 'order', 'created', 'updated']
     search_fields = ['name', 'description']
     ordering = ['order', 'name']
 
-    def get_methodology(self, case):
+    @staticmethod
+    def methodology(case):
         return case.module.methodology
 
 

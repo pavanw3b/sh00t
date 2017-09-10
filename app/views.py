@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 from django.shortcuts import render, redirect
 from .models import Assessment, Project, Sh0t, Flag, Template
-from configuration.models import ModuleMaster, CaseMaster
+from configuration.models import MethodologyMaster, ModuleMaster, CaseMaster
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 
@@ -146,11 +146,13 @@ def assessments(request):
         except ModuleMaster.DoesNotExist:
             return redirect('/')
     assessments_list = Assessment.objects.all().order_by('added')
+    methodologies_list = MethodologyMaster.objects.all().order_by('order')
     modules_list = ModuleMaster.objects.all().order_by('order')
     cases_list = CaseMaster.objects.all().order_by('order')
     projects_list = Project.objects.all().order_by('added')
     context = {'assessments': assessments_list, 'projects': projects_list,
-               'modules': modules_list, 'cases': cases_list, 'submitted': submitted}
+               'methodologies_list': methodologies_list, 'modules': modules_list, 'cases': cases_list,
+               'submitted': submitted}
     return render(request, 'assessments.html', context)
 
 
