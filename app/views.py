@@ -148,11 +148,9 @@ def assessments(request):
     assessments_list = Assessment.objects.all().order_by('added')
     methodologies_list = MethodologyMaster.objects.all().order_by('order')
     modules_list = ModuleMaster.objects.all().order_by('order')
-    cases_list = CaseMaster.objects.all().order_by('order')
     projects_list = Project.objects.all().order_by('added')
     context = {'assessments': assessments_list, 'projects': projects_list,
-               'methodologies_list': methodologies_list, 'modules': modules_list, 'cases': cases_list,
-               'submitted': submitted}
+               'methodologies_list': methodologies_list, 'modules': modules_list, 'submitted': submitted}
     return render(request, 'assessments.html', context)
 
 

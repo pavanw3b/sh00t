@@ -43,17 +43,25 @@
                         <div class="form-group">
                             <b>Set up Flags from</b>
                             {% for methodology in methodologies_list %}
-                                <div class="checkbox"><h4>{{ methodology.name }}: </h4></div>
+                                <div class="checkbox">
+                                    <h4>
+                                        <label>
+                                            <input type="checkbox" class="methodology" value="{{ methodology.name.split|join:'_' }}" />
+                                            {{ methodology.name }}:
+                                        </label>
+                                    </h4>
+                                </div>
                                 {% for module in modules %}
                                     {% if module.methodology == methodology %}
                                         <div class="checkbox">
                                             <label>
-                                                <input type="checkbox" value="{{ module.id }}" name="modules" />
+                                                <input type="checkbox" value="{{ module.id }}" class="child-{{ methodology.name.split|join:'_'  }}" name="modules" />
                                                 {{ module.name }}
                                             </label>
                                         </div>
                                     {% endif %}
                                 {% endfor %}
+                                <br />
                             {% endfor %}
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
@@ -95,9 +103,14 @@
                     </div>
                 </div>
             </div>
-            <!-- /.row -->
         </div>
-        <!-- /.container-fluid -->
     </div>
-    <!-- /#page-wrapper -->
+{% endblock %}
+{% block extra_foot %}
+<script src="/static/js/common-ajax.js"></script>
+<script type="text/javascript">
+    $('.methodology').on('change', function() {
+        $('.child-'+$(this).val()).prop('checked', $(this).is(":checked"));
+    });
+</script>
 {% endblock %}

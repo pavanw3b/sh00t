@@ -16,8 +16,9 @@ except NameError:
 if "yes" == answer.lower():
     order = ""
     description_consolidated = ""
-    ModuleMaster.objects.all().delete()
     CaseMaster.objects.all().delete()
+    ModuleMaster.objects.all().delete()
+    MethodologyMaster.objects.all().delete()
 
     # WAHH
     methodology_master = MethodologyMaster(name="WAHH")
