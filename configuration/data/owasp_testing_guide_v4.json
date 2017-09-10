@@ -1,0 +1,118 @@
+{
+  "modules": {
+    "Information Gathering": {
+      "order": 1,
+      "description": "",
+      "tests": {
+        "Conduct Search Engine Discovery and Reconnaissance for Information Leakage": {
+          "order": 1,
+          "description": "",
+          "steps": [
+            "Network diagrams and configurations",
+            "Archived posts and emails by administrators and other key staff",
+            "Log on procedures and username formats",
+            "Usernames and passwords",
+            "Error message content",
+            "Development, test, UAT and staging versions of the website"
+          ]
+        },
+        "Fingerprint Web Server": {
+          "order": 2,
+          "description": "",
+          "steps": []
+        },
+        "Review Webserver Metafiles for Information Leakage": {
+          "order": 3,
+          "description": "",
+          "steps": []
+        },
+        "Enumerate Applications on Webserver": {
+          "order": 4,
+          "description": "",
+          "steps": []
+        },
+        "Review Webpage Comments and Metadata for Information Leakager": {
+          "order": 5,
+          "description": "",
+          "steps": []
+        },
+        "Identify application entry points": {
+          "order": 6,
+          "description": "",
+          "steps": []
+        },
+        "Map execution paths through application": {
+          "order": 7,
+          "description": "",
+          "steps": []
+        },
+        "Fingerprint Web Application Framework": {
+          "order": 8,
+          "description": "",
+          "steps": []
+        },
+        "Fingerprint Web Application": {
+          "order": 9,
+          "description": "",
+          "steps": []
+        },
+        "Map Application Architecture": {
+          "order": 10,
+          "description": "",
+          "steps": []
+        }
+      }
+    },
+    "Configuration and Deploy Management Testing": {
+      "order": 2,
+      "description": "",
+      "tests": {
+        "Test Network/Infrastructure Configuration": {
+          "order": 11,
+          "description": "",
+          "steps": []
+        },
+        "Test Application Platform Configuration": {
+          "order": 12,
+          "description": "",
+          "steps": []
+        },
+        "Test File Extensions Handling for Sensitive Information": {
+          "order": 13,
+          "description": "",
+          "steps": []
+        },
+        "Backup and Unreferenced Files for Sensitive Information": {
+          "order": 14,
+          "description": "",
+          "steps": []
+        },
+        "Review Webpage Comments and Metadata for Information Leakager": {
+          "order": 15,
+          "description": "",
+          "steps": []
+        },
+        "Enumerate Infrastructure and Application Admin Interfaces": {
+          "order": 16,
+          "description": "",
+          "steps": []
+        },
+        "Test HTTP Methods": {
+          "order": 17,
+          "description": "",
+          "steps": []
+        },
+        "Test HTTP Strict Transport Security": {
+          "order": 18,
+          "description": "",
+          "steps": []
+        },
+        "Test RIA cross domain policy": {
+          "order": 19,
+          "description": "",
+          "steps": []
+        }
+      }
+    }
+  }
+}
