@@ -248,6 +248,10 @@ def template(request, template_id):
     try:
         the_template = Template.objects.get(pk=template_id)
         if "POST" == request.method:
+            if "delete" == request.POST.get('delete', ''):
+                the_template.delete()
+                return redirect('/app/templates/')
+
             the_template.name = request.POST.get('name', '')
             the_template.body = request.POST.get('body', '')
             the_template.save()
