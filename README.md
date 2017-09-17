@@ -71,8 +71,8 @@ Whenever a Flag is confirmed to be a valid bug, a Sh0t can be created. One can c
 ### Screenshots
 ![dashboard](https://user-images.githubusercontent.com/11267537/30522876-c8c77b8e-9bf4-11e7-8904-5a9bb9f0388f.png)
 ![flag](https://user-images.githubusercontent.com/11267537/30522877-c8cc5da2-9bf4-11e7-8014-eb8415ff6347.png)
-![new-assessment]("https://user-images.githubusercontent.com/11267537/30522878-c8cd0630-9bf4-11e7-8c9e-17d98aab4185.png)
-![new-sh0t-from-template]("https://user-images.githubusercontent.com/11267537/30522879-c8cdf888-9bf4-11e7-8fd4-228235e376e6.png)
+![new-assessment](https://user-images.githubusercontent.com/11267537/30522878-c8cd0630-9bf4-11e7-8c9e-17d98aab4185.png)
+![new-sh0t-from-template](https://user-images.githubusercontent.com/11267537/30522879-c8cdf888-9bf4-11e7-8fd4-228235e376e6.png)
 
 
 ### Who can use Sh00t?
