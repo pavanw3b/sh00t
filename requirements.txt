@@ -1,3 +1,2 @@
 django
-django-tinymce
 djangorestframework

@@ -1,7 +1,5 @@
 from django.db import models
-from tinymce.models import HTMLField
 from datetime import datetime
-from tinymce import models as tinymce_models
 from django.utils.encoding import python_2_unicode_compatible
 
 
@@ -33,7 +31,7 @@ class Assessment(models.Model):
 @python_2_unicode_compatible
 class Sh0t(models.Model):
     title = models.CharField(max_length=200)
-    body = HTMLField(null=True)
+    body = models.TextField(default="")
     assessment = models.ForeignKey(Assessment, null=True, on_delete=models.SET_NULL)
     added = models.DateTimeField(default=datetime.now)
 
@@ -47,7 +45,7 @@ class Sh0t(models.Model):
 @python_2_unicode_compatible
 class Flag(models.Model):
     title = models.CharField(max_length=100)
-    note = HTMLField(null=True)
+    note = models.TextField(default="")
     assessment = models.ForeignKey(Assessment, null=True, on_delete=models.SET_NULL)
     done = models.BooleanField(default=False)
     added = models.DateTimeField(default=datetime.now)
@@ -62,7 +60,7 @@ class Flag(models.Model):
 @python_2_unicode_compatible
 class Template(models.Model):
     name = models.CharField(max_length=100)
-    body = tinymce_models.HTMLField()
+    body = models.TextField(default="")
 
     def __str__(self):  # __unicode__ on Python 2
         return self.name

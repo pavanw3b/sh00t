@@ -52,26 +52,28 @@ def flag(request, flag_id):
     submitted = ""
     try:
         the_flag = Flag.objects.get(pk=flag_id)
-
         if "POST" == request.method:
+            if "delete" == request.POST.get('delete', ''):
+                the_flag.delete()
+                return redirect('/app/flags/')
+
             assessment_id = request.POST.get('assessment', '')
-            try:
-                the_flag.title = request.POST.get('title', '')
-                the_flag.note = request.POST.get('note', '')
-                if "done" == request.POST.get('done', ''):
-                    the_flag.done = True
-                else:
-                    the_flag.done = False
-                the_flag.assessment = Assessment.objects.get(pk=assessment_id)
-                the_flag.save()
-                submitted = "success"
-            except Assessment.DoesNotExist:
-                return redirect('/')
+            the_flag.title = request.POST.get('title', '')
+            the_flag.note = request.POST.get('note', '')
+            if "done" == request.POST.get('done', ''):
+                the_flag.done = True
+            else:
+                the_flag.done = False
+            the_flag.assessment = Assessment.objects.get(pk=assessment_id)
+            the_flag.save()
+            submitted = "success"
 
         assessments_list = Assessment.objects.all().order_by('added')
         context = {'flag': the_flag, 'assessments': assessments_list, 'submitted': submitted}
         return render(request, 'flag-single.html', context)
     except Flag.DoesNotExist:
+        return redirect('/')
+    except Assessment.DoesNotExist:
         return redirect('/')
 
 

@@ -52,7 +52,7 @@
                                           {% if True == flag.done %} checked {% endif %}>Done</label>
                         </div>
                         <input type="hidden" value="{{ flag.id }}" id="id" />
-                        <button type="submit" class="btn btn-primary">Update</button>
+                        <button type="submit" class="btn btn-primary">Update</button> <button type="submit" name="delete" value="delete" class="btn btn-danger">Delete</button>
                         {% csrf_token %}
                     </form>
                 </div>
