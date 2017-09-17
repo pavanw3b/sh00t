@@ -48,6 +48,13 @@ def flags(request):
 
 
 @login_required
+def flags_all(request):
+    all_flags = Flag.objects.filter().order_by('added')
+    context = {'all_flags': all_flags}
+    return render(request, 'flags_list.html', context)
+
+
+@login_required
 def flag(request, flag_id):
     submitted = ""
     try:

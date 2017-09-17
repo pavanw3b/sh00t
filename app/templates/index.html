@@ -148,27 +148,25 @@
                             <h3 class="panel-title">Open Flags</h3>
                         </div>
                         <div class="panel-body">
-                            {% if recent_flags %}
+                            {% if open_flags %}
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-hover table-striped">
                                         <thead>
                                             <tr>
                                                 <th>Title</th>
-                                                <th>Done</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {% for flag in recent_flags %}
+                                            {% for flag in open_flags %}
                                                 <tr>
                                                     <td><a href="/app/flag/{{ flag.id }}/">{{ flag.title }}</a></td>
-                                                    <td>{{ flag.done }}</td>
                                                 </tr>
                                             {% endfor %}
                                         </tbody>
                                     </table>
                                 </div>
                                 <div class="text-right">
-                                    <a href="/app/flags/">View All <i class="fa fa-arrow-circle-right"></i></a>
+                                    <a href="/app/flags/all">View All <i class="fa fa-arrow-circle-right"></i></a>
                                 </div>
                             {% else %}
                                 <h4><i class="fa fa-flag-o"></i> <a href="/app/flags/">New Flag</a></h4>
@@ -177,9 +175,6 @@
                     </div>
                 </div>
             </div>
-            <!-- /.row -->
         </div>
-        <!-- /.container-fluid -->
     </div>
-    <!-- /#page-wrapper -->
 {% endblock %}
