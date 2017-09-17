@@ -133,12 +133,12 @@ def assessments(request):
             new_assessment = Assessment.objects.create(name=name, project=the_project)
             new_assessment.save()
             selected_modules = request.POST.getlist('modules')
-            for module_id in selected_modules:
-                module = ModuleMaster.objects.get(id=module_id)
-                selected_cases = CaseMaster.objects.filter(module=module)
-                for case in selected_cases:
-                    note = "Module: " + module.name + "\n\n" + case.description
-                    new_flag = Flag(title=case.name, note=note, assessment=new_assessment)
+            for selected_module_id in selected_modules:
+                selected_module = ModuleMaster.objects.get(id=selected_module_id)
+                selected_cases = CaseMaster.objects.filter(module=selected_module)
+                for selected_case in selected_cases:
+                    note = "Module: " + selected_module.name + "\n\n" + selected_case.description
+                    new_flag = Flag(title=selected_case.name, note=note, assessment=new_assessment)
                     new_flag.save()
             submitted = "success"
         except Project.DoesNotExist:

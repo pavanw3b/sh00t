@@ -4,7 +4,7 @@
       "order": 1,
       "description": "",
       "tests": {
-        "Conduct Search Engine Discovery and Reconnaissance for Information Leakage": {
+        "Conduct Search Engine Discovery and Reconnaissance for Information Leakage (OTG-INFO-001)": {
           "order": 1,
           "description": "",
           "steps": [
@@ -16,47 +16,47 @@
             "Development, test, UAT and staging versions of the website"
           ]
         },
-        "Fingerprint Web Server": {
+        "Fingerprint Web Server (OTG-INFO-002)": {
           "order": 2,
           "description": "",
           "steps": []
         },
-        "Review Webserver Metafiles for Information Leakage": {
+        "Review Webserver Metafiles for Information Leakage (OTG-INFO-003)": {
           "order": 3,
           "description": "",
           "steps": []
         },
-        "Enumerate Applications on Webserver": {
+        "Enumerate Applications on Webserver (OTG-INFO-004)": {
           "order": 4,
           "description": "",
           "steps": []
         },
-        "Review Webpage Comments and Metadata for Information Leakager": {
+        "Review Webpage Comments and Metadata for Information Leakage (OTG-INFO-005)": {
           "order": 5,
           "description": "",
           "steps": []
         },
-        "Identify application entry points": {
+        "Identify application entry points (OTG-INFO-006)": {
           "order": 6,
           "description": "",
           "steps": []
         },
-        "Map execution paths through application": {
+        "Map execution paths through application (OTG-INFO-007)": {
           "order": 7,
           "description": "",
           "steps": []
         },
-        "Fingerprint Web Application Framework": {
+        "Fingerprint Web Application Framework (OTG-INFO-008)": {
           "order": 8,
           "description": "",
           "steps": []
         },
-        "Fingerprint Web Application": {
+        "Fingerprint Web Application (OTG-INFO-009)": {
           "order": 9,
           "description": "",
           "steps": []
         },
-        "Map Application Architecture": {
+        "Map Application Architecture (OTG-INFO-010)": {
           "order": 10,
           "description": "",
           "steps": []
@@ -67,48 +67,454 @@
       "order": 2,
       "description": "",
       "tests": {
-        "Test Network/Infrastructure Configuration": {
+        "Test Network/Infrastructure Configuration (OTG-CONFIG-001)": {
           "order": 11,
           "description": "",
           "steps": []
         },
-        "Test Application Platform Configuration": {
+        " Test Application Platform Configuration (OTG-CONFIG-002)": {
           "order": 12,
           "description": "",
           "steps": []
         },
-        "Test File Extensions Handling for Sensitive Information": {
+        "Test File Extensions Handling for Sensitive Information (OTG-CONFIG-003)": {
           "order": 13,
           "description": "",
           "steps": []
         },
-        "Backup and Unreferenced Files for Sensitive Information": {
+        "Review Old, Backup and Unreferenced Files for Sensitive Information (OTG-CONFIG-004)": {
           "order": 14,
           "description": "",
           "steps": []
         },
-        "Review Webpage Comments and Metadata for Information Leakager": {
+        "Enumerate Infrastructure and Application Admin Interfaces (OTG-CONFIG-005)": {
           "order": 15,
           "description": "",
           "steps": []
         },
-        "Enumerate Infrastructure and Application Admin Interfaces": {
+        "Test HTTP Methods (OTG-CONFIG-006)": {
           "order": 16,
           "description": "",
           "steps": []
         },
-        "Test HTTP Methods": {
+        "Test HTTP Strict Transport Security (OTG-CONFIG-007)": {
           "order": 17,
           "description": "",
           "steps": []
         },
-        "Test HTTP Strict Transport Security": {
+        "Test RIA cross domain policy (OTG-CONFIG-008)": {
           "order": 18,
           "description": "",
           "steps": []
         },
-        "Test RIA cross domain policy": {
+        "Test File Permission (OTG-CONFIG-009)": {
           "order": 19,
+          "description": "",
+          "steps": []
+        }
+      }
+    },
+    "Identity Management Testing": {
+      "order": 3,
+      "description": "",
+      "tests": {
+        "Test Role Definitions (OTG-IDENT-001)": {
+          "order": 20,
+          "description": "",
+          "steps": []
+        },
+        "Test User Registration Process (OTG-IDENT-002)": {
+          "order": 21,
+          "description": "",
+          "steps": []
+        },
+        "Test Account Provisioning Process (OTG-IDENT-003)": {
+          "order": 22,
+          "description": "",
+          "steps": []
+        },
+        "Testing for Account Enumeration and Guessable User Account (OTG-IDENT-004)": {
+          "order": 23,
+          "description": "",
+          "steps": []
+        }
+      }
+    },
+    "Authentication Testing": {
+      "order": 4,
+      "description": "",
+      "tests": {
+        "Testing for Credentials Transported over an Encrypted Channel (OTG-AUTHN-001)": {
+          "order": 24,
+          "description": "",
+          "steps": []
+        },
+        "Testing for Weak lock out mechanism (OTG-AUTHN-003)": {
+          "order": 25,
+          "description": "",
+          "steps": []
+        },
+        "Testing for bypassing authentication schema (OTG-AUTHN-004)": {
+          "order": 26,
+          "description": "",
+          "steps": []
+        },
+        "Test remember password functionality (OTG-AUTHN-005)": {
+          "order": 27,
+          "description": "",
+          "steps": []
+        },
+        "Testing for Browser cache weakness (OTG-AUTHN-006)": {
+          "order": 28,
+          "description": "",
+          "steps": []
+        },
+        "Testing for Weak password policy (OTG-AUTHN-007)": {
+          "order": 29,
+          "description": "",
+          "steps": []
+        },
+        "Testing for Weak security question/answer (OTG-AUTHN-008)": {
+          "order": 30,
+          "description": "",
+          "steps": []
+        },
+        "Testing for weak password change or reset functionalities (OTG-AUTHN-009)": {
+          "order": 31,
+          "description": "",
+          "steps": []
+        },
+        "Testing for Weaker authentication in alternative channel (OTG-AUTHN-010)": {
+          "order": 32,
+          "description": "",
+          "steps": []
+        }
+      }
+    },
+    "Authorization Testing": {
+      "order": 5,
+      "description": "",
+      "tests": {
+        "Testing Directory traversal/file include (OTG-AUTHZ-001)": {
+          "order": 33,
+          "description": "",
+          "steps": []
+        },
+        "Testing for bypassing authorization schema (OTG-AUTHZ-002)": {
+          "order": 34,
+          "description": "",
+          "steps": []
+        },
+        "Testing for Privilege Escalation (OTG-AUTHZ-003)": {
+          "order": 35,
+          "description": "",
+          "steps": []
+        },
+        "Testing for Insecure Direct Object References (OTG-AUTHZ-004)": {
+          "order": 36,
+          "description": "",
+          "steps": []
+        }
+      }
+    },
+    "Session Management Testing": {
+      "order": 6,
+      "description": "",
+      "tests": {
+        "Testing for Bypassing Session Management Schema (OTG-SESS-001)": {
+          "order": 37,
+          "description": "",
+          "steps": []
+        },
+        "Testing for Cookies attributes (OTG-SESS-002)": {
+          "order": 38,
+          "description": "",
+          "steps": []
+        },
+        "Testing for Session Fixation (OTG-SESS-003)": {
+          "order": 39,
+          "description": "",
+          "steps": []
+        },
+        "Testing for Exposed Session Variables (OTG-SESS-004)": {
+          "order": 40,
+          "description": "",
+          "steps": []
+        },
+        "Testing for Cross Site Request Forgery (CSRF) (OTG-SESS-005)": {
+          "order": 41,
+          "description": "",
+          "steps": []
+        },
+        "Testing for logout functionality (OTG-SESS-006)": {
+          "order": 42,
+          "description": "",
+          "steps": []
+        },
+        "Test Session Timeout (OTG-SESS-007)": {
+          "order": 43,
+          "description": "",
+          "steps": []
+        },
+        "Testing for Session puzzling (OTG-SESS-008)": {
+          "order": 44,
+          "description": "",
+          "steps": []
+        }
+      }
+    },
+    "Input Validation Testing": {
+      "order": 7,
+      "description": "",
+      "tests": {
+        "Testing for Reflected Cross Site Scripting (OTG-INPVAL-001)": {
+          "order": 45,
+          "description": "",
+          "steps": []
+        },
+        "Testing for Stored Cross Site Scripting (OTG-INPVAL-002)": {
+          "order": 46,
+          "description": "",
+          "steps": []
+        },
+        "Testing for HTTP Verb Tampering (OTG-INPVAL-003)": {
+          "order": 47,
+          "description": "",
+          "steps": []
+        },
+        "Testing for HTTP Parameter pollution (OTG-INPVAL-004)": {
+          "order": 48,
+          "description": "",
+          "steps": []
+        },
+        "Testing for SQL Injection (OTG-INPVAL-005)": {
+          "order": 49,
+          "description": "",
+          "steps": [
+            "Oracle Testing",
+            "MySQL Testing",
+            "SQL Server Testing",
+            "Testing PostgreSQL (from OWASP BSP)",
+            "MS Access Testing",
+            "Testing for NoSQL injection"
+          ]
+        },
+        "Testing for LDAP Injection (OTG-INPVAL-006)": {
+          "order": 50,
+          "description": "",
+          "steps": []
+        },
+        "Testing for ORM Injection (OTG-INPVAL-007)": {
+          "order": 51,
+          "description": "",
+          "steps": []
+        },
+        "Testing for XML Injection (OTG-INPVAL-008)": {
+          "order": 52,
+          "description": "",
+          "steps": []
+        },
+        "Testing for SSI Injection (OTG-INPVAL-009)": {
+          "order": 53,
+          "description": "",
+          "steps": []
+        },
+        "Testing for XPath Injection (OTG-INPVAL-010)": {
+          "order": 54,
+          "description": "",
+          "steps": []
+        },
+        "IMAP/SMTP Injection (OTG-INPVAL-011)": {
+          "order": 55,
+          "description": "",
+          "steps": []
+        },
+        "Testing for Code Injection (OTG-INPVAL-012)": {
+          "order": 56,
+          "description": "",
+          "steps": ["Testing for Local File Inclusion", "Testing for Remote File Inclusion"]
+        },
+        "Testing for Command Injection (OTG-INPVAL-013)": {
+          "order": 57,
+          "description": "",
+          "steps": []
+        },
+        "Testing for Buffer overflow (OTG-INPVAL-014)": {
+          "order": 58,
+          "description": "",
+          "steps": ["Testing for Heap overflow", "Testing for Stack overflow", "Testing for Format string"]
+        },
+        "Testing for incubated vulnerabilities (OTG-INPVAL-015)": {
+          "order": 59,
+          "description": "",
+          "steps": []
+        },
+        "Testing for HTTP Splitting/Smuggling (OTG-INPVAL-016)": {
+          "order": 60,
+          "description": "",
+          "steps": []
+        },
+        "Testing for HTTP Incoming Requests (OTG-INPVAL-017)": {
+          "order": 61,
+          "description": "",
+          "steps": []
+        }
+      }
+    },
+    "Testing for Error Handling": {
+      "order": 8,
+      "description": "",
+      "tests": {
+        "Analysis of Error Codes (OTG-ERR-001)": {
+          "order": 62,
+          "description": "",
+          "steps": []
+        },
+        "Analysis of Stack Traces (OTG-ERR-002)": {
+          "order": 63,
+          "description": "",
+          "steps": []
+        }
+      }
+    },
+    "Testing for weak Cryptography": {
+      "order": 9,
+      "description": "",
+      "tests": {
+        "Testing for Weak SSL/TLS Ciphers, Insufficient Transport Layer Protection (OTG-CRYPST-001)": {
+          "order": 64,
+          "description": "",
+          "steps": []
+        },
+        "Testing for Padding Oracle (OTG-CRYPST-002)": {
+          "order": 65,
+          "description": "",
+          "steps": []
+        },
+        "Testing for Sensitive information sent via unencrypted channels (OTG-CRYPST-003)": {
+          "order": 66,
+          "description": "",
+          "steps": []
+        },
+        "Testing for Weak Encryption (OTG-CRYPST-004)": {
+          "order": 67,
+          "description": "",
+          "steps": []
+        }
+      }
+    },
+    "Business Logic Testing": {
+      "order": 10,
+      "description": "",
+      "tests": {
+        "Test Business Logic Data Validation (OTG-BUSLOGIC-001)": {
+          "order": 68,
+          "description": "",
+          "steps": []
+        },
+        "Test Ability to Forge Requests (OTG-BUSLOGIC-002)": {
+          "order": 69,
+          "description": "",
+          "steps": []
+        },
+        "Test Integrity Checks (OTG-BUSLOGIC-003)": {
+          "order": 70,
+          "description": "",
+          "steps": []
+        },
+        "Test for Process Timing (OTG-BUSLOGIC-004)": {
+          "order": 71,
+          "description": "",
+          "steps": []
+        },
+        "Test Number of Times a Function Can be Used Limits (OTG-BUSLOGIC-005)": {
+          "order": 72,
+          "description": "",
+          "steps": []
+        },
+        "Testing for the Circumvention of Work Flows (OTG-BUSLOGIC-006)": {
+          "order": 73,
+          "description": "",
+          "steps": []
+        },
+        "Test Defenses Against Application Mis-use (OTG-BUSLOGIC-007)": {
+          "order": 74,
+          "description": "",
+          "steps": []
+        },
+        "Test Upload of Unexpected File Types (OTG-BUSLOGIC-008)": {
+          "order": 75,
+          "description": "",
+          "steps": []
+        },
+        "Test Upload of Malicious Files (OTG-BUSLOGIC-009)": {
+          "order": 76,
+          "description": "",
+          "steps": []
+        }
+      }
+    },
+    "Client Side Testing": {
+      "order": 11,
+      "description": "",
+      "tests": {
+        "Testing for DOM based Cross Site Scripting (OTG-CLIENT-001)": {
+          "order": 77,
+          "description": "",
+          "steps": []
+        },
+        "Testing for JavaScript Execution (OTG-CLIENT-002)": {
+          "order": 78,
+          "description": "",
+          "steps": []
+        },
+        "Testing for HTML Injection (OTG-CLIENT-003)": {
+          "order": 79,
+          "description": "",
+          "steps": []
+        },
+        "Testing for Client Side URL Redirect (OTG-CLIENT-004)": {
+          "order": 80,
+          "description": "",
+          "steps": []
+        },
+        "Testing for CSS Injection (OTG-CLIENT-005)": {
+          "order": 81,
+          "description": "",
+          "steps": []
+        },
+        "Testing for Client Side Resource Manipulation (OTG-CLIENT-006)": {
+          "order": 82,
+          "description": "",
+          "steps": []
+        },
+        "Test Cross Origin Resource Sharing (OTG-CLIENT-007)": {
+          "order": 83,
+          "description": "",
+          "steps": []
+        },
+        "Testing for Cross Site Flashing (OTG-CLIENT-008)": {
+          "order": 84,
+          "description": "",
+          "steps": []
+        },
+        "Testing for Clickjacking (OTG-CLIENT-009)": {
+          "order": 85,
+          "description": "",
+          "steps": []
+        },
+        "Testing WebSockets (OTG-CLIENT-010)": {
+          "order": 86,
+          "description": "",
+          "steps": []
+        },
+        "Test Web Messaging (OTG-CLIENT-011)": {
+          "order": 87,
+          "description": "",
+          "steps": []
+        },
+        "Test Local Storage (OTG-CLIENT-012)": {
+          "order": 88,
           "description": "",
           "steps": []
         }
