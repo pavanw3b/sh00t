@@ -171,14 +171,15 @@ def assessment(request, assessment_id):
     try:
         the_assessment = Assessment.objects.get(pk=assessment_id)
         if "POST" == request.method:
+            if "delete" == request.POST.get('delete', ''):
+                the_assessment.delete()
+                return redirect('/app/assessments/')
+
             project_id = request.POST.get('project', '')
-            try:
-                the_assessment.name = request.POST.get('name', '')
-                the_assessment.project = Project.objects.get(pk=project_id)
-                the_assessment.save()
-                submitted = "success"
-            except Project.DoesNotExist:
-                return redirect('/')
+            the_assessment.name = request.POST.get('name', '')
+            the_assessment.project = Project.objects.get(pk=project_id)
+            the_assessment.save()
+            submitted = "success"
         recent_assessments = Assessment.objects.all().order_by('added')
         projects_list = Project.objects.all().order_by('added')
         context = {
@@ -187,6 +188,9 @@ def assessment(request, assessment_id):
         }
         return render(request, 'assessment-single.html', context)
     except Assessment.DoesNotExist:
+        return redirect('/')
+
+    except Project.DoesNotExist:
         return redirect('/')
 
 
@@ -209,6 +213,10 @@ def project(request, project_id):
     try:
         the_project = Project.objects.get(pk=project_id)
         if "POST" == request.method:
+            if "delete" == request.POST.get('delete', ''):
+                the_project.delete()
+                return redirect('/app/projects/')
+
             the_project.name = request.POST.get('name', '')
             the_project.save()
             submitted = "success"

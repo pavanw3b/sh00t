@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.db import models
-from tinymce.models import HTMLField
 from django.contrib.auth.models import User
 from django.utils import timezone
 from datetime import datetime
@@ -11,7 +10,7 @@ from django.utils.encoding import python_2_unicode_compatible
 @python_2_unicode_compatible
 class MethodologyMaster(models.Model):
     name = models.CharField(max_length=100)
-    description = HTMLField(null=True)
+    description = models.TextField(default="")
     order = models.IntegerField(default=0)
     created_by = models.ForeignKey(User, related_name="methodology_created_by", null=True)
     created = models.DateTimeField(default=datetime.now)
@@ -34,7 +33,7 @@ class MethodologyMaster(models.Model):
 @python_2_unicode_compatible
 class ModuleMaster(models.Model):
     name = models.CharField(max_length=100)
-    description = HTMLField(null=True)
+    description = models.TextField(default="")
     order = models.IntegerField(default=0)
     methodology = models.ForeignKey(MethodologyMaster, on_delete=models.CASCADE, null=True, default=None)
     created_by = models.ForeignKey(User, related_name="module_created_by", null=True)
@@ -59,7 +58,7 @@ class ModuleMaster(models.Model):
 class CaseMaster(models.Model):
     name = models.CharField(max_length=100)
     module = models.ForeignKey(ModuleMaster, on_delete=models.CASCADE)
-    description = HTMLField(null=True)
+    description = models.TextField(default="")
     order = models.IntegerField(default=0)
     created_by = models.ForeignKey(User, related_name="case_module_created_by", null=True)
     created = models.DateTimeField(default=datetime.now)

@@ -32,7 +32,7 @@ class Assessment(models.Model):
 class Sh0t(models.Model):
     title = models.CharField(max_length=200)
     body = models.TextField(default="")
-    assessment = models.ForeignKey(Assessment, null=True, on_delete=models.SET_NULL)
+    assessment = models.ForeignKey(Assessment, null=True, on_delete=models.CASCADE)
     added = models.DateTimeField(default=datetime.now)
 
     def __str__(self):  # __unicode__ on Python 2
@@ -46,7 +46,7 @@ class Sh0t(models.Model):
 class Flag(models.Model):
     title = models.CharField(max_length=100)
     note = models.TextField(default="")
-    assessment = models.ForeignKey(Assessment, null=True, on_delete=models.SET_NULL)
+    assessment = models.ForeignKey(Assessment, null=True, on_delete=models.CASCADE)
     done = models.BooleanField(default=False)
     added = models.DateTimeField(default=datetime.now)
 
