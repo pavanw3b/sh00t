@@ -112,8 +112,10 @@ def sh0t(request, sh0t_id):
     submitted = ""
     try:
         the_sh0t = Sh0t.objects.get(pk=sh0t_id)
-
         if "POST" == request.method:
+            if "delete" == request.POST.get('delete', ''):
+                the_sh0t.delete()
+                return redirect('/app/sh0ts/')
             assessment_id = request.POST.get('assessment', '')
             try:
                 the_sh0t.title = request.POST.get('title', '')
