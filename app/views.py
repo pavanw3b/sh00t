@@ -8,9 +8,9 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def index(request):
-    open_flags = Flag.objects.filter(done=False)
-    recent_flags = Flag.objects.all()
-    recent_sh0ts = Sh0t.objects.all()
+    open_flags = Flag.objects.filter(done=False).order_by('-added')
+    recent_flags = Flag.objects.all().order_by('-added')
+    recent_sh0ts = Sh0t.objects.all().order_by('-added')
     assessments_count = Assessment.objects.all().count()
     projects_count = Project.objects.all().count()
 
@@ -39,8 +39,8 @@ def flags(request):
         except Assessment.DoesNotExist:
             return redirect('/')
 
-    assessments_list = Assessment.objects.all().order_by('added')
-    recent_flags = Flag.objects.filter(done=False).order_by('added')
+    assessments_list = Assessment.objects.all().order_by('-added')
+    recent_flags = Flag.objects.filter(done=False).order_by('-added')
 
     context = {'assessments_list': assessments_list, 'recent_flags': recent_flags, 'submitted': submitted}
 
@@ -49,7 +49,7 @@ def flags(request):
 
 @login_required
 def flags_all(request):
-    all_flags = Flag.objects.filter().order_by('added')
+    all_flags = Flag.objects.all().order_by('-added')
     context = {'all_flags': all_flags}
     return render(request, 'flags_list.html', context)
 
@@ -99,9 +99,9 @@ def sh0ts(request):
         except Assessment.DoesNotExist:
             return redirect('/')
 
-    assessments_list = Assessment.objects.all().order_by('added')
-    templates_list = Template.objects.all()
-    recent_sh0ts = Sh0t.objects.all().order_by('added')
+    assessments_list = Assessment.objects.all().order_by('-added')
+    templates_list = Template.objects.all().order_by('-added')
+    recent_sh0ts = Sh0t.objects.all().order_by('-added')
     context = {'assessments_list': assessments_list, 'templates': templates_list,
                'recent_sh0ts': recent_sh0ts, 'submitted': submitted}
     return render(request, 'sh0ts.html', context)
@@ -126,7 +126,7 @@ def sh0t(request, sh0t_id):
             except Assessment.DoesNotExist:
                 return redirect('/')
 
-        assessments_list = Assessment.objects.all().order_by('added')
+        assessments_list = Assessment.objects.all().order_by('-added')
         context = {'sh0t': the_sh0t, 'assessments': assessments_list, 'submitted': submitted}
         return render(request, 'sh0t-single.html', context)
     except sh0t.DoesNotExist:
@@ -156,10 +156,10 @@ def assessments(request):
             return redirect('/')
         except ModuleMaster.DoesNotExist:
             return redirect('/')
-    assessments_list = Assessment.objects.all().order_by('added')
+    assessments_list = Assessment.objects.all().order_by('-added')
     methodologies_list = MethodologyMaster.objects.all().order_by('order')
     modules_list = ModuleMaster.objects.all().order_by('order')
-    projects_list = Project.objects.all().order_by('added')
+    projects_list = Project.objects.all().order_by('-added')
     context = {'assessments': assessments_list, 'projects': projects_list,
                'methodologies_list': methodologies_list, 'modules': modules_list, 'submitted': submitted}
     return render(request, 'assessments.html', context)
@@ -180,8 +180,8 @@ def assessment(request, assessment_id):
             the_assessment.project = Project.objects.get(pk=project_id)
             the_assessment.save()
             submitted = "success"
-        recent_assessments = Assessment.objects.all().order_by('added')
-        projects_list = Project.objects.all().order_by('added')
+        recent_assessments = Assessment.objects.all().order_by('-added')
+        projects_list = Project.objects.all().order_by('-added')
         context = {
             'assessment': the_assessment, 'recent_assessments': recent_assessments, 'projects': projects_list,
             'submitted': submitted
@@ -202,7 +202,7 @@ def projects(request):
         new_project = Project.objects.create(name=name)
         new_project.save()
         submitted = "success"
-    projects_list = Project.objects.all().order_by('added')
+    projects_list = Project.objects.all().order_by('-added')
     context = {'projects': projects_list, 'submitted': submitted}
     return render(request, 'projects.html', context)
 
@@ -237,7 +237,7 @@ def templates(request):
         new_template = Template.objects.create(name=name, body=body)
         new_template.save()
         submitted = "success"
-    templates_list = Template.objects.all()
+    templates_list = Template.objects.all().order_by('-added')
     context = {'templates': templates_list, 'submitted': submitted}
     return render(request, 'templates.html', context)
 

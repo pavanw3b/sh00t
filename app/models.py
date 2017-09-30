@@ -61,6 +61,7 @@ class Flag(models.Model):
 class Template(models.Model):
     name = models.CharField(max_length=100)
     body = models.TextField(default="")
+    added = models.DateTimeField(default=datetime.now)
 
     def __str__(self):  # __unicode__ on Python 2
         return self.name
