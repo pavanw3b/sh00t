@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %} Case Master | sh00t{% endblock %}
+
+{% block page %}
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <!-- Page Heading -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Template</h1>
+                    <ol class="breadcrumb">
+                        <li><i class="fa fa-dashboard"></i> <a href="/">Dashboard</a></li>
+                        <li><i class="fa fa-file-text"></i> <a href="/app/templates/">Templates</a></li>
+                        <li class="active">{{ case_master.name }}  <span id="response" class="small"></span></li>
+                    </ol>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <form role="form" method="post">
+                        {% if "success" == submitted %}
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="alert alert-info alert-dismissable">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button> <i class="fa fa-info-circle"></i> Submitted
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input class="form-control" name="name" id="name" value="{{ template.name }}" autocomplete="off" />
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" rows="10" name="body" id="body">{{ template.body }}</textarea>
+                        </div>
+                        <input type="hidden" value="{{ template.id }}" id="id" />
+                        <button type="submit" class="btn btn-primary">Update</button>
+                        <button type="submit" name="delete" value="delete" class="btn btn-danger">Delete</button>
+                        {% csrf_token %}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block extra_foot %}
+<script src="/static/js/common-ajax.js"></script>
+<script type="text/javascript">
+    $('#name').on('input', function() {
+        sync('template');
+    });
+    $('#body').on('input', function() {
+        sync('template');
+    });
+</script>
+{% endblock %}

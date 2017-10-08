@@ -13,4 +13,5 @@ urlpatterns = [
     url(r'^project/([0-9]+)/$', views.project),
     url(r'^templates/$', views.templates),
     url(r'^template/([0-9]+)/$', views.template),
+    url(r'^case-masters/$', views.case_masters),
 ]

@@ -227,7 +227,6 @@ def project(request, project_id):
     except Project.DoesNotExist:
         return redirect('/')
 
-
 @login_required
 def templates(request):
     submitted = ""
@@ -262,6 +261,30 @@ def template(request, template_id):
         return render(request, 'template-single.html', context)
     except Template.DoesNotExist:
         return redirect('/')
+
+
+@login_required
+def case_masters(request):
+    submitted = ""
+    if "POST" == request.method:
+        name = request.POST.get('name', '')
+        description = request.POST.get('description', '')
+        order = request.POST.get('order', '')
+        module_master_id = request.POST.get('module_master_id', '')
+        try:
+            the_module = ModuleMaster.objects.get(pk=module_master_id)
+
+            new_case_master = CaseMaster.objects.create(name=name, description=description, order=order,
+                                                        module=the_module)
+            new_case_master.save()
+            submitted = "success"
+        except ModuleMaster.DoesNotExist:
+            return redirect('/')
+
+    case_masters_list = CaseMaster.objects.all().order_by('-created')
+    modules_list = ModuleMaster.objects.all().order_by('-created')
+    context = {'case_masters': case_masters_list, 'modules': modules_list, 'submitted': submitted}
+    return render(request, 'case_masters.html', context)
 
 
 @login_required
