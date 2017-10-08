@@ -14,4 +14,5 @@ urlpatterns = [
     url(r'^templates/$', views.templates),
     url(r'^template/([0-9]+)/$', views.template),
     url(r'^case-masters/$', views.case_masters),
+    url(r'^case-master/([0-9]+)/$', views.case_master),
 ]

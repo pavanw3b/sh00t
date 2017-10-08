@@ -29,11 +29,31 @@
                         {% endif %}
                         <div class="form-group">
                             <label>Name</label>
-                            <input class="form-control" name="name" id="name" value="{{ template.name }}" autocomplete="off" />
+                            <input class="form-control" name="name" id="name" value="{{ case_master.name }}"
+                                   autocomplete="off" />
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control" rows="10" name="body" id="body">{{ template.body }}</textarea>
+                            <label>Description</label>
+                            <textarea class="form-control" rows="10" name="description" id="body">{{ case_master.description}}</textarea>
                         </div>
+                        <div class="form-group">
+                            <label for="module_master">Module</label>
+                            <select class="form-control" name="module_id" id="module_master">
+                            {% for module_master in module_masters %}
+                                <option value="{{ module_master.id }}"
+                                {% if module_master.id == case_master.module.id %}
+                                    selected="selected"
+                                {% endif %}>
+                                {{ module_master.name }}</option>
+                            {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Order</label>
+                            <input type="number" class="form-control" name="order" autocomplete="off"
+                                   value="{{ case_master.order}}" />
+                        </div>
+
                         <input type="hidden" value="{{ template.id }}" id="id" />
                         <button type="submit" class="btn btn-primary">Update</button>
                         <button type="submit" name="delete" value="delete" class="btn btn-danger">Delete</button>
@@ -50,8 +70,8 @@
     $('#name').on('input', function() {
         sync('template');
     });
-    $('#body').on('input', function() {
-        sync('template');
+    $('#description').on('input', function() {
+        sync('case_master');
     });
 </script>
 {% endblock %}

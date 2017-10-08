@@ -109,8 +109,7 @@ function send(target) {
                 }
             });
             break;
-
-
+        
         default:
             alert("Invalid target");
     }
