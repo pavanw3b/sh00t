@@ -2,7 +2,9 @@
 from __future__ import unicode_literals
 from app.models import Template
 from .serializers import FlagSerializer, Sh0tSerializer, AssessmentSerializer, ProjectSerializer, TemplateSerializer
+from .serializers import CaseMasterSerializer, ModuleMasterSerializer, MethodologyMasterSerializer
 from app.models import Flag, Sh0t, Assessment, Project
+from configuration.models import CaseMaster, ModuleMaster, MethodologyMaster
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -192,6 +194,82 @@ def template_list(request):
 
     elif request.method == 'POST':
         serializer = TemplateSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def case_master_detail(request, pk):
+    try:
+        case_master = CaseMaster.objects.get(pk=pk)
+    except CaseMaster.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = CaseMasterSerializer(case_master)
+        return Response(serializer.data)
+
+    elif request.method == 'PUT':
+        serializer = CaseMasterSerializer(case_master, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == 'DELETE':
+        case_master.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['GET', 'POST'])
+def case_master_list(request):
+    if request.method == 'GET':
+        case_masters = CaseMaster.objects.all()
+        serializer = CaseMasterSerializer(case_masters, many=True)
+        return Response(serializer.data)
+
+    elif request.method == 'POST':
+        serializer = CaseMasterSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def module_master_detail(request, pk):
+    try:
+        module_master = ModuleMaster.objects.get(pk=pk)
+    except ModuleMaster.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = ModuleMasterSerializer(module_master)
+        return Response(serializer.data)
+
+    elif request.method == 'PUT':
+        serializer = ModuleMasterSerializer(module_master, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == 'DELETE':
+        module_master.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['GET', 'POST'])
+def module_master_list(request):
+    if request.method == 'GET':
+        module_master = ModuleMaster.objects.all()
+        serializer = ModuleMasterSerializer(module_master, many=True)
+        return Response(serializer.data)
+
+    elif request.method == 'POST':
+        serializer = ModuleMasterSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)

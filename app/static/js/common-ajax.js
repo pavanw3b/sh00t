@@ -109,7 +109,37 @@ function send(target) {
                 }
             });
             break;
-        
+
+        case "case_master":
+            var name = JSON.stringify($("#name").val());
+            var description = JSON.stringify($("#description").val());
+            var order = JSON.stringify($("#order").val());
+            var module = JSON.stringify($("#module_master").val())
+            $.ajax({
+                url: "/api/case-master/" + $("#id").val() + "/",
+                data: '{"name": ' + name + ', "description": '+ description + ' , "order": ' + order + ', "module":' + module +' }',
+                type: 'PUT',
+                success: function() {
+                    $("#response").html("(Saved)");
+                }
+            });
+            break;
+
+        case "module_master":
+            var name = JSON.stringify($("#name").val());
+            var description = JSON.stringify($("#description").val());
+            var order = JSON.stringify($("#order").val());
+            var methodology = JSON.stringify($("#methodology_master").val())
+            $.ajax({
+                url: "/api/module-master/" + $("#id").val() + "/",
+                data: '{"name": ' + name + ', "description": '+ description + ' , "order": ' + order + ', "methodology":' + methodology +' }',
+                type: 'PUT',
+                success: function() {
+                    $("#response").html("(Saved)");
+                }
+            });
+            break;
+
         default:
             alert("Invalid target");
     }

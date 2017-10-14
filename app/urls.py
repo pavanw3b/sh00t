@@ -15,4 +15,6 @@ urlpatterns = [
     url(r'^template/([0-9]+)/$', views.template),
     url(r'^case-masters/$', views.case_masters),
     url(r'^case-master/([0-9]+)/$', views.case_master),
+    url(r'^module-masters/$', views.module_masters),
+    url(r'^module-master/([0-9]+)/$', views.module_master),
 ]
