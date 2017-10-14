@@ -17,4 +17,6 @@ urlpatterns = [
     url(r'^case-master/([0-9]+)/$', views.case_master),
     url(r'^module-masters/$', views.module_masters),
     url(r'^module-master/([0-9]+)/$', views.module_master),
+    url(r'^methodology-masters/$', views.methodology_masters),
+    url(r'^methodology-master/([0-9]+)/$', views.methodology_master),
 ]

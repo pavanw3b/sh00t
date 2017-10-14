@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %} Methodology Master | sh00t{% endblock %}
+
+{% block page %}
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <!-- Page Heading -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Methodology Master</h1>
+                    <ol class="breadcrumb">
+                        <li><i class="fa fa-dashboard"></i> <a href="/">Dashboard</a></li>
+                        <li><i class="fa fa-file-text"></i>
+                            <a href="/app/methodology-masters/">Methodology Master</a></li>
+                        <li class="active">{{ methodology_master.name }}  <span id="response" class="small"></span></li>
+                    </ol>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <form role="form" method="post">
+                        {% if "success" == submitted %}
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="alert alert-info alert-dismissable">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button> <i class="fa fa-info-circle"></i> Submitted
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input class="form-control" name="name" id="name" value="{{ methodology_master.name }}"
+                                   autocomplete="off" />
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea class="form-control" rows="10" name="description" id="description">{{ methodology_master.description}}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Order</label>
+                            <input type="number" class="form-control" name="order" id="order" autocomplete="off"
+                                   value="{{ methodology_master.order}}" />
+                        </div>
+
+                        <input type="hidden" value="{{ methodology_master.id }}" id="id" />
+                        <button type="submit" class="btn btn-primary">Update</button>
+                        <button type="submit" name="delete" value="delete" class="btn btn-danger">Delete</button>
+                        {% csrf_token %}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block extra_foot %}
+<script src="/static/js/common-ajax.js"></script>
+<script type="text/javascript">
+    $('#name').on('input', function() {
+        sync('methodology_master');
+    });
+    $('#description').on('input', function() {
+        sync('methodology_master');
+    });
+    $('#order').on('input', function() {
+        sync('methodology_master');
+    });
+</script>
+{% endblock %}

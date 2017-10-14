@@ -140,6 +140,20 @@ function send(target) {
             });
             break;
 
+        case "methodology_master":
+            var name = JSON.stringify($("#name").val());
+            var description = JSON.stringify($("#description").val());
+            var order = JSON.stringify($("#order").val());
+            $.ajax({
+                url: "/api/methodology-master/" + $("#id").val() + "/",
+                data: '{"name": ' + name + ', "description": '+ description + ' , "order": ' + order +' }',
+                type: 'PUT',
+                success: function() {
+                    $("#response").html("(Saved)");
+                }
+            });
+            break;
+
         default:
             alert("Invalid target");
     }

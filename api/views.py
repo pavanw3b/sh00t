@@ -275,3 +275,41 @@ def module_master_list(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def methodology_master_detail(request, pk):
+    try:
+        methodology_master = MethodologyMaster.objects.get(pk=pk)
+    except ModuleMaster.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = MethodologyMasterSerializer(methodology_master)
+        return Response(serializer.data)
+
+    elif request.method == 'PUT':
+        serializer = MethodologyMasterSerializer(methodology_master, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    elif request.method == 'DELETE':
+        methodology_master.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['GET', 'POST'])
+def methodology_master_list(request):
+    if request.method == 'GET':
+        module_master = MethodologyMaster.objects.all()
+        serializer = MethodologyMasterSerializer(module_master, many=True)
+        return Response(serializer.data)
+
+    elif request.method == 'POST':
+        serializer = MethodologyMasterSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+

@@ -367,6 +367,47 @@ def module_master(request, module_master_id):
 
 
 @login_required
+def methodology_masters(request):
+    submitted = ""
+    if "POST" == request.method:
+        name = request.POST.get('name', '')
+        description = request.POST.get('description', '')
+        order = request.POST.get('order', '')
+        new_methodology_master = MethodologyMaster.objects.create(name=name, description=description, order=order)
+        new_methodology_master.save()
+        submitted = "success"
+
+    methodology_masters_list = MethodologyMaster.objects.all().order_by('-created')
+    context = {'methodology_masters': methodology_masters_list, 'submitted': submitted}
+    return render(request, 'methodology-masters.html', context)
+
+
+@login_required
+def methodology_master(request, methodology_id):
+    submitted = ""
+    try:
+        the_methodology_master = MethodologyMaster.objects.get(pk=methodology_id)
+        if "POST" == request.method:
+            if "delete" == request.POST.get('delete', ''):
+                the_methodology_master.delete()
+                return redirect('/app/module-masters/')
+
+            the_methodology_master.name = request.POST.get('name', '')
+            the_methodology_master.description = request.POST.get('description', '')
+            the_methodology_master.order = request.POST.get('order', '')
+            the_methodology_master.save()
+            submitted = "success"
+
+        context = {
+            'methodology_master': the_methodology_master, 'submitted': submitted
+        }
+        return render(request, 'methodology-master-single.html', context)
+
+    except MethodologyMaster.DoesNotExist:
+        return redirect('/')
+
+
+@login_required
 def logout_user(request):
     logout(request)
     return redirect('/')

@@ -17,5 +17,7 @@ urlpatterns = [
     url(r'^case-masters/', views.case_master_list),
     url(r'^module-master/(?P<pk>[0-9]+)', views.module_master_detail),
     url(r'^module-masters/', views.module_master_list),
+    url(r'^methodology-master/(?P<pk>[0-9]+)', views.methodology_master_detail),
+    url(r'^methodology-masters/', views.methodology_master_list),
 ]
 urlpatterns = format_suffix_patterns(urlpatterns)
