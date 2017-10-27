@@ -25,7 +25,7 @@ def index(request):
 
 
 @login_required
-def flags(request):
+def flags_new(request):
     submitted = ""
     if "POST" == request.method:
         title = request.POST.get('title', '')
@@ -85,7 +85,7 @@ def flag(request, flag_id):
 
 
 @login_required
-def sh0ts(request):
+def sh0ts_new(request):
     submitted = ""
     if "POST" == request.method:
         title = request.POST.get('title', '')
@@ -106,6 +106,12 @@ def sh0ts(request):
                'recent_sh0ts': recent_sh0ts, 'submitted': submitted}
     return render(request, 'sh0ts.html', context)
 
+
+@login_required
+def sh0ts_all(request):
+    all_sh0ts = Sh0t.objects.all().order_by('-added')
+    context = {'all_sh0ts': all_sh0ts}
+    return render(request, 'sh0ts-list.html', context)
 
 @login_required
 def sh0t(request, sh0t_id):
@@ -134,7 +140,7 @@ def sh0t(request, sh0t_id):
 
 
 @login_required
-def assessments(request):
+def assessments_new(request):
     submitted = ""
     if "POST" == request.method:
         name = request.POST.get('name', '')
@@ -166,6 +172,12 @@ def assessments(request):
 
 
 @login_required
+def assessments_all(request):
+    all_assessments = Assessment.objects.all().order_by('-added')
+    context = {'all_assessments': all_assessments}
+    return render(request, 'assessments-list.html', context)
+
+@login_required
 def assessment(request, assessment_id):
     submitted = ""
     try:
@@ -195,7 +207,7 @@ def assessment(request, assessment_id):
 
 
 @login_required
-def projects(request):
+def projects_new(request):
     submitted = ""
     if "POST" == request.method:
         name = request.POST.get('name', '')
@@ -206,6 +218,12 @@ def projects(request):
     context = {'projects': projects_list, 'submitted': submitted}
     return render(request, 'projects.html', context)
 
+
+@login_required
+def projects_all(request):
+    all_projects = Project.objects.all().order_by('-added')
+    context = {'all_projects': all_projects}
+    return render(request, 'projects-list.html', context)
 
 @login_required
 def project(request, project_id):

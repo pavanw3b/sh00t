@@ -4,22 +4,54 @@
             <a href="/"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
         </li>
         <li {% if '/app/flag' in request.path %}class="active" {% endif %}>
-            <a href="/app/flags/"><i class="fa fa-fw fa-flag-o"></i> Flags</a>
+            <a href="javascript:;" data-toggle="collapse" data-target="#flag"><i class="fa fa-fw fa-flag-o"></i> Flags <span id="flagArrow"><i class="fa fa-fw fa-caret-down"></i></span></a>
+            <ul id="flag" class="collapse">
+                <li>
+                    <a href="/app/flags/new">New</a>
+                </li>
+                <li>
+                    <a href="/app/flags/all">All</a>
+                </li>
+            </ul>
         </li>
         <li {% if '/app/sh0t' in request.path %}class="active" {% endif %}>
-            <a href="/app/sh0ts/"><i class="fa fa-fw fa-bullseye"></i> Sh0ts</a>
+            <a href="javascript:;" data-toggle="collapse" data-target="#sh0t"><i class="fa fa-fw fa-bullseye"></i> Sh0ts <span id="sh0tArrow"><i id="sh0tArrow" class="fa fa-fw fa-caret-down"></i></span></a>
+            <ul id="sh0t" class="collapse">
+                <li>
+                    <a href="/app/sh0ts/new">New</a>
+                </li>
+                <li>
+                    <a href="/app/sh0ts/all">All</a>
+                </li>
+            </ul>
         </li>
         <li {% if '/app/assessment' in request.path %}class="active" {% endif %}>
-            <a href="/app/assessments/"><i class="fa fa-fw fa-cube"></i> Assessments</a>
+            <a href="javascript:;" data-toggle="collapse" data-target="#assessment"><i class="fa fa-fw fa-cube"></i> Assessments <span id="assessmentArrow"><i class="fa fa-fw fa-caret-down"></i></span></a>
+            <ul id="assessment" class="collapse">
+                <li>
+                    <a href="/app/assessments/new">New</a>
+                </li>
+                <li>
+                    <a href="/app/assessments/all">All</a>
+                </li>
+            </ul>
         </li>
         <li {% if '/app/project' in request.path %}class="active" {% endif %}>
-            <a href="/app/projects/"><i class="fa fa-fw fa-cubes"></i> Projects</a>
+            <a href="javascript:;" data-toggle="collapse" data-target="#project"><i class="fa fa-fw fa-cubes"></i> Projects <span id="projectArrow"><i id="projectArrow" class="fa fa-fw fa-caret-down"></i></span></a>
+            <ul id="project" class="collapse">
+                <li>
+                    <a href="/app/projects/new">New</a>
+                </li>
+                <li>
+                    <a href="/app/projects/all">All</a>
+                </li>
+            </ul>
         </li>
         <li {% if '/app/template' in request.path %}class="active" {% endif %}>
-            <a href="javascript:;" data-toggle="collapse" data-target="#configuration"><i class="fa fa-fw fa-gear"></i> Configuration <i class="fa fa-fw fa-caret-down"></i></a>
-            <ul id="configuration" class="collapse">
+            <a href="javascript:;" data-toggle="collapse" data-target="#configuration"><i class="fa fa-fw fa-gear"></i> Configuration <span id="configurationArrow"><i class="fa fa-fw fa-caret-up"></i></span></a>
+            <ul id="configuration" class="collapse in">
                 <li>
-                    <a href="/app/templates/">Template</a>
+                    <a href="/app/templates/">Templates</a>
                 </li>
                 <li>
                     <a href="/app/case-masters/">Case Master</a>
@@ -28,7 +60,7 @@
                     <a href="/app/module-masters/">Module Master</a>
                 </li>
                 <li>
-                    <a href="/app/methodology-masters/">Methodology Master</a>
+                    <a href="/admin/methodology-masters/">Methodology Master</a>
                 </li>
             </ul>
         </li>
