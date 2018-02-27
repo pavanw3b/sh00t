@@ -92,7 +92,7 @@ Whenever a Flag is confirmed to be a valid bug, a Sh0t can be created. One can c
 
 **Contribution:**
 - Pavan: [@pavanw3b](https://twitter.com/pavanw3b)
-- Aditya Ganapathy
+- [Aditya Ganapathy](https://github.com/adityadev91)
 
 **Credits:**
 - Hari Valugonda
