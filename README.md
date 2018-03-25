@@ -7,7 +7,7 @@
  |___/_| |_|\___/ \___/ \__|
  
 
-A platform for application security testers that emphasises on manual security.
+A open platform for manual bug hunters.
 
 ```
 
