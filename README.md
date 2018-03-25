@@ -12,18 +12,18 @@ A platform for application security testers that emphasises on manual security.
 ```
 
 Sh00t
-- is a task manager that to makes sure you "check that thing".
+- is a task manager that makes sure you "check that thing".
 - provides checklists with which you will never regret for forgetting to "test that thing".
 - helps to easily handle custom bug templates that can be separated for your different needs.
 
 
 #### Features:
 - Dynamic Task Manager to replace simple editors or task management tools that are NOT meant for Security
-- Automated, customizable Security test-cases Checklist to replace Evernote, OneNote or other tools that are NOT meant for Security
+- Automated, customizable Security test-cases Checklist to replace Evernote, OneNote or other tools which are NOT meant for Security
 - Manage custom bug templates for different purposes and automatically generate bug report
 - Support multiple Assessments & Projects to logically separate your different needs
 - Use like a paper - Everything's saved automatically
-- Export auto generated bug report into Markdown & submit blidnly on HackerOne! (WIP)
+- Export auto generated bug report into Markdown & submit blindly on HackerOne! (WIP)
 - Integration with JIRA, ServiceNow (WIP)
 - Export bug report into Markdown (WIP)
 - Customize everything under-the-hood
