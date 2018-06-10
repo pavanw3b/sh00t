@@ -34,9 +34,10 @@ $.ajaxSetup({
 
 function sync(target) {
     $("#response").html("(Saving..)");
-    setTimeout( function() {
+    timeout = setTimeout( function() {
+
         send(target);
-    }, 1000);
+    }, 2000);
 }
 
 function send(target) {
