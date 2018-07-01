@@ -12,9 +12,9 @@ class MethodologyMaster(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(default="")
     order = models.IntegerField(default=0)
-    created_by = models.ForeignKey(User, related_name="methodology_created_by", null=True)
+    created_by = models.ForeignKey(User, related_name="methodology_created_by", null=True, on_delete=models.CASCADE)
     created = models.DateTimeField(default=datetime.now)
-    updated_by = models.ForeignKey(User, related_name="methodology_updated_by", null=True)
+    updated_by = models.ForeignKey(User, related_name="methodology_updated_by", null=True, on_delete=models.CASCADE)
     updated = models.DateTimeField(default=datetime.now)
 
     def __str__(self):  # __unicode__ on Python 2
@@ -36,9 +36,9 @@ class ModuleMaster(models.Model):
     description = models.TextField(default="")
     order = models.IntegerField(default=0)
     methodology = models.ForeignKey(MethodologyMaster, on_delete=models.CASCADE, null=True, default=None)
-    created_by = models.ForeignKey(User, related_name="module_created_by", null=True)
+    created_by = models.ForeignKey(User, related_name="module_created_by", null=True, on_delete=models.CASCADE)
     created = models.DateTimeField(default=datetime.now)
-    updated_by = models.ForeignKey(User, related_name="module_updated_by", null=True)
+    updated_by = models.ForeignKey(User, related_name="module_updated_by", null=True, on_delete=models.CASCADE)
     updated = models.DateTimeField(default=datetime.now)
 
     def __str__(self):  # __unicode__ on Python 2
@@ -60,9 +60,9 @@ class CaseMaster(models.Model):
     module = models.ForeignKey(ModuleMaster, on_delete=models.CASCADE)
     description = models.TextField(default="")
     order = models.IntegerField(default=0)
-    created_by = models.ForeignKey(User, related_name="case_module_created_by", null=True)
+    created_by = models.ForeignKey(User, related_name="case_module_created_by", null=True, on_delete=models.CASCADE)
     created = models.DateTimeField(default=datetime.now)
-    updated_by = models.ForeignKey(User, related_name="case_module_updated_by", null=True)
+    updated_by = models.ForeignKey(User, related_name="case_module_updated_by", null=True, on_delete=models.CASCADE)
     updated = models.DateTimeField(default=datetime.now)
 
     def __str__(self):  # __unicode__ on Python 2
