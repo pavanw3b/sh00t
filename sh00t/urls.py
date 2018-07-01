@@ -19,4 +19,3 @@ print(settings.BANNER)
 
 # Custom Admin Site Header
 admin.site.site_header = settings.NAME
-
