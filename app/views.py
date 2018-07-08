@@ -62,7 +62,7 @@ def flag(request, flag_id):
         if "POST" == request.method:
             if "delete" == request.POST.get('delete', ''):
                 the_flag.delete()
-                return redirect('/app/flags/')
+                return redirect('/app/flags/all/')
 
             assessment_id = request.POST.get('assessment', '')
             the_flag.title = request.POST.get('title', '')
@@ -113,6 +113,7 @@ def sh0ts_all(request):
     context = {'all_sh0ts': all_sh0ts}
     return render(request, 'sh0ts-list.html', context)
 
+
 @login_required
 def sh0t(request, sh0t_id):
     submitted = ""
@@ -121,7 +122,7 @@ def sh0t(request, sh0t_id):
         if "POST" == request.method:
             if "delete" == request.POST.get('delete', ''):
                 the_sh0t.delete()
-                return redirect('/app/sh0ts/')
+                return redirect('/app/sh0ts/all/')
             assessment_id = request.POST.get('assessment', '')
             try:
                 the_sh0t.title = request.POST.get('title', '')
@@ -177,6 +178,7 @@ def assessments_all(request):
     context = {'all_assessments': all_assessments}
     return render(request, 'assessments-list.html', context)
 
+
 @login_required
 def assessment(request, assessment_id):
     submitted = ""
@@ -185,7 +187,7 @@ def assessment(request, assessment_id):
         if "POST" == request.method:
             if "delete" == request.POST.get('delete', ''):
                 the_assessment.delete()
-                return redirect('/app/assessments/')
+                return redirect('/app/assessments/all/')
 
             project_id = request.POST.get('project', '')
             the_assessment.name = request.POST.get('name', '')
@@ -225,6 +227,7 @@ def projects_all(request):
     context = {'all_projects': all_projects}
     return render(request, 'projects-list.html', context)
 
+
 @login_required
 def project(request, project_id):
     submitted = ""
@@ -233,7 +236,7 @@ def project(request, project_id):
         if "POST" == request.method:
             if "delete" == request.POST.get('delete', ''):
                 the_project.delete()
-                return redirect('/app/projects/')
+                return redirect('/app/projects/all/')
 
             the_project.name = request.POST.get('name', '')
             the_project.save()
@@ -268,7 +271,7 @@ def template(request, template_id):
         if "POST" == request.method:
             if "delete" == request.POST.get('delete', ''):
                 the_template.delete()
-                return redirect('/app/templates/')
+                return redirect('/app/templates/all/')
 
             the_template.name = request.POST.get('name', '')
             the_template.body = request.POST.get('body', '')
@@ -314,7 +317,7 @@ def case_master(request, case_master_id):
         if "POST" == request.method:
             if "delete" == request.POST.get('delete', ''):
                 the_case_master.delete()
-                return redirect('/app/case-masters/')
+                return redirect('/app/case-masters/all/')
 
             the_case_master.name = request.POST.get('name', '')
             the_case_master.description = request.POST.get('description', '')
@@ -365,7 +368,7 @@ def module_master(request, module_master_id):
         if "POST" == request.method:
             if "delete" == request.POST.get('delete', ''):
                 the_module_master.delete()
-                return redirect('/app/module-masters/')
+                return redirect('/app/module-masters/all/')
 
             the_module_master.name = request.POST.get('name', '')
             the_module_master.description = request.POST.get('description', '')
@@ -408,7 +411,7 @@ def methodology_master(request, methodology_id):
         if "POST" == request.method:
             if "delete" == request.POST.get('delete', ''):
                 the_methodology_master.delete()
-                return redirect('/app/module-masters/')
+                return redirect('/app/module-masters/all/')
 
             the_methodology_master.name = request.POST.get('name', '')
             the_methodology_master.description = request.POST.get('description', '')
