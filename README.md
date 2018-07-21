@@ -33,8 +33,8 @@ Sh00t
 Sh00t requires Python 3 and a few more packages. The simplest way to set up Sh00t is using Conda Environments.
 
 **Pre-requisite - One time setup:**
-* Install the minimal version of Anaconda: <a href="https://conda.io/miniconda.html" target="_blank">Miniconda</a> and 
-follow the <a href="https://conda.io/docs/user-guide/install/index.html" target="_blank">installation instruction</a>. Remember to 
+* Install the minimal version of Anaconda: [Miniconda](https://conda.io/miniconda.html) and follow 
+the [installation instruction](https://conda.io/docs/user-guide/install/index.html). Remember to 
 reload your bash profile or restart your terminal application to avail conda command.
 * Create a new Python 3 environment: `conda create -n sh00t python=3.6`
 * Activate *sh00t* environment: `conda activate sh00t`. If you see an error message like 
