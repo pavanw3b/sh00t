@@ -17,7 +17,7 @@ Sh00t
 - helps to easily handle custom bug templates that can be separated for your different needs.
 
 
-#### Features:
+### Features:
 - Dynamic Task Manager to replace simple editors or task management tools that are NOT meant for Security
 - Automated, customizable Security test-cases Checklist to replace Evernote, OneNote or other tools which are NOT meant for Security
 - Manage custom bug templates for different purposes and automatically generate bug report
@@ -29,32 +29,51 @@ Sh00t
 - Customize everything under-the-hood
 
 
-#### Installation:
-**Optional:** Set up [Virtual Environment](http://docs.python-guide.org/en/latest/dev/virtualenvs/) and change the source: `source env/bin/activate`
+### Installation:
+Sh00t requires Python 3 and a few more packages. The simplest way to set up Sh00t is using Conda Environments.
 
-**[Pip](https://pypi.python.org/pypi/pip):**
-* Clone the latest version: `git clone https://github.com/pavanw3b/sh00t.git
-`
-* Navigate to the folder: `cd sh00t`
-* Windows: `C:\Python27\python.exe -m pip install -r requirements.txt`
-* Mac/Linux: `pip install -r requirements.txt --user`
+**Pre-requisite - One time setup:**
+* Install the minimal version of Anaconda: [Miniconda](https://conda.io/miniconda.html){:target=_blank} and follow 
+the [installation instruction](https://conda.io/docs/user-guide/install/index.html){:target=_blank}. Remember to 
+reload your bash profile or restart your terminal application to avail conda command.
+* Create a new Python 3 environment: `conda create -n sh00t python=3.6`
+* Activate *sh00t* environment: `conda activate sh00t`. If you see an error message like 
+`CommandNotFoundError: Your shell has not been properly configured to use 'conda activate'.`, you have to manually enable conda command. Follow the instructions shown with the error message. You may have to reload your bash profile 
+or restart your terminal. Try activating sh00t again: `conda activate sh00t`. You should be seeing `(sh00t) XXXX$` in 
+your terminal.
+* Clone or download the latest project into a location of your choice: `https://github.com/pavanw3b/sh00t`
+* Navigate to the folder where sh00t is cloned or downloaded & extracted: `cd sh00t`. Note that this is outer-most 
+*sh00t* directory in project files. Not *sh00t/sh00t*.
+* Install Sh00t dependency packages: `pip install -r requirements.txt`
 * Setup database: `python manage.py migrate`
-* Create User Account: `python manage.py createsuperuser` and follow the UI to create an user account as you like.
-* Start Server: `python manage.py runserver`
-* Hit [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
-* Stop the server: `Ctrl + C` to stop the Django server
+* Create an User Account: `python manage.py createsuperuser` and follow the UI to create an 
+account.
 
-#### Upgrade:
+That's all for the first time. Follow the next steps whenever you want to start Sh00t.
+
+**Starting Sh00t:**
+* Activate sh00t environment if not on yet: `conda activate sh00t`
+* Navigate to sh00t directory if not in already: `cd sh00t`
+* Start Sh00t server: `python manage.py runserver`
+* Access [http://127.0.0.1:8000/](http://127.0.0.1:8000/) on your favorite browser. Login with the user credentials 
+created in the one-time setup above.
+* Welcome to Sh00t!
+* Once you are done, stop the server: `Ctrl + C`
+* [Optional] Deactivate sh00t environment to continue with your other work: `conda deactivate`.
+
+### Upgrade:
 * Navigate to the folder where sh00t was cloned
 * Stop the server if it's running: `Ctrl + C`
-* Pull the latest code base: `git pull`
+* Pull the latest code base via git: `git pull` or download the source from github and replace the files.
 * Navigate to sh00t directory: `cd sh00t`
-* \[Optional\]: If virtual environment is used, change the source: source env/bin/activate
+* Activate sh00t environment if not on yet: `conda activate sh00t`
 * Make the latest database changes: `python manage.py migrate`
-* Start: `python manage.py runserver`
+* Start the server: `python manage.py runserver`
 
 ### Troubleshoot:
-Sh00t is powered by Django Web Framework. If you are stuck with any errors, Googling on the error message, should help you most of the times. If you are not sure, please [file a new issue on github](https://github.com/pavanw3b/sh00t/issues/new).
+Sh00t is written in Python and powered by Django Web Framework. If you are stuck with any errors, Googling on the error 
+message, should help you most of the times. If you are not sure, please [file a new issue on github](https://github
+.com/pavanw3b/sh00t/issues/new).
 
 ### Glossary:
 - **Flag:** A Flag is a target that is sh00ted at. It's a test case that needs to be tested. Flags are generated automatically based on the testing methodology chosen. The bug might or might not be found - but the goal is to aim and sh00t at it. Flag contains detailed steps for testing. If the bug is confirmed, then it's called a sh0t.
