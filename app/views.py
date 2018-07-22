@@ -28,9 +28,9 @@ def index(request):
 def flags_new(request):
     submitted = ""
     if "POST" == request.method:
-        title = request.POST.get('title', '')
-        note = request.POST.get('note', '')
-        assessment_id = request.POST.get('assessment', '')
+        title = request.POST.get('title', '') or "Flag"
+        note = request.POST.get('note', '') or ""
+        assessment_id = request.POST.get('assessment', '') or -1
         try:
             the_assessment = Assessment.objects.get(pk=assessment_id)
             new_flag = Flag.objects.create(title=title, note=note, assessment=the_assessment)
@@ -64,9 +64,9 @@ def flag(request, flag_id):
                 the_flag.delete()
                 return redirect('/app/flags/all/')
 
-            assessment_id = request.POST.get('assessment', '')
-            the_flag.title = request.POST.get('title', '')
-            the_flag.note = request.POST.get('note', '')
+            assessment_id = request.POST.get('assessment', '') or -1
+            the_flag.title = request.POST.get('title', '') or "Flag"
+            the_flag.note = request.POST.get('note', '') or ""
             if "done" == request.POST.get('done', ''):
                 the_flag.done = True
             else:
@@ -88,9 +88,9 @@ def flag(request, flag_id):
 def sh0ts_new(request):
     submitted = ""
     if "POST" == request.method:
-        title = request.POST.get('title', '')
-        body = request.POST.get('body', '')
-        assessment_id = request.POST.get('assessment', '')
+        title = request.POST.get('title', '') or "sh0t"
+        body = request.POST.get('body', '') or ""
+        assessment_id = request.POST.get('assessment', '') or -1
         try:
             the_assessment = Assessment.objects.get(pk=assessment_id)
             new_sh0t = Sh0t.objects.create(title=title, body=body, assessment=the_assessment)
@@ -123,10 +123,10 @@ def sh0t(request, sh0t_id):
             if "delete" == request.POST.get('delete', ''):
                 the_sh0t.delete()
                 return redirect('/app/sh0ts/all/')
-            assessment_id = request.POST.get('assessment', '')
+            assessment_id = request.POST.get('assessment', '') or -1
             try:
-                the_sh0t.title = request.POST.get('title', '')
-                the_sh0t.body = request.POST.get('body', '')
+                the_sh0t.title = request.POST.get('title', '') or "sh0t"
+                the_sh0t.body = request.POST.get('body', '') or ""
                 the_sh0t.assessment = Assessment.objects.get(pk=assessment_id)
                 the_sh0t.save()
                 submitted = "success"
@@ -144,8 +144,8 @@ def sh0t(request, sh0t_id):
 def assessments_new(request):
     submitted = ""
     if "POST" == request.method:
-        name = request.POST.get('name', '')
-        project_id = request.POST.get('project', '')
+        name = request.POST.get('name', '') or "Assessment"
+        project_id = request.POST.get('project', '') or -1
         try:
             the_project = Project.objects.get(pk=project_id)
             new_assessment = Assessment.objects.create(name=name, project=the_project)
@@ -189,8 +189,8 @@ def assessment(request, assessment_id):
                 the_assessment.delete()
                 return redirect('/app/assessments/all/')
 
-            project_id = request.POST.get('project', '')
-            the_assessment.name = request.POST.get('name', '')
+            project_id = request.POST.get('project', '') or -1
+            the_assessment.name = request.POST.get('name', '') or "Assessment"
             the_assessment.project = Project.objects.get(pk=project_id)
             the_assessment.save()
             submitted = "success"
@@ -212,7 +212,7 @@ def assessment(request, assessment_id):
 def projects_new(request):
     submitted = ""
     if "POST" == request.method:
-        name = request.POST.get('name', '')
+        name = request.POST.get('name', '') or "Project"
         new_project = Project.objects.create(name=name)
         new_project.save()
         submitted = "success"
@@ -238,7 +238,7 @@ def project(request, project_id):
                 the_project.delete()
                 return redirect('/app/projects/all/')
 
-            the_project.name = request.POST.get('name', '')
+            the_project.name = request.POST.get('name', '') or "Project"
             the_project.save()
             submitted = "success"
         context = {
@@ -253,8 +253,8 @@ def project(request, project_id):
 def templates(request):
     submitted = ""
     if "POST" == request.method:
-        name = request.POST.get('name', '')
-        body = request.POST.get('body', '')
+        name = request.POST.get('name', '') or "Template"
+        body = request.POST.get('body', '') or ""
         new_template = Template.objects.create(name=name, body=body)
         new_template.save()
         submitted = "success"
@@ -271,10 +271,10 @@ def template(request, template_id):
         if "POST" == request.method:
             if "delete" == request.POST.get('delete', ''):
                 the_template.delete()
-                return redirect('/app/templates/all/')
+                return redirect('/app/templates/')
 
-            the_template.name = request.POST.get('name', '')
-            the_template.body = request.POST.get('body', '')
+            the_template.name = request.POST.get('name', '') or "Template"
+            the_template.body = request.POST.get('body', '') or ""
             the_template.save()
             submitted = "success"
         context = {
@@ -289,10 +289,10 @@ def template(request, template_id):
 def case_masters(request):
     submitted = ""
     if "POST" == request.method:
-        name = request.POST.get('name', '')
-        description = request.POST.get('description', '')
-        order = request.POST.get('order', '')
-        module_master_id = request.POST.get('module_master_id', '')
+        name = request.POST.get('name', '') or "Case Master"
+        description = request.POST.get('description', '') or ""
+        order = request.POST.get('order') or 1
+        module_master_id = request.POST.get('module_master_id', '') or -1
         try:
             the_module = ModuleMaster.objects.get(pk=module_master_id)
 
@@ -317,12 +317,12 @@ def case_master(request, case_master_id):
         if "POST" == request.method:
             if "delete" == request.POST.get('delete', ''):
                 the_case_master.delete()
-                return redirect('/app/case-masters/all/')
+                return redirect('/app/case-masters/')
 
-            the_case_master.name = request.POST.get('name', '')
-            the_case_master.description = request.POST.get('description', '')
-            the_case_master.order = request.POST.get('order', '')
-            module_id = request.POST.get('module_id', '')
+            the_case_master.name = request.POST.get('name', '') or "Case Master"
+            the_case_master.description = request.POST.get('description', '') or ""
+            the_case_master.order = request.POST.get('order') or 1
+            module_id = request.POST.get('module_id', '') or -1
             the_module = ModuleMaster.objects.get(pk=module_id)
             the_case_master.module = the_module
             the_case_master.save()
@@ -335,15 +335,18 @@ def case_master(request, case_master_id):
     except ModuleMaster.DoesNotExist:
         return redirect('/')
 
+    except CaseMaster.DoesNotExist:
+        return redirect("/")
+
 
 @login_required
 def module_masters(request):
     submitted = ""
     if "POST" == request.method:
-        name = request.POST.get('name', '')
-        description = request.POST.get('description', '')
-        order = request.POST.get('order', '')
-        methodology_master_id = request.POST.get('methodology_master_id', '')
+        name = request.POST.get('name', '') or "Module Master"
+        description = request.POST.get('description', '') or ""
+        order = request.POST.get('order') or 1
+        methodology_master_id = request.POST.get('methodology_master_id', '') or -1
         try:
             the_methodology = MethodologyMaster.objects.get(pk=methodology_master_id)
 
@@ -368,12 +371,12 @@ def module_master(request, module_master_id):
         if "POST" == request.method:
             if "delete" == request.POST.get('delete', ''):
                 the_module_master.delete()
-                return redirect('/app/module-masters/all/')
+                return redirect('/app/module-masters/')
 
-            the_module_master.name = request.POST.get('name', '')
-            the_module_master.description = request.POST.get('description', '')
-            the_module_master.order = request.POST.get('order', '')
-            methodology = request.POST.get('methodology_id', '')
+            the_module_master.name = request.POST.get('name', '') or "Module Master"
+            the_module_master.description = request.POST.get('description', '') or ""
+            the_module_master.order = request.POST.get('order') or 1
+            methodology = request.POST.get('methodology_id', '') or -1
             the_methodology = MethodologyMaster.objects.get(pk=methodology)
             the_module_master.methodology = the_methodology
             the_module_master.save()
@@ -391,9 +394,9 @@ def module_master(request, module_master_id):
 def methodology_masters(request):
     submitted = ""
     if "POST" == request.method:
-        name = request.POST.get('name', '')
-        description = request.POST.get('description', '')
-        order = request.POST.get('order', '')
+        name = request.POST.get('name', '') or "Methodology Master"
+        description = request.POST.get('description', '') or ""
+        order = request.POST.get('order') or 1
         new_methodology_master = MethodologyMaster.objects.create(name=name, description=description, order=order)
         new_methodology_master.save()
         submitted = "success"
@@ -411,11 +414,11 @@ def methodology_master(request, methodology_id):
         if "POST" == request.method:
             if "delete" == request.POST.get('delete', ''):
                 the_methodology_master.delete()
-                return redirect('/app/module-masters/all/')
+                return redirect('/app/module-masters/')
 
-            the_methodology_master.name = request.POST.get('name', '')
-            the_methodology_master.description = request.POST.get('description', '')
-            the_methodology_master.order = request.POST.get('order', '')
+            the_methodology_master.name = request.POST.get('name', '') or "Methodology Master"
+            the_methodology_master.description = request.POST.get('description', '') or ""
+            the_methodology_master.order = request.POST.get('order') or 1
             the_methodology_master.save()
             submitted = "success"
 
