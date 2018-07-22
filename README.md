@@ -1,14 +1,7 @@
+<img src="https://user-images.githubusercontent.com/11267537/43043618-29ab7286-8db5-11e8-9603-71b30596d047.png" width="400" />
+
 ```
-      _      ___   ___  _
-     | |    / _ \ / _ \| |
-  ___| |__ | | | | | | | |_
- / __| '_ \| | | | | | | __|
- \__ \ | | | |_| | |_| | |_
- |___/_| |_|\___/ \___/ \__|
- 
-
 A open platform for manual bug hunters.
-
 ```
 
 Sh00t
