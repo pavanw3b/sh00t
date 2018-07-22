@@ -17,39 +17,43 @@
             <div class="row">
                 <div class="col-lg-6">
                     <h3>New Case Master</h3>
-                    <form role="form" method="post">
-                        {% if "success" == submitted %}
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="alert alert-info alert-dismissable">
-                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button> <i class="fa fa-info-circle"></i> Submitted
+                    {% if not modules %}
+                        <b>No modules found. <a href="/app/module-masters/">Create one</a></b>
+                    {% else %}
+                        <form role="form" method="post">
+                            {% if "success" == submitted %}
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="alert alert-info alert-dismissable">
+                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button> <i class="fa fa-info-circle"></i> Submitted
+                                        </div>
                                     </div>
                                 </div>
+                            {% endif %}
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input class="form-control" name="name" autocomplete="off" />
                             </div>
-                        {% endif %}
-                        <div class="form-group">
-                            <label>Name</label>
-                            <input class="form-control" name="name" autocomplete="off" />
-                        </div>
-                        <div class="form-group">
-                            <label>Description</label>
-                            <textarea class="form-control" rows="10" name="description"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Modules</label>
-                            <select name="module_master_id" class="form-control">
-                                {% for module in modules %}
-                                    <option value="{{ module.id }}">{{ module.name}}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Order</label>
-                            <input type="number" class="form-control" name="order" autocomplete="off" />
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                        {% csrf_token %}
-                    </form>
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea class="form-control" rows="10" name="description"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Modules</label>
+                                <select name="module_master_id" class="form-control">
+                                    {% for module in modules %}
+                                        <option value="{{ module.id }}">{{ module.name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Order</label>
+                                <input type="number" class="form-control" name="order" autocomplete="off" />
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            {% csrf_token %}
+                        </form>
+                    {% endif %}
                 </div>
                 <div class="col-lg-6">
                     <div class="panel panel-default">

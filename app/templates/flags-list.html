@@ -36,7 +36,8 @@
                                                 <tr>
                                                     <td><a href="/app/flag/{{ flag.id }}/">{{ flag.title }}</a></td>
                                                     <td>{% if True == flag.done %} <span class="fa fa-check"></span>{% endif %}</td>
-                                                    <td><a href="/app/assessment/{{ flag.assessment.id}}/">{{ flag.assessment.name }}</a></td>
+                                                    <td><a href="/app/assessment/{{ flag.assessment.id}}/">
+                                                    {{ flag.assessment.name }}</a></td>
                                                     <td>{{ flag.added }}</td>
                                                 </tr>
                                             {% endfor %}
@@ -47,7 +48,7 @@
                                     <a href="#">View All <i class="fa fa-arrow-circle-right"></i></a>
                                 </div>
                             {% else %}
-                                <h4><i class="fa fa-arrow-left"></i> Add a flag</h4>
+                                <h4><a href="/app/flags/new">Add a flag</a> </h4>
                             {% endif %}
                         </div>
                     </div>
