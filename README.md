@@ -107,7 +107,7 @@ Whenever a Flag is confirmed to be a valid bug, a Sh0t can be created. One can c
 - Anybody who wants to hack
 
 ### Implementation details:
-- Language: Python 2.7
+- Language: Python 3
 - Framework: Django Web Framework
 - Dependencies: Django REST Framework, TinyMCE (Managed by /requirements.txt)
 - UI: Bootstrap - Responsive
