@@ -20,7 +20,7 @@ BANNER = """
  \__ \ | | | |_| | |_| | |_
  |___/_| |_|\___/ \___/ \__|
 
-Integrated Testing Environment for Manual Security Testers
+A Testing Environment for Manual Security Testers
 
 """
 
