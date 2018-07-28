@@ -5,9 +5,9 @@ A Testing Environment for Manual Security Testers
 ```
 
 Sh00t
-- is a task manager that makes sure you "check that thing".
-- provides checklists with which you will never regret for forgetting to "test that thing".
-- helps to easily handle custom bug templates that can be separated for your different needs.
+- is a task manager to let you focus on performing security testing
+- provides **To Do** checklists for test cases
+- helps to create bug reports with customizable bug templates
 
 
 ### Features:
@@ -17,8 +17,8 @@ Sh00t
 - Support multiple Assessments & Projects to logically separate your different needs
 - Use like a paper - Everything's saved automatically
 - Export auto generated bug report into Markdown & submit blindly on HackerOne! (WIP)
-- Integration with JIRA, ServiceNow (WIP)
-- Export bug report into Markdown (WIP)
+- Integration with JIRA, ServiceNow - Coming soon
+- Export bug report into Markdown - Coming soon
 - Customize everything under-the-hood
 
 
@@ -81,10 +81,22 @@ Whenever a Flag is confirmed to be a valid bug, a Sh0t can be created. One can c
 
 
 ### Screenshots:
-![dashboard](https://user-images.githubusercontent.com/11267537/30522876-c8c77b8e-9bf4-11e7-8904-5a9bb9f0388f.png)
-![flag](https://user-images.githubusercontent.com/11267537/30522877-c8cc5da2-9bf4-11e7-8014-eb8415ff6347.png)
-![new-assessment](https://user-images.githubusercontent.com/11267537/30522878-c8cd0630-9bf4-11e7-8c9e-17d98aab4185.png)
-![new-sh0t-from-template](https://user-images.githubusercontent.com/11267537/30522879-c8cdf888-9bf4-11e7-8fd4-228235e376e6.png)
+
+#### Dashboard:
+
+![dashboard](https://user-images.githubusercontent.com/11267537/43355841-9f6167e4-9281-11e8-87fe-761fa35ddc3c.png)
+
+#### Working on a Flag:
+
+![flag](https://user-images.githubusercontent.com/11267537/43355838-9ee99e58-9281-11e8-8724-b9e726fdc58d.png)
+
+
+#### Choosing Methodology and Test Cases while creating a new Assessment:
+![new-assessment](https://user-images.githubusercontent.com/11267537/43355840-9f3a3368-9281-11e8-8afd-0467a4ac00b4.png)
+
+#### Filing a bug pre-filled with a template:
+
+![new-sh0t-from-template](https://user-images.githubusercontent.com/11267537/43355839-9f117630-9281-11e8-8a33-a9b5babae698.png)
 
 
 ### Who can use Sh00t?
