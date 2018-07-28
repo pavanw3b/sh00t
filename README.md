@@ -1,4 +1,4 @@
-<img src="https://user-images.githubusercontent.com/11267537/43043618-29ab7286-8db5-11e8-9603-71b30596d047.png" width="400" />
+<img src="https://user-images.githubusercontent.com/11267537/43043618-29ab7286-8db5-11e8-9603-71b30596d047.png" width="250" />
 
 ```
 A Testing Environment for Manual Security Testers
