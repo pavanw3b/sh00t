@@ -35,7 +35,7 @@ reload your bash profile or restart your terminal application to avail conda com
 or restart your terminal. Try activating sh00t again: `conda activate sh00t`. You should be seeing `(sh00t) XXXX$` in 
 your terminal.
 * Clone or download the latest project into a location of your choice: `https://github.com/pavanw3b/sh00t`
-* Navigate to the folder where sh00t is cloned or downloaded & extracted: `cd sh00t`. Note that this is outer-most 
+* Navigate to the folder where sh00t is cloned or downloaded & extracted: `cd sh00t`. Note that this is the outer-most 
 *sh00t* directory in project files. Not *sh00t/sh00t*.
 * Install Sh00t dependency packages: `pip install -r requirements.txt`
 * Setup database: `python manage.py migrate`
