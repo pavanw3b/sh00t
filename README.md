@@ -47,7 +47,7 @@ That's all for the first time. Follow the next steps whenever you want to start 
 
 **Starting Sh00t:**
 
-If you have Python 3 installed on your machine, you can jump to **Step 11**.
+If you have Python 3 installed on your machine, you can jump to **Step 3**.
 
 1. For Linux/Mac, Open Terminal. For Windows, open `Anaconda Prompt`.
 2. Activate sh00t environment if not on yet: `conda activate sh00t`
