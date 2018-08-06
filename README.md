@@ -53,15 +53,24 @@ account.
 That's all for the first time. Follow the next steps whenever you want to start Sh00t.
 
 **Starting Sh00t:**
+
 If you have Python 3 installed on your machine, you can jump to **Step 11**.
+
 9. For Linux/Mac, Open Terminal. For Windows, open `Anaconda Prompt`.
+
 10. Activate sh00t environment if not on yet: `conda activate sh00t`
+
 11. Navigate to sh00t directory if not in already: `cd sh00t`
+
 12. Start Sh00t server: `python manage.py runserver`
+
 13. Access [http://127.0.0.1:8000/](http://127.0.0.1:8000/) on your favorite browser. Login with the user credentials 
 created in the one-time setup above.
+
 14. Welcome to Sh00t!
+
 15. Once you are done, stop the server: `Ctrl + C`
+
 16. [Optional] Deactivate sh00t environment to continue with your other work: `conda deactivate`.
 
 
