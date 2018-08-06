@@ -85,8 +85,7 @@ created in the one-time setup above.
 
 ### Troubleshoot:
 Sh00t is written in Python and powered by Django Web Framework. If you are stuck with any errors, Googling on the error 
-message, should help you most of the times. If you are not sure, please [file a new issue on github](https://github
-.com/pavanw3b/sh00t/issues/new).
+message, should help you most of the times. If you are not sure, please [file a new issue on github](https://github.com/pavanw3b/sh00t/issues/new).
 
 ### Glossary:
 - **Flag:** A Flag is a target that is sh00ted at. It's a test case that needs to be tested. Flags are generated automatically based on the testing methodology chosen. The bug might or might not be found - but the goal is to aim and sh00t at it. Flag contains detailed steps for testing. If the bug is confirmed, then it's called a sh0t.
