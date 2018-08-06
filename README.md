@@ -30,23 +30,16 @@ Sh00t requires Python 3 and a few more packages. The simplest way to set up Sh00
 1. Install the minimal version of Anaconda: [Miniconda](https://conda.io/miniconda.html) and follow 
 the [installation instruction](https://conda.io/docs/user-guide/install/index.html). Remember to 
 reload your bash profile or restart your terminal application to avail conda command. For windows, launch `Anaconda Prompt` and run all the below commands in that window only.
-
 2. Create a new Python 3 environment: `conda create -n sh00t python=3.6`
-
 3. Activate *sh00t* environment: `conda activate sh00t`. If you see an error message like 
 `CommandNotFoundError: Your shell has not been properly configured to use 'conda activate'.`, you have to manually enable conda command. Follow the instructions shown with the error message. You may have to reload your bash profile 
 or restart your terminal. Try activating sh00t again: `conda activate sh00t`. You should be seeing `(sh00t) XXXX$` in 
 your terminal.
-
 4. Clone or download the latest project into a location of your choice: `https://github.com/pavanw3b/sh00t`. `git clone` requires installation of Git.
-
 5. Navigate to the folder where sh00t is cloned or downloaded & extracted: `cd sh00t`. Note that this is the outer-most 
 *sh00t* directory in project files. Not *sh00t/sh00t*.
-
 6. Install Sh00t dependency packages: `pip install -r requirements.txt`
-
 7. Setup database: `python manage.py migrate`
-
 8. Create an User Account: `python manage.py createsuperuser` and follow the UI to create an 
 account.
 
@@ -56,22 +49,15 @@ That's all for the first time. Follow the next steps whenever you want to start 
 
 If you have Python 3 installed on your machine, you can jump to **Step 11**.
 
-9. For Linux/Mac, Open Terminal. For Windows, open `Anaconda Prompt`.
-
-10. Activate sh00t environment if not on yet: `conda activate sh00t`
-
-11. Navigate to sh00t directory if not in already: `cd sh00t`
-
-12. Start Sh00t server: `python manage.py runserver`
-
-13. Access [http://127.0.0.1:8000/](http://127.0.0.1:8000/) on your favorite browser. Login with the user credentials 
+1. For Linux/Mac, Open Terminal. For Windows, open `Anaconda Prompt`.
+2. Activate sh00t environment if not on yet: `conda activate sh00t`
+3. Navigate to sh00t directory if not in already: `cd sh00t`
+4. Start Sh00t server: `python manage.py runserver`
+5. Access [http://127.0.0.1:8000/](http://127.0.0.1:8000/) on your favorite browser. Login with the user credentials 
 created in the one-time setup above.
-
-14. Welcome to Sh00t!
-
-15. Once you are done, stop the server: `Ctrl + C`
-
-16. [Optional] Deactivate sh00t environment to continue with your other work: `conda deactivate`.
+6. Welcome to Sh00t!
+7. Once you are done, stop the server: `Ctrl + C`
+8. [Optional] Deactivate sh00t environment to continue with your other work: `conda deactivate`.
 
 
 ### Upgrade:
