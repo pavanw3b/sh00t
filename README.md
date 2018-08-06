@@ -23,7 +23,7 @@ Sh00t
 
 
 ### Installation:
-Sh00t requires Python 3 and a few more packages. The simplest way to set up Sh00t is using Conda Environments. However, Anaconda is optional if you have Python 3 and pip installed - you can jump **step 4** below.
+Sh00t requires Python 3 and a few more packages. The simplest way to set up Sh00t is using Conda Environments. However, Anaconda is optional if you have Python 3 and pip installed - you can jump to **step 4** below.
 
 **Pre-requisite - One time setup:**
 1. Install the minimal version of Anaconda: [Miniconda](https://conda.io/miniconda.html) and follow 
