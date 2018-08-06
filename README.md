@@ -26,19 +26,27 @@ Sh00t
 Sh00t requires Python 3 and a few more packages. The simplest way to set up Sh00t is using Conda Environments. However, Anaconda is optional if you have Python 3 and pip installed - you can jump to **step 4** below.
 
 **Pre-requisite - One time setup:**
+
 1. Install the minimal version of Anaconda: [Miniconda](https://conda.io/miniconda.html) and follow 
 the [installation instruction](https://conda.io/docs/user-guide/install/index.html). Remember to 
 reload your bash profile or restart your terminal application to avail conda command. For windows, launch `Anaconda Prompt` and run all the below commands in that window only.
+
 2. Create a new Python 3 environment: `conda create -n sh00t python=3.6`
+
 3. Activate *sh00t* environment: `conda activate sh00t`. If you see an error message like 
 `CommandNotFoundError: Your shell has not been properly configured to use 'conda activate'.`, you have to manually enable conda command. Follow the instructions shown with the error message. You may have to reload your bash profile 
 or restart your terminal. Try activating sh00t again: `conda activate sh00t`. You should be seeing `(sh00t) XXXX$` in 
 your terminal.
+
 4. Clone or download the latest project into a location of your choice: `https://github.com/pavanw3b/sh00t`. `git clone` requires installation of Git.
+
 5. Navigate to the folder where sh00t is cloned or downloaded & extracted: `cd sh00t`. Note that this is the outer-most 
 *sh00t* directory in project files. Not *sh00t/sh00t*.
+
 6. Install Sh00t dependency packages: `pip install -r requirements.txt`
+
 7. Setup database: `python manage.py migrate`
+
 8. Create an User Account: `python manage.py createsuperuser` and follow the UI to create an 
 account.
 
