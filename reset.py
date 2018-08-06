@@ -9,10 +9,7 @@ from configuration.models import MethodologyMaster, ModuleMaster, CaseMaster
 
 print("This will reset everything in the database and set up as fresh.")
 print("Are you wanna do this?")
-try:
-    answer = raw_input("[No] | Yes?\n") or ""
-except NameError:
-    answer = input("[No] | Yes?\n") or ""
+answer = input("[No] | Yes?\n") or ""
 if "yes" == answer.lower():
     order = ""
     description_consolidated = ""
@@ -23,7 +20,7 @@ if "yes" == answer.lower():
     # WAHH
     methodology_master = MethodologyMaster(name="WAHH")
     methodology_master.save()
-    wahh_file = open('configuration/data/wahh.json', 'r')
+    wahh_file = open('configuration/data/wahh.json',  'rt', encoding='latin1')
     methodology = json.load(wahh_file)
 
     for method in methodology['checklist']['Functionality']:
