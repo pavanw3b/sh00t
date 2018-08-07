@@ -303,7 +303,7 @@ def case_masters(request):
         except ModuleMaster.DoesNotExist:
             return redirect('/')
 
-    case_masters_list = CaseMaster.objects.all().order_by('-created')
+    case_masters_list = CaseMaster.objects.all().order_by('order')
     modules_list = ModuleMaster.objects.all().order_by('-created')
     context = {'case_masters': case_masters_list, 'modules': modules_list, 'submitted': submitted}
     return render(request, 'case_masters.html', context)
