@@ -67,6 +67,7 @@
                                         <thead>
                                             <tr>
                                                 <th>Name</th>
+                                                <th>Methodology</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -74,13 +75,14 @@
                                                 <tr>
                                                     <td><a
                                                             href="/app/module-master/{{ module_master.id }}/">{{module_master.name }}</a></td>
+                                                    <td>{{ module_master.methodology }}</td>
                                                 </tr>
                                             {% endfor %}
                                         </tbody>
                                     </table>
                                 </div>
                                 <div class="text-right">
-                                    <a href="#">View All <i class="fa fa-arrow-circle-right"></i></a>
+                                    <a href="/admin/configuration/modulemaster/" target="_blank">View All <i class="fa fa-arrow-circle-right"></i></a>
                                 </div>
                             {% else %}
                                 <h4><i class="fa fa-arrow-left"></i> Add a Module Master</h4>

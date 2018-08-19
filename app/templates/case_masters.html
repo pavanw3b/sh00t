@@ -67,19 +67,21 @@
                                         <thead>
                                             <tr>
                                                 <th>Name</th>
+                                                <th>Module</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             {% for case_master in case_masters %}
                                                 <tr>
                                                     <td><a href="/app/case-master/{{ case_master.id }}/">{{case_master.name }}</a></td>
+                                                    <td>{{ case_master.module }}</td>
                                                 </tr>
                                             {% endfor %}
                                         </tbody>
                                     </table>
                                 </div>
                                 <div class="text-right">
-                                    <a href="#">View All <i class="fa fa-arrow-circle-right"></i></a>
+                                    <a href="/admin/configuration/casemaster/" target="_blank">View All <i class="fa fa-arrow-circle-right"></i></a>
                                 </div>
                             {% else %}
                                 <h4><i class="fa fa-arrow-left"></i> Add a Case Master</h4>
