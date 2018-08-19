@@ -40,7 +40,7 @@ def flags_new(request):
             return redirect('/')
 
     assessments_list = Assessment.objects.all().order_by('-added')
-    recent_flags = Flag.objects.filter(done=False).order_by('-added')
+    recent_flags = Flag.objects.filter(done=False).order_by('-added')[:10]
 
     context = {'assessments_list': assessments_list, 'recent_flags': recent_flags, 'submitted': submitted}
 
@@ -49,7 +49,7 @@ def flags_new(request):
 
 @login_required
 def flags_all(request):
-    all_flags = Flag.objects.all().order_by('-added')
+    all_flags = Flag.objects.all().order_by('done', 'order')
     context = {'all_flags': all_flags}
     return render(request, 'flags-list.html', context)
 
@@ -74,7 +74,7 @@ def flag(request, flag_id):
             the_flag.assessment = Assessment.objects.get(pk=assessment_id)
             the_flag.save()
             submitted = "success"
-
+            return redirect('/app/flags/all/')
         assessments_list = Assessment.objects.all().order_by('added')
         context = {'flag': the_flag, 'assessments': assessments_list, 'submitted': submitted}
         return render(request, 'flag-single.html', context)
@@ -101,7 +101,7 @@ def sh0ts_new(request):
 
     assessments_list = Assessment.objects.all().order_by('-added')
     templates_list = Template.objects.all().order_by('-added')
-    recent_sh0ts = Sh0t.objects.all().order_by('-added')
+    recent_sh0ts = Sh0t.objects.all().order_by('-added')[:10]
     context = {'assessments_list': assessments_list, 'templates': templates_list,
                'recent_sh0ts': recent_sh0ts, 'submitted': submitted}
     return render(request, 'sh0ts.html', context)
@@ -156,14 +156,15 @@ def assessments_new(request):
                 selected_cases = CaseMaster.objects.filter(module=selected_module)
                 for selected_case in selected_cases:
                     note = "Module: " + selected_module.name + "\n\n" + selected_case.description
-                    new_flag = Flag(title=selected_case.name, note=note, assessment=new_assessment)
+                    new_flag = Flag(title=selected_case.name, note=note, assessment=new_assessment,
+                                    order=selected_case.order)
                     new_flag.save()
             submitted = "success"
         except Project.DoesNotExist:
             return redirect('/')
         except ModuleMaster.DoesNotExist:
             return redirect('/')
-    assessments_list = Assessment.objects.all().order_by('-added')
+    assessments_list = Assessment.objects.all().order_by('-added')[:10]
     methodologies_list = MethodologyMaster.objects.all().order_by('order')
     modules_list = ModuleMaster.objects.all().order_by('order')
     projects_list = Project.objects.all().order_by('-added')
@@ -194,7 +195,7 @@ def assessment(request, assessment_id):
             the_assessment.project = Project.objects.get(pk=project_id)
             the_assessment.save()
             submitted = "success"
-        recent_assessments = Assessment.objects.all().order_by('-added')
+        recent_assessments = Assessment.objects.all().order_by('-added')[:10]
         projects_list = Project.objects.all().order_by('-added')
         context = {
             'assessment': the_assessment, 'recent_assessments': recent_assessments, 'projects': projects_list,
@@ -216,7 +217,7 @@ def projects_new(request):
         new_project = Project.objects.create(name=name)
         new_project.save()
         submitted = "success"
-    projects_list = Project.objects.all().order_by('-added')
+    projects_list = Project.objects.all().order_by('-added')[:10]
     context = {'projects': projects_list, 'submitted': submitted}
     return render(request, 'projects.html', context)
 
@@ -258,7 +259,7 @@ def templates(request):
         new_template = Template.objects.create(name=name, body=body)
         new_template.save()
         submitted = "success"
-    templates_list = Template.objects.all().order_by('-added')
+    templates_list = Template.objects.all().order_by('-added')[:10]
     context = {'templates': templates_list, 'submitted': submitted}
     return render(request, 'templates.html', context)
 
@@ -303,7 +304,7 @@ def case_masters(request):
         except ModuleMaster.DoesNotExist:
             return redirect('/')
 
-    case_masters_list = CaseMaster.objects.all().order_by('order')
+    case_masters_list = CaseMaster.objects.all().order_by('order')[:10]
     modules_list = ModuleMaster.objects.all().order_by('-created')
     context = {'case_masters': case_masters_list, 'modules': modules_list, 'submitted': submitted}
     return render(request, 'case_masters.html', context)
@@ -357,7 +358,7 @@ def module_masters(request):
         except MethodologyMaster.DoesNotExist:
             return redirect('/')
 
-    module_masters_list = ModuleMaster.objects.all().order_by('-created')
+    module_masters_list = ModuleMaster.objects.all().order_by('-created')[:10]
     methodologies_list = MethodologyMaster.objects.all().order_by('-created')
     context = {'module_masters': module_masters_list, 'methodologies': methodologies_list, 'submitted': submitted}
     return render(request, 'module-masters.html', context)
@@ -401,7 +402,7 @@ def methodology_masters(request):
         new_methodology_master.save()
         submitted = "success"
 
-    methodology_masters_list = MethodologyMaster.objects.all().order_by('-created')
+    methodology_masters_list = MethodologyMaster.objects.all().order_by('-created')[:10]
     context = {'methodology_masters': methodology_masters_list, 'submitted': submitted}
     return render(request, 'methodology-masters.html', context)
 

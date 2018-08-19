@@ -49,6 +49,7 @@ class Flag(models.Model):
     assessment = models.ForeignKey(Assessment, null=True, on_delete=models.CASCADE)
     done = models.BooleanField(default=False)
     added = models.DateTimeField(default=datetime.now)
+    order = models.IntegerField(default=1)
 
     def __str__(self):  # __unicode__ on Python 2
         return self.title
