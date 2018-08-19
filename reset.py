@@ -27,7 +27,7 @@ if "yes" == answer.lower():
         module_master = ModuleMaster(name=method, methodology=methodology_master, order=methodology['checklist']['Functionality'][method]['order'])
         module_master.save()
         for case in methodology['checklist']['Functionality'][method]['tests']:
-            order = methodology['checklist']['Functionality'][method]['tests'][case]['order']
+            order = '1' + str(methodology['checklist']['Functionality'][method]['order']) + str(methodology['checklist']['Functionality'][method]['tests'][case]['order'])
             descriptions_json = methodology['checklist']['Functionality'][method]['tests'][case]['description']
             description_consolidated = ""
             for description in descriptions_json:
@@ -44,7 +44,7 @@ if "yes" == answer.lower():
         module_master = ModuleMaster(name=method, methodology=methodology_master, order=methodology['modules'][method]['order'])
         module_master.save()
         for case in methodology['modules'][method]['tests']:
-            order = methodology['modules'][method]['tests'][case]['order']
+            order = '2' + str(methodology['modules'][method]['order']) + str(methodology['modules'][method]['tests'][case]['order'])
             steps = methodology['modules'][method]['tests'][case]['steps']
             steps_consolidated = ""
             for step in steps:
