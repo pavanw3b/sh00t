@@ -42,7 +42,7 @@ your terminal.
 7. Setup database: `python manage.py migrate`
 8. Create an User Account: `python manage.py createsuperuser` and follow the UI to create an 
 account.
-9. Optional but recommended: Load  Test Cases from OWASP Testing Guide (OTG) and Web Application Hackers Handbook (WAHH): `python reset.py`.
+9. Optional but recommended: Avail 174 Security Test Cases from OWASP Testing Guide (OTG) and Web Application Hackers Handbook (WAHH): `python reset.py`.
 
 That's all for the first time. Follow the next steps whenever you want to start Sh00t.
 
