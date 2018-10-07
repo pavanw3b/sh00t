@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.conf.urls import include, url
 from django.conf import settings
 from app import views
-from django.conf.urls.static import static
+from django.conf.urls.static import static, serve
 from django.urls import re_path
 
 
@@ -12,7 +12,11 @@ urlpatterns = [
     re_path(r'^logout/$', views.logout_user),
     re_path(r'^admin/', admin.site.urls),
     re_path(r'^$', views.index),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]
+
+if not settings.LIVE:
+	urlpatterns += [url(r'^static/(?P<path>.*)$', serve,
+                        {'document_root': settings.STATIC_ROOT})]
 
 # Print banner on the console when the server starts
 print(settings.BANNER)
