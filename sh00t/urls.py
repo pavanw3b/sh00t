@@ -15,8 +15,7 @@ urlpatterns = [
 ]
 
 if not settings.LIVE:
-	urlpatterns += [url(r'^static/(?P<path>.*)$', serve,
-                        {'document_root': settings.STATIC_ROOT})]
+    urlpatterns += [url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT})]
 
 # Print banner on the console when the server starts
 print(settings.BANNER)
