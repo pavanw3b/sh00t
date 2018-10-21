@@ -39,10 +39,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'f6l3gz5xxeg($j*15%_q8nvx0mvp*9h$$^^!4a_q3-dw*2n(&%'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# Set if production (for static files)
+LIVE = False
 
-ALLOWED_HOSTS = []
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = False
+
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
