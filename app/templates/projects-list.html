@@ -1,6 +1,6 @@
 {% extends "base.html" %}
+{% load render_table from django_tables2 %}
 {% block title %} List Projects | sh00t{% endblock %}
-
 {% block page %}
     <div id="page-wrapper">
         <div class="container-fluid">
@@ -21,26 +21,9 @@
                         </div>
                         <div class="panel-body">
                             {% if all_projects %}
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-hover table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Added</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {% for project in all_projects %}
-                                                <tr>
-                                                    <td><a href="/app/project/{{ project.id }}/">{{ project.name }}</a></td>
-                                                    <td>{{ project.added }}</td>
-                                                </tr>
-                                            {% endfor %}
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="text-right">
-                                    <a href="#">View All <i class="fa fa-arrow-circle-right"></i></a>
+                                {% render_table table %}
+                                <div class="left">
+                                    <input type="button" value="Delete" id="delBtn" class="btn btn-danger" data-loading-text="Deleting.." />
                                 </div>
                             {% else %}
                                 <h4><a href="/app/projects/new">Add a project</a></h4>
@@ -51,4 +34,53 @@
             </div>
         </div>
     </div>
+{% endblock %}
+{% block extra_foot %}
+  <div class="modal fade" id="checkMin1">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <b class="modal-title">Hey, there!</b>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          Don't forget to check one of those checkboxes!
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<script src="/static/js/common-ajax.js"></script>
+<script language="JavaScript">
+function toggle(source) {
+    checkboxes = document.getElementsByName('selection');
+    for(var i in checkboxes)
+        checkboxes[i].checked = source.checked;
+}
+
+$('#delBtn').on('click', function() {
+    if(confirm("The selected projects and all it's related data is going to be deleted. Are you sure to continue?")) {
+        var $this = $(this);
+        $this.button('loading');
+        isCheckedMin();
+        $('input:checked').each(function() {
+            $.ajax({
+                url: '/api/project/' + $(this).val(),
+                type: 'DELETE',
+                headers: {"X-CSRFToken": getCSRFToken()},
+            });
+        });
+        alert("The selected project/s have been deleted");
+        document.location.reload();
+    }
+});
+
+function isCheckedMin() {
+    if(0 == $('input:checked').length) {
+        $("#checkMin1").modal();
+    }
+}
+</script>
 {% endblock %}

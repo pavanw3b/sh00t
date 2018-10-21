@@ -25,6 +25,7 @@
                                     <table class="table table-bordered table-hover table-striped">
                                         <thead>
                                             <tr>
+                                                <th></th>
                                                 <th>Title</th>
                                                 <th>Done</th>
                                                 <th>Assessment</th>
@@ -34,6 +35,7 @@
                                         <tbody>
                                             {% for flag in all_flags %}
                                                 <tr>
+                                                    <td><input type="checkbox" /></td>
                                                     <td><a href="/app/flag/{{ flag.id }}/">{{ flag.title }}</a></td>
                                                     <td>{% if True == flag.done %} <span class="fa fa-check"></span>{% endif %}</td>
                                                     <td><a href="/app/assessment/{{ flag.assessment.id}}/">
@@ -57,3 +59,11 @@
         </div>
     </div>
 {% endblock %}
+
+<script language="JavaScript">
+function toggle(source) {
+    checkboxes = document.getElementsByName('selection');
+    for(var i in checkboxes)
+        checkboxes[i].checked = source.checked;
+}
+</script>

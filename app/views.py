@@ -4,6 +4,8 @@ from .models import Assessment, Project, Sh0t, Flag, Template
 from configuration.models import MethodologyMaster, ModuleMaster, CaseMaster
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from django_tables2 import RequestConfig
+from .tables import ProjectTable
 
 
 @login_required
@@ -224,8 +226,10 @@ def projects_new(request):
 
 @login_required
 def projects_all(request):
+    table = ProjectTable(Project.objects.all())
+    RequestConfig(request).configure(table)
     all_projects = Project.objects.all().order_by('-added')
-    context = {'all_projects': all_projects}
+    context = {'all_projects': all_projects, 'table': table}
     return render(request, 'projects-list.html', context)
 
 
