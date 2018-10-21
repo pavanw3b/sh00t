@@ -10,7 +10,7 @@ urlpatterns = [
     url(r'^assessment/(?P<pk>[0-9]+)', views.assessment_detail),
     url(r'^assessments/', views.assessment_list),
     url(r'^project/(?P<pk>[0-9]+)', views.project_detail),
-    url(r'^projects/', views.project_detail),
+    url(r'^projects/', views.project_list),
     url(r'^template/(?P<pk>[0-9]+)', views.template_detail),
     url(r'^templates/', views.template_list),
     url(r'^case-master/(?P<pk>[0-9]+)', views.case_master_detail),
