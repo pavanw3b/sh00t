@@ -62,11 +62,11 @@ created in the one-time setup above.
 
 
 ### Upgrade:
-* Navigate to the folder where sh00t was cloned
+* Navigate to the folder where sh00t was cloned: `cd sh00t`
 * Stop the server if it's running: `Ctrl + C`
 * Pull the latest code base via git: `git pull` or download the source from github and replace the files.
-* Navigate to sh00t directory: `cd sh00t`
 * Activate sh00t environment if not on yet: `conda activate sh00t`
+* Setup any additional dependencies: `pip install -r requirements.txt`
 * Make the latest database changes: `python manage.py migrate`
 * Start the server: `python manage.py runserver`
 
