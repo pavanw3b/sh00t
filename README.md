@@ -115,7 +115,7 @@ Whenever a Flag is confirmed to be a valid bug, a Sh0t can be created. One can c
 ### Implementation details:
 - Language: Python 3
 - Framework: Django Web Framework
-- Dependencies: Django REST Framework, TinyMCE (Managed by /requirements.txt)
+- Dependencies: Django REST Framework, djnago-tables2: Managed by /requirements.txt
 - UI: Bootstrap - Responsive
 
 
