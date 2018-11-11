@@ -61,18 +61,18 @@ function toggle(source) {
 }
 
 $('#delBtn').on('click', function() {
-    if(confirm("The selected projects and all it's related data is going to be deleted. Are you sure to continue?")) {
+    if(confirm("You are about to delete the selected flag/s. Are you sure to continue?")) {
         var $this = $(this);
         $this.button('loading');
         isCheckedMin();
         $('input:checked').each(function() {
             $.ajax({
-                url: '/api/project/' + $(this).val(),
+                url: '/api/flag/' + $(this).val(),
                 type: 'DELETE',
                 headers: {"X-CSRFToken": getCSRFToken()},
             });
         });
-        alert("The selected project/s have been deleted");
+        alert("The selected flag/s have been deleted");
         document.location.reload();
     }
 });

@@ -61,7 +61,7 @@ function toggle(source) {
 }
 
 $('#delBtn').on('click', function() {
-    if(confirm("The selected projects and all it's related data is going to be deleted. Are you sure to continue?")) {
+    if(confirm("You are about to delete the selected project/s. Are you sure to continue?")) {
         var $this = $(this);
         $this.button('loading');
         isCheckedMin();
