@@ -4,6 +4,7 @@ from app import views
 urlpatterns = [
     url(r'^flags/new/$', views.flags_new),
     url(r'^flags/all/', views.flags_all),
+    url(r'^flags/open/', views.open_flags),
     url(r'^flag/([0-9]+)/$', views.flag),
     url(r'^sh0ts/new/$', views.sh0ts_new),
     url(r'^sh0ts/all/', views.sh0ts_all),

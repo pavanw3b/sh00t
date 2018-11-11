@@ -5,7 +5,7 @@ from configuration.models import MethodologyMaster, ModuleMaster, CaseMaster
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django_tables2 import RequestConfig
-from .tables import ProjectTable
+from .tables import ProjectTable, FlagTable, OpenFlagTable
 
 
 @login_required
@@ -51,9 +51,20 @@ def flags_new(request):
 
 @login_required
 def flags_all(request):
+    table = FlagTable(Flag.objects.all())
+    RequestConfig(request).configure(table)
     all_flags = Flag.objects.all().order_by('done', 'order')
-    context = {'all_flags': all_flags}
+    context = {'all_flags': all_flags, 'table': table}
     return render(request, 'flags-list.html', context)
+
+
+@login_required
+def open_flags(request):
+    table = OpenFlagTable(Flag.objects.filter(done=False))
+    RequestConfig(request).configure(table)
+    open_flags = Flag.objects.filter(done=False).order_by('done', 'order')
+    context = {'open_flags': open_flags, 'table': table}
+    return render(request, 'open-flags.html', context)
 
 
 @login_required

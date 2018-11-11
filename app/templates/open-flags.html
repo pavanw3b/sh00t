@@ -1,16 +1,17 @@
 {% extends "base.html" %}
 {% load render_table from django_tables2 %}
-{% block title %} List Flags | sh00t{% endblock %}
+{% block title %} Open Flags | sh00t{% endblock %}
 
 {% block page %}
     <div id="page-wrapper">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Flags</h1>
+                    <h1 class="page-header">Open Flags</h1>
                     <ol class="breadcrumb">
                         <li><i class="fa fa-dashboard"></i>  <a href="/">Dashboard</a></li>
-                        <li class="active"><i class="fa fa-flag"></i> Flags</li>
+                        <li><i class="fa fa-flag"></i>  <a href="/app/flags/all">All flags</a></li>
+                        <li class="active"><i class="fa fa-flag"></i> Open Flags</li>
                     </ol>
                 </div>
             </div>
@@ -18,10 +19,10 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title"><i class="fa fa-flag"></i> All Flags</h3>
+                            <h3 class="panel-title"><i class="fa fa-flag"></i> Open Flags</h3>
                         </div>
                         <div class="panel-body">
-                            {% if all_flags %}
+                            {% if open_flags %}
                                 {% render_table table %}
                                 <div class="left">
                                     <input type="button" value="Delete" id="delBtn" class="btn btn-danger" data-loading-text="Deleting.." />
