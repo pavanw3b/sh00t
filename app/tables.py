@@ -1,5 +1,5 @@
 import django_tables2 as tables
-from .models import Project, Flag
+from .models import Project, Flag, Sh0t, Assessment, Project
 
 
 class ProjectTable(tables.Table):
@@ -25,6 +25,7 @@ class FlagTable(tables.Table):
         template_name = "django_tables2/bootstrap-responsive.html"
         sequence = ('selection', 'name', 'done', 'assessment', 'added')
         fields = ('name', 'added', 'done', 'assessment')
+        empty_text = "No Flags yet"
 
 
 class OpenFlagTable(tables.Table):
@@ -38,3 +39,30 @@ class OpenFlagTable(tables.Table):
         template_name = "django_tables2/bootstrap-responsive.html"
         sequence = ('selection', 'name', 'assessment', 'added')
         fields = ('name', 'added', 'assessment')
+
+
+class Sh0tTable(tables.Table):
+    selection = tables.CheckBoxColumn(accessor='pk', attrs={"th__input": {"onclick": "toggle(this)"}}, orderable=False)
+    title = tables.TemplateColumn('<a href="/app/sh0t/{{ record.pk }}"> {{ record.title }}</a>')
+    assessment = tables.TemplateColumn('<a href="/app/assessment/{{ record.assessment.pk}}"> '
+                                       '{{ record.assessment }}</a>')
+
+    class Meta:
+        model = Sh0t
+        template_name = "django_tables2/bootstrap-responsive.html"
+        sequence = ('selection', 'title', 'assessment', 'added')
+        fields = ('title', 'assessment', 'added')
+
+
+class AssessmentTable(tables.Table):
+    selection = tables.CheckBoxColumn(accessor='pk', attrs={"th__input": {"onclick": "toggle(this)"}}, orderable=False)
+    name = tables.TemplateColumn('<a href="/app/assessment/{{ record.pk }}"> {{ record.name }}</a>')
+    project = tables.TemplateColumn('<a href="/app/project/{{ record.project.pk}}"> '
+                                       '{{ record.project }}</a>')
+
+    class Meta:
+        model = Assessment
+        template_name = "django_tables2/bootstrap-responsive.html"
+        sequence = ('selection', 'name', 'project', 'added')
+        fields = ('name', 'project', 'added')
+

@@ -1,0 +1,29 @@
+<div class="modal fade" id="checkMin1">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+              <b class="modal-title">Hey, there!</b>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+              Don't forget to check one of those checkboxes!
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function isCheckedMin() {
+        if(0 < $('input:checked').length) {
+            return true;
+        }
+        return false;
+    }
+    function toggle(source) {
+        checkboxes = document.getElementsByName('selection');
+        for(var i in checkboxes)
+            checkboxes[i].checked = source.checked;
+    }
+</script>

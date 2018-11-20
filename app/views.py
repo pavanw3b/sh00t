@@ -5,7 +5,7 @@ from configuration.models import MethodologyMaster, ModuleMaster, CaseMaster
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django_tables2 import RequestConfig
-from .tables import ProjectTable, FlagTable, OpenFlagTable
+from .tables import FlagTable, OpenFlagTable, Sh0tTable, AssessmentTable, ProjectTable
 
 
 @login_required
@@ -51,19 +51,19 @@ def flags_new(request):
 
 @login_required
 def flags_all(request):
-    table = FlagTable(Flag.objects.all())
+    all_flags = Flag.objects.all()
+    table = FlagTable(all_flags)
     RequestConfig(request).configure(table)
-    all_flags = Flag.objects.all().order_by('done', 'order')
-    context = {'all_flags': all_flags, 'table': table}
+    context = {'table': table, 'count': all_flags.count()}
     return render(request, 'flags-list.html', context)
 
 
 @login_required
 def open_flags(request):
-    table = OpenFlagTable(Flag.objects.filter(done=False))
+    undone_flags = Flag.objects.filter(done=False)
+    table = OpenFlagTable(undone_flags)
     RequestConfig(request).configure(table)
-    open_flags = Flag.objects.filter(done=False).order_by('done', 'order')
-    context = {'open_flags': open_flags, 'table': table}
+    context = {'table': table, 'count': undone_flags.count()}
     return render(request, 'open-flags.html', context)
 
 
@@ -122,8 +122,10 @@ def sh0ts_new(request):
 
 @login_required
 def sh0ts_all(request):
-    all_sh0ts = Sh0t.objects.all().order_by('-added')
-    context = {'all_sh0ts': all_sh0ts}
+    all_sh0ts = Sh0t.objects.all()
+    table = Sh0tTable(all_sh0ts)
+    RequestConfig(request).configure(table)
+    context = {'table': table, 'count': all_sh0ts.count()}
     return render(request, 'sh0ts-list.html', context)
 
 
@@ -188,8 +190,10 @@ def assessments_new(request):
 
 @login_required
 def assessments_all(request):
-    all_assessments = Assessment.objects.all().order_by('-added')
-    context = {'all_assessments': all_assessments}
+    all_assessments = Assessment.objects.all()
+    table = AssessmentTable(all_assessments)
+    RequestConfig(request).configure(table)
+    context = {'table': table, 'count': all_assessments.count()}
     return render(request, 'assessments-list.html', context)
 
 
@@ -237,10 +241,10 @@ def projects_new(request):
 
 @login_required
 def projects_all(request):
-    table = ProjectTable(Project.objects.all())
+    all_projects = Project.objects.all()
+    table = ProjectTable(all_projects)
     RequestConfig(request).configure(table)
-    all_projects = Project.objects.all().order_by('-added')
-    context = {'all_projects': all_projects, 'table': table}
+    context = {'count': all_projects.count(), 'table': table}
     return render(request, 'projects-list.html', context)
 
 
