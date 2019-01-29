@@ -43,6 +43,7 @@ class OpenFlagTable(tables.Table):
 
 class Sh0tTable(tables.Table):
     selection = tables.CheckBoxColumn(accessor='pk', attrs={"th__input": {"onclick": "toggle(this)"}}, orderable=False)
+    severity = tables.TemplateColumn('<span class="bc-badge bc-badge--p{{ record.severity }}"> P{{ record.severity }}</span>')
     title = tables.TemplateColumn('<a href="/app/sh0t/{{ record.pk }}"> {{ record.title }}</a>')
     assessment = tables.TemplateColumn('<a href="/app/assessment/{{ record.assessment.pk}}"> '
                                        '{{ record.assessment }}</a>')
@@ -50,8 +51,8 @@ class Sh0tTable(tables.Table):
     class Meta:
         model = Sh0t
         template_name = "django_tables2/bootstrap-responsive.html"
-        sequence = ('selection', 'title', 'assessment', 'added')
-        fields = ('title', 'assessment', 'added')
+        sequence = ('selection','severity', 'title', 'assessment', 'added')
+        fields = ('severity', 'title', 'assessment', 'added')
 
 
 class AssessmentTable(tables.Table):
