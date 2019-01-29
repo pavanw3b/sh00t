@@ -37,6 +37,14 @@
                             </select>
                         </div>
                         <div class="form-group">
+                                <label>Severity</label>
+                                <select class="form-control" name="severity" id="severity">
+                                        {% for sev in severities %}
+                                            <option value={{sev}}> P{{sev}} </option>
+                                        {% endfor %}     
+                                </select>
+                        </div>
+                        <div class="form-group">
                             <label>Title</label>
                             <input class="form-control" name="title" id="title" autocomplete="off" />
                         </div>
@@ -110,6 +118,7 @@
             $.ajax({
                 url: "/api/template/" + template_id,
                 success: function (data) {
+                    $("#severity").val("P" + data.severity);
                     $('#title').val(data.name);
                     $('#body').val(data.body);
                 },

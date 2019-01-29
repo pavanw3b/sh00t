@@ -103,10 +103,11 @@ def sh0ts_new(request):
     if "POST" == request.method:
         title = request.POST.get('title', '') or "sh0t"
         body = request.POST.get('body', '') or ""
+        severity = request.POST.get('severity', '') or 5
         assessment_id = request.POST.get('assessment', '') or -1
         try:
             the_assessment = Assessment.objects.get(pk=assessment_id)
-            new_sh0t = Sh0t.objects.create(title=title, body=body, assessment=the_assessment)
+            new_sh0t = Sh0t.objects.create(title=title, body=body, severity=severity, assessment=the_assessment)
             new_sh0t.save()
             submitted = "success"
         except Assessment.DoesNotExist:
@@ -115,7 +116,7 @@ def sh0ts_new(request):
     assessments_list = Assessment.objects.all().order_by('-added')
     templates_list = Template.objects.all().order_by('-added')
     recent_sh0ts = Sh0t.objects.all().order_by('-added')[:10]
-    context = {'assessments_list': assessments_list, 'templates': templates_list,
+    context = {'assessments_list': assessments_list, 'templates': templates_list, 'severities': [1,2,3,4,5],
                'recent_sh0ts': recent_sh0ts, 'submitted': submitted}
     return render(request, 'sh0ts.html', context)
 
@@ -142,6 +143,7 @@ def sh0t(request, sh0t_id):
             try:
                 the_sh0t.title = request.POST.get('title', '') or "sh0t"
                 the_sh0t.body = request.POST.get('body', '') or ""
+                the_sh0t.severity = request.POST.get('severity', '') or 5
                 the_sh0t.assessment = Assessment.objects.get(pk=assessment_id)
                 the_sh0t.save()
                 submitted = "success"
@@ -149,7 +151,7 @@ def sh0t(request, sh0t_id):
                 return redirect('/')
 
         assessments_list = Assessment.objects.all().order_by('-added')
-        context = {'sh0t': the_sh0t, 'assessments': assessments_list, 'submitted': submitted}
+        context = {'sh0t': the_sh0t, 'assessments': assessments_list, 'severities': [1,2,3,4,5], 'submitted': submitted}
         return render(request, 'sh0t-single.html', context)
     except sh0t.DoesNotExist:
         return redirect('/')
