@@ -41,7 +41,7 @@ class Sh0t(models.Model):
         return self.title
 
     class Meta:
-        ordering = ('title',)
+        ordering = ('severity','title',)
 
 
 @python_2_unicode_compatible
