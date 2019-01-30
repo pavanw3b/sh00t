@@ -30,7 +30,6 @@
                         <div class="form-group">
                             <label>Severity</label>
                             <select class="form-control" name="severity" id="severity">
-                                    <option value={{sh0t.severity}}> P{{sh0t.severity}} </option>
                                     {% for sev in severities %}
                                         <option value={{sev}}> P{{sev}} </option>
                                     {% endfor %}     
@@ -69,6 +68,10 @@
 {% block extra_foot %}
 <script src="/static/js/common-ajax.js"></script>
 <script type="text/javascript">
+
+    /* Select the current severity */$
+    $('#severity option[value={{sh0t.severity}}]').attr('selected','selected');
+
     /* sync() defined in common-ajax ^ above */
     $('#body').on('input', function() {
         sync('sh0t');
