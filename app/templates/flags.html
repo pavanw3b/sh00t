@@ -62,6 +62,7 @@
                                         <thead>
                                             <tr>
                                                 <th>Title</th>
+                                                <th>Project</th>
                                                 <th>Assessment</th>
                                                 <th>Added</th>
                                             </tr>
@@ -70,6 +71,7 @@
                                             {% for flag in recent_flags %}
                                                 <tr>
                                                     <td><a href="/app/flag/{{ flag.id }}/">{{ flag.title }}</a></td>
+                                                    <td><a href="/app/project/{{ flag.assessment.project.id}}/">{{ flag.assessment.project.name }}</a></td>
                                                     <td><a href="/app/assessment/{{ flag.assessment.id}}/">{{ flag.assessment.name }}</a></td>
                                                     <td>{{ flag.added }}</td>
                                                 </tr>

@@ -77,6 +77,7 @@
                                         <thead>
                                             <tr>
                                                 <th>Title</th>
+                                                <th>Project</th>
                                                 <th>Assessment</th>
                                             </tr>
                                         </thead>
@@ -84,6 +85,7 @@
                                             {% for sh0t in recent_sh0ts %}
                                                 <tr>
                                                     <td><a href="/app/sh0t/{{ sh0t.id }}/">{{ sh0t.title }}</a></td>
+                                                    <td><a href="/app/project/{{ sh0t.assessment.project.id}}/">{{ sh0t.assessment.project.name }}</a></td>
                                                     <td><a href="/app/assessment/{{ sh0t.assessment.id}}/">{{ sh0t.assessment.name }}</a></td>
                                                 </tr>
                                             {% endfor %}
