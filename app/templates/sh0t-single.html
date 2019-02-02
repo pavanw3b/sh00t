@@ -28,6 +28,14 @@
                             </div>
                         {% endif %}
                         <div class="form-group">
+                            <label>Severity</label>
+                            <select class="form-control" name="severity" id="severity">
+                                    {% for sev in severities %}
+                                        <option value={{sev}}> P{{sev}} </option>
+                                    {% endfor %}     
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label>Title</label>
                             <input class="form-control" name="title" id="title" value="{{ sh0t.title }}" autocomplete="off" />
                         </div>
@@ -60,11 +68,18 @@
 {% block extra_foot %}
 <script src="/static/js/common-ajax.js"></script>
 <script type="text/javascript">
+
+    /* Select the current severity */$
+    $('#severity option[value={{sh0t.severity}}]').attr('selected','selected');
+
     /* sync() defined in common-ajax ^ above */
     $('#body').on('input', function() {
         sync('sh0t');
     });
     $('#title').on('input', function() {
+        sync('sh0t');
+    });
+    $('#severity').on('change', function() {
         sync('sh0t');
     });
     $('#assessment').on('change', function() {
