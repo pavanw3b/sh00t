@@ -1,0 +1,45 @@
+/*!
+ * Sh0t severity stylesheet.
+ */
+
+.bc-badge--p1 {
+    border-color: #d13535;
+    background-color: #f8dfdf;
+}
+
+.bc-badge--p2 {
+    border-color: #ff6900;
+    background-color: #ffe7d6;
+}
+
+.bc-badge--p3 {
+    border-color: #f0ad4e;
+    background-color: #fdf2e3;
+}
+
+.bc-badge--p4 {
+    border-color: #5eae00;
+    background-color: #e5f2d6;
+}
+
+.bc-badge--p5 {
+    border-color: #0278b8;
+    background-color: #d7e9f4;
+}
+
+.bc-badge {
+    box-sizing: border-box;
+    display: inline-block;
+    border-radius: 2px;
+    border: 1px solid transparent;
+    padding: 0 3px;
+    height: 1.9995em;
+    line-height: 1.9995em;
+    color: #000;
+    font-size: 75%;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    word-wrap: normal;
+}

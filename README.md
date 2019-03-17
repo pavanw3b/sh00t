@@ -4,6 +4,12 @@
 A Testing Environment for Manual Security Testers
 ```
 
+![](https://img.shields.io/github/issues/pavanw3b/sh00t.svg)
+![](https://img.shields.io/github/forks/pavanw3b/sh00t.svg)
+![](https://img.shields.io/github/stars/pavanw3b/sh00t.svg)
+![](https://img.shields.io/github/license/pavanw3b/sh00t.svg)
+[![Rawsec's CyberSecurity Inventory](https://inventory.rawsec.ml/img/badges/Rawsec-inventoried-FF5050_flat.svg)](https://inventory.rawsec.ml/tools.html#Sh00t)
+
 Sh00t
 - is a task manager to let you focus on performing security testing
 - provides **To Do** checklists of test cases

@@ -9,12 +9,10 @@
 </ol>
 <div class="row">
     <div class="col-lg-6">
-        <h4>New Sh0t</h4>
         {% if not assessments_list %}
             <br />
             <p>No Assessments found. A Sh0t must be associated with an assessment. <a href="/app/assessments/new/">Create an assessment</a> before sh00ting.</p>
         {% else %}
-
             <form role="form" method="post">
                 {% if "success" == submitted %}
                     <div class="row">
@@ -38,7 +36,14 @@
                     <label>Title</label>
                     <input class="form-control" name="title" id="title" autocomplete="off" />
                 </div>
-
+                <div class="form-group">
+                    <label>Severity</label>
+                    <select class="form-control" name="severity" id="severity">
+                            {% for sev in severities %}
+                                <option value={{sev}}> P{{sev}} </option>
+                            {% endfor %}
+                    </select>
+                </div>
                 <div class="form-group">
                     <label>Body</label>
                     <textarea class="form-control" rows="15" name="body" id="body"></textarea>
@@ -69,6 +74,7 @@
                                 <tr>
                                     <th>Title</th>
                                     <th>Assessment</th>
+                                    <th>Severity</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -76,6 +82,7 @@
                                     <tr>
                                         <td><a href="/app/sh0t/{{ sh0t.id }}/">{{ sh0t.title }}</a></td>
                                         <td><a href="/app/assessment/{{ sh0t.assessment.id}}/">{{ sh0t.assessment.name }}</a></td>
+                                        <td>P{{ sh0t.severity }}</td>
                                     </tr>
                                 {% endfor %}
                             </tbody>
@@ -92,7 +99,6 @@
         </div>
     </div>
 </div>
-<!-- /.row -->
 {% endblock %}
 {% block extra_foot %}
 <script type="text/javascript">
@@ -106,6 +112,7 @@
             $.ajax({
                 url: "/api/template/" + template_id,
                 success: function (data) {
+                    $("#severity").val("P" + data.severity);
                     $('#title').val(data.name);
                     $('#body').val(data.body);
                 },

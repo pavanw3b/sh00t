@@ -8,10 +8,8 @@
     <li class="breadcrumb-item"><a href="/app/flags/open">Open Flags</a></li>
     <li class="breadcrumb-item active"> <i class="fa fa-flag"></i> Flag</li>
 </ol>
-
 <div class="row">
     <div class="col-lg-5">
-        <h4>New Flag</h4>
         {% if not assessments_list %}
             <br /><p>No Assessments found. A flag must be associated with an assessment. <a href="/app/assessments/new/">Create an assessment</a> before creating a flag.</p>
         {% else %}
@@ -49,7 +47,7 @@
     <div class="col-lg-7">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h4 class="panel-title"><i class="fa fa-flag"></i> Open Flags</h4>
+                <h3 class="panel-title"><i class="fa fa-flag"></i> Open Flags</h3>
             </div>
             <div class="panel-body">
                 {% if recent_flags %}
@@ -58,6 +56,7 @@
                             <thead>
                                 <tr>
                                     <th>Title</th>
+                                    <th>Project</th>
                                     <th>Assessment</th>
                                     <th>Added</th>
                                 </tr>
@@ -66,6 +65,7 @@
                                 {% for flag in recent_flags %}
                                     <tr>
                                         <td><a href="/app/flag/{{ flag.id }}/">{{ flag.title }}</a></td>
+                                        <td><a href="/app/project/{{ flag.assessment.project.id}}/">{{ flag.assessment.project.name }}</a></td>
                                         <td><a href="/app/assessment/{{ flag.assessment.id}}/">{{ flag.assessment.name }}</a></td>
                                         <td>{{ flag.added }}</td>
                                     </tr>
@@ -77,8 +77,7 @@
                         <a href="/app/flags/open/?sort=-added">View all open flags <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 {% else %}
-                    <br />
-                    <h5>No flags yet. Add one.</h5>
+                    <h4><i class="fa fa-arrow-left"></i> Add a flag</h4>
                 {% endif %}
             </div>
         </div>
