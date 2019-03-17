@@ -1,48 +1,36 @@
 {% extends "base.html" %}
-{% block title %} Project | sh00t{% endblock %}
+{% block title %}{{ project.name }} - Project | Sh00t{% endblock %}
 
 {% block page %}
-    <div id="page-wrapper">
-        <div class="container-fluid">
-            <!-- Page Heading -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Project</h1>
-                    <ol class="breadcrumb">
-                        <li><i class="fa fa-dashboard"></i> <a href="/">Dashboard</a></li>
-                        <li><i class="fa fa-cubes"></i> <a href="/app/projects/all/">Projects</a></li>
-                        <li class="active">{{ project.name }}  <span id="response" class="small"></span></li>
-                    </ol>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <form role="form" method="post">
-                        {% if "success" == submitted %}
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="alert alert-info alert-dismissable">
-                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button> <i class="fa fa-info-circle"></i> Updated
-                                    </div>
-                                </div>
-                            </div>
-                        {% endif %}
-                        <div class="form-group">
-                            <label>Name</label>
-                            <input class="form-control" name="name" id="name" value="{{ project.name }}" autocomplete="off" />
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+    <li class="breadcrumb-item"><a href="/app/projects/all/">Projects</a></li>
+    <li class="breadcrumb-item active"><i class="fa fa-cubes"></i> {{ project.name }} <span id="response" class="small"></span></li>
+</ol>
+
+<div class="row">
+    <div class="col-lg-6">
+        <form role="form" method="post">
+            {% if "success" == submitted %}
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="alert alert-info alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button> <i class="fa fa-info-circle"></i> Updated
                         </div>
-                        <input type="hidden" value="{{ project.id }}" id="id" />
-                        <button type="submit" class="btn btn-primary">Update</button>
-                        <button type="submit" name="delete" value="delete" class="btn btn-danger">Delete</button>
-                        {% csrf_token %}
-                    </form>
+                    </div>
                 </div>
+            {% endif %}
+            <div class="form-group">
+                <label>Name</label>
+                <input class="form-control" name="name" id="name" value="{{ project.name }}" autocomplete="off" />
             </div>
-            <!-- /.row -->
-        </div>
-        <!-- /.container-fluid -->
+            <input type="hidden" value="{{ project.id }}" id="id" />
+            <button type="submit" class="btn btn-primary">Update</button>
+            <button type="submit" name="delete" value="delete" class="btn btn-danger">Delete</button>
+            {% csrf_token %}
+        </form>
     </div>
-    <!-- /#page-wrapper -->
+</div>
 {% endblock %}
 {% block extra_foot %}
 <script src="/static/js/common-ajax.js"></script>

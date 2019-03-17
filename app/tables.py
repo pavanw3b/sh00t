@@ -15,7 +15,7 @@ class ProjectTable(tables.Table):
 
 class FlagTable(tables.Table):
     selection = tables.CheckBoxColumn(accessor='pk', attrs={"th__input": {"onclick": "toggle(this)"}}, orderable=False)
-    name = tables.TemplateColumn('<a href="/app/flag/{{ record.pk }}"> {{ record.title }}</a>')
+    title = tables.TemplateColumn('<a href="/app/flag/{{ record.pk }}"> {{ record.title }}</a>')
     done = tables.BooleanColumn(yesno='done,')
     assessment = tables.TemplateColumn('<a href="/app/assessment/{{ record.assessment.pk}}"> '
                                        '{{ record.assessment }}</a>')
@@ -23,8 +23,8 @@ class FlagTable(tables.Table):
     class Meta:
         model = Flag
         template_name = "django_tables2/bootstrap-responsive.html"
-        sequence = ('selection', 'name', 'done', 'assessment', 'added')
-        fields = ('name', 'added', 'done', 'assessment')
+        sequence = ('selection', 'title', 'done', 'assessment', 'added')
+        fields = ('title', 'added', 'done', 'assessment')
         empty_text = "No Flags yet"
 
 

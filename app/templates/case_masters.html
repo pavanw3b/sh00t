@@ -2,97 +2,85 @@
 {% block title %} Case Master | sh00t{% endblock %}
 
 {% block page %}
-    <div id="page-wrapper">
-        <div class="container-fluid">
-            <!-- Page Heading -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Case Masters</h1>
-                    <ol class="breadcrumb">
-                        <li><i class="fa fa-dashboard"></i>  <a href="/">Dashboard</a></li>
-                        <li class="active"><i class="fa fa-file-text"></i> Case Master</li>
-                    </ol>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6">
-                    <h3>New Case Master</h3>
-                    {% if not modules %}
-                        <b>No Modules found. A Case Master will belong to a Module. So, <a href="/app/module-masters/">Create a module</a> before creating a Case Master</b>
-                    {% else %}
-                        <form role="form" method="post">
-                            {% if "success" == submitted %}
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="alert alert-info alert-dismissable">
-                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button> <i class="fa fa-info-circle"></i> Submitted
-                                        </div>
-                                    </div>
-                                </div>
-                            {% endif %}
-                            <div class="form-group">
-                                <label>Name</label>
-                                <input class="form-control" name="name" autocomplete="off" />
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+    <li class="breadcrumb-item active"><i class="fa fa-list"></i> Case Master</li>
+</ol>
+ <div class="row">
+    <div class="col-lg-6">
+        {% if not modules %}
+            <br />
+            <p>No Modules found. A Case Master must be associated with a Module. <a href="/app/module-masters/">Create a Module Master</a> before a Case Master.</p>
+        {% else %}
+            <form role="form" method="post">
+                {% if "success" == submitted %}
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="alert alert-info alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button> <i class="fa fa-info-circle"></i> Submitted
                             </div>
-                            <div class="form-group">
-                                <label>Description</label>
-                                <textarea class="form-control" rows="10" name="description"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Modules</label>
-                                <select name="module_master_id" class="form-control">
-                                    {% for module in modules %}
-                                        <option value="{{ module.id }}">{{ module.name}}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Order</label>
-                                <input type="number" class="form-control" name="order" autocomplete="off" />
-                            </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                            {% csrf_token %}
-                        </form>
-                    {% endif %}
-                </div>
-                <div class="col-lg-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title"><i class="fa fa-file-text"></i> Recent Case Masters</h3>
-                        </div>
-                        <div class="panel-body">
-                            {% if case_masters %}
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-hover table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Module</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {% for case_master in case_masters %}
-                                                <tr>
-                                                    <td><a href="/app/case-master/{{ case_master.id }}/">{{case_master.name }}</a></td>
-                                                    <td>{{ case_master.module }}</td>
-                                                </tr>
-                                            {% endfor %}
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="text-right">
-                                    <a href="/admin/configuration/casemaster/" target="_blank">View All <i class="fa fa-arrow-circle-right"></i></a>
-                                </div>
-                            {% else %}
-                                <h4><i class="fa fa-arrow-left"></i> Add a Case Master</h4>
-                            {% endif %}
                         </div>
                     </div>
+                {% endif %}
+                <div class="form-group">
+                    <label>Name</label>
+                    <input class="form-control" name="name" autocomplete="off" />
                 </div>
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /.container-fluid -->
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea class="form-control" rows="10" name="description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Modules</label>
+                    <select name="module_master_id" class="form-control">
+                        {% for module in modules %}
+                            <option value="{{ module.id }}">{{ module.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Order</label>
+                    <input type="number" class="form-control" name="order" autocomplete="off" />
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+                {% csrf_token %}
+            </form>
+        {% endif %}
     </div>
-    <!-- /#page-wrapper -->
+    <div class="col-lg-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title"><i class="fa fa-list"></i> Recent Case Masters</h4>
+            </div>
+            <div class="panel-body">
+                {% if case_masters %}
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Module</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for case_master in case_masters %}
+                                    <tr>
+                                        <td><a href="/app/case-master/{{ case_master.id }}/">{{case_master.name }}</a></td>
+                                        <td>{{ case_master.module }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="text-right">
+                        <a href="/admin/configuration/casemaster/" target="_blank">View All <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                {% else %}
+                    <br />
+                    <h5>No Case Master yet. Add one.</h5>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

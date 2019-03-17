@@ -2,179 +2,149 @@
 {% block title %} Dashboard | sh00t{% endblock %}
 
 {% block page %}
-    <div id="page-wrapper">
-        <div class="container-fluid">
-            <!-- Page Heading -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">
-                        Dashboard <small>Statistics Overview</small>
-                    </h1>
-                    <ol class="breadcrumb">
-                        <li class="active">
-                            <i class="fa fa-dashboard"></i> Dashboard
-                        </li>
-                    </ol>
-                </div>
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="/">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">Overview</li>
+</ol>
+
+
+<div class="row">
+    <div class="col-xl-3 col-sm-6 mb-3">
+      <div class="card text-white bg-primary o-hidden h-100">
+        <div class="card-body">
+          <div class="card-body-icon">
+            <i class="fas fa-fw fa-cubes"></i>
+          </div>
+          <div class="mr-5">{{ projects_count }} Projects</div>
+        </div>
+        <a class="card-footer text-white clearfix small z-1" href="/app/projects/all/">
+          <span class="float-left">View Details</span>
+          <span class="float-right">
+            <i class="fas fa-angle-right"></i>
+          </span>
+        </a>
+      </div>
+    </div>
+    <div class="col-xl-3 col-sm-6 mb-3">
+      <div class="card text-white bg-warning o-hidden h-100">
+        <div class="card-body">
+          <div class="card-body-icon">
+            <i class="fas fa-fw fa-cube"></i>
+          </div>
+          <div class="mr-5">{{ assessments_count }} Assessments</div>
+        </div>
+        <a class="card-footer text-white clearfix small z-1" href="#">
+          <span class="float-left">View Details</span>
+          <span class="float-right">
+            <i class="fas fa-angle-right"></i>
+          </span>
+        </a>
+      </div>
+    </div>
+    <div class="col-xl-3 col-sm-6 mb-3">
+      <div class="card text-white bg-success o-hidden h-100">
+        <div class="card-body">
+          <div class="card-body-icon">
+            <i class="fas fa-fw fa-bullseye"></i>
+          </div>
+          <div class="mr-5">{{ recent_sh0ts.count }} Sh0ts recently</div>
+        </div>
+        <a class="card-footer text-white clearfix small z-1" href="#">
+          <span class="float-left">View Details</span>
+          <span class="float-right">
+            <i class="fas fa-angle-right"></i>
+          </span>
+        </a>
+      </div>
+    </div>
+    <div class="col-xl-3 col-sm-6 mb-3">
+      <div class="card text-white bg-danger o-hidden h-100">
+        <div class="card-body">
+          <div class="card-body-icon">
+            <i class="fas fa-fw fa-flag"></i>
+          </div>
+          <div class="mr-5">{{ open_flags.count }} open flags!</div>
+        </div>
+        <a class="card-footer text-white clearfix small z-1" href="#">
+          <span class="float-left">View Details</span>
+          <span class="float-right">
+            <i class="fas fa-angle-right"></i>
+          </span>
+        </a>
+      </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Recent Shots</h3>
             </div>
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-cubes fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">{{ projects_count }}</div>
-                                    <div>Projects</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="/app/projects/all/">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
+            <div class="panel-body">
+                {% if recent_sh0ts %}
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Assessment</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for sh0t in recent_sh0ts %}
+                                    <tr>
+                                        <td><a href="/app/sh0t/{{ sh0t.id }}/">{{ sh0t.title }}</a></td>
+                                        <td><a href="/app/assessment/{{ sh0t.assessment.id}}/">{{ sh0t.assessment.name }}</a></td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-yellow">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-cube fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">{{ assessments_count }}</div>
-                                    <div>Assessments</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="/app/assessments/all/">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Assessments</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
+                    <div class="text-right">
+                        <a href="/app/shots/">View All <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-bullseye fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">{{ recent_sh0ts.count }}</div>
-                                    <div>Shots!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="/app/sh0ts/all/">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Shots</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-flag-o fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">{{ open_flags.count }}</div>
-                                    <div>Open Flags!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="/app/flags/all/">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Flags</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Recent Shots</h3>
-                        </div>
-                        <div class="panel-body">
-                            {% if recent_sh0ts %}
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-hover table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>Title</th>
-                                                <th>Assessment</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {% for sh0t in recent_sh0ts %}
-                                                <tr>
-                                                    <td><a href="/app/sh0t/{{ sh0t.id }}/">{{ sh0t.title }}</a></td>
-                                                    <td><a href="/app/assessment/{{ sh0t.assessment.id}}/">{{ sh0t.assessment.name }}<a></a></td>
-                                                </tr>
-                                            {% endfor %}
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="text-right">
-                                    <a href="/app/shots/">View All <i class="fa fa-arrow-circle-right"></i></a>
-                                </div>
-                            {% else %}
-                                <h4><i class="fa fa-bullseye"></i> <a href="/app/sh0ts/new/">Sh00t one</a></h4>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Open Flags</h3>
-                        </div>
-                        <div class="panel-body">
-                            {% if open_flags %}
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-hover table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>Title</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {% for flag in open_flags %}
-                                                <tr>
-                                                    <td><a href="/app/flag/{{ flag.id }}/">{{ flag.title }}</a></td>
-                                                </tr>
-                                            {% endfor %}
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="text-right">
-                                    <a href="/app/flags/all">View All <i class="fa fa-arrow-circle-right"></i></a>
-                                </div>
-                            {% else %}
-                                <h4><i class="fa fa-flag-o"></i> <a href="/app/flags/new/">New Flag</a></h4>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
+                {% else %}
+                    <h4><i class="fa fa-bullseye"></i> <a href="/app/sh0ts/new/">Sh00t one</a></h4>
+                {% endif %}
             </div>
         </div>
     </div>
+    <div class="col-lg-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Open Flags</h3>
+            </div>
+            <div class="panel-body">
+                {% if open_flags %}
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for flag in open_flags %}
+                                    <tr>
+                                        <td><a href="/app/flag/{{ flag.id }}/">{{ flag.title }}</a></td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="text-right">
+                        <a href="/app/flags/all">View All <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                {% else %}
+                    <h4><i class="fa fa-flag-o"></i> <a href="/app/flags/new/">New Flag</a></h4>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
