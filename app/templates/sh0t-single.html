@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 {% block title %}{{ sh0t.title }} - Sh0t | Sh00t{% endblock %}
-
+{% block extra_head %}
+<link rel="stylesheet" href="/static/css/simplemde.min.css">
+{% endblock %}
 {% block page %}
-
 <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
     <li class="breadcrumb-item"> <i class="fa fa-file-text"></i> <a href="/app/sh0ts/all/">All Sh0ts</a></li>
@@ -75,6 +76,17 @@
     });
     $('#assessment').on('change', function() {
         sync('sh0t');
+    });
+</script>
+<script src="/static/js/simplemde.min.js"></script>
+<script>
+    var simplemde = new SimpleMDE({
+        element: document.getElementById("body"),
+        autosave: {
+            enabled: true,
+            uniqueId: "Sh00tSh0tSingleBody{{ sh0t.id }}",
+            delay: 1000,
+        },
     });
 </script>
 {% endblock %}

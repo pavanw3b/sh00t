@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% block title %}{{ template.name }} - Template | Sh00t{% endblock %}
-
+{% block extra_head %}
+<link rel="stylesheet" href="/static/css/simplemde.min.css">
+{% endblock %}
 {% block page %}
 <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
@@ -25,6 +27,7 @@
                 <input class="form-control" name="name" id="name" value="{{ template.name }}" autocomplete="off" />
             </div>
             <div class="form-group">
+                <label>Body</label>
                 <textarea class="form-control" rows="10" name="body" id="body">{{ template.body }}</textarea>
             </div>
             <input type="hidden" value="{{ template.id }}" id="id" />
@@ -43,6 +46,17 @@
     });
     $('#body').on('input', function() {
         sync('template');
+    });
+</script>
+<script src="/static/js/simplemde.min.js"></script>
+<script>
+    var simplemde = new SimpleMDE({
+        element: document.getElementById("body"),
+        autosave: {
+            enabled: true,
+            uniqueId: "Sh00tTemplateSingleBody{{ template.id }}",
+            delay: 1000,
+        },
     });
 </script>
 {% endblock %}
