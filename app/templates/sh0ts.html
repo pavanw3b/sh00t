@@ -2,111 +2,103 @@
 {% block title %} Sh0ts | sh00t{% endblock %}
 
 {% block page %}
-    <div id="page-wrapper">
-        <div class="container-fluid">
-            <!-- Page Heading -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Sh0ts</h1>
-                    <ol class="breadcrumb">
-                        <li><i class="fa fa-dashboard"></i>  <a href="/">Dashboard</a></li>
-                        <li class="active"><i class="fa fa-bullseye"></i> Sh0ts</li>
-                    </ol>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6">
-                    <h3>New Sh0t</h3>
-                    <form role="form" method="post">
-                        {% if "success" == submitted %}
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="alert alert-info alert-dismissable">
-                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button> <i class="fa fa-info-circle"></i> Submitted
-                                    </div>
-                                </div>
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+    <li class="breadcrumb-item"><a href="/app/sh0ts/all/">All Sh0ts</a></li>
+    <li class="breadcrumb-item active"><i class="fa fa-bullseye"></i> Sh0t <span id="response" class="small"></span></li>
+</ol>
+<div class="row">
+    <div class="col-lg-6">
+        {% if not assessments_list %}
+            <br />
+            <p>No Assessments found. A Sh0t must be associated with an assessment. <a href="/app/assessments/new/">Create an assessment</a> before sh00ting.</p>
+        {% else %}
+            <form role="form" method="post">
+                {% if "success" == submitted %}
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="alert alert-info alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button> <i class="fa fa-info-circle"></i> Submitted
                             </div>
-                        {% endif %}
-                        <div class="form-group">
-                            <label for="template">Template</label>
-                            <select id="template" class="form-control" name="template">
-                                <option value="">---- Choose from a template ----</option>
-                                {% for template in templates %}
-                                    <option value="{{ template.id }}">{{ template.name }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                        <div class="form-group">
-                                <label>Severity</label>
-                                <select class="form-control" name="severity" id="severity">
-                                        {% for sev in severities %}
-                                            <option value={{sev}}> P{{sev}} </option>
-                                        {% endfor %}     
-                                </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Title</label>
-                            <input class="form-control" name="title" id="title" autocomplete="off" />
-                        </div>
-                        <div class="form-group">
-                            <label>Body</label>
-                            <textarea class="form-control" rows="15" name="body" id="body"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="assessment">Assessment</label>
-                            <select id="assessment" class="form-control" name="assessment">
-                                {% for assessment in assessments_list %}
-                                    <option value="{{ assessment.id }}">{{ assessment.name }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                        {% csrf_token %}
-                    </form>
-
-                </div>
-                <div class="col-lg-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title"><i class="fa fa-bullseye"></i> Recent Sh0ts</h3>
-                        </div>
-                        <div class="panel-body">
-                            {% if recent_sh0ts %}
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-hover table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>Title</th>
-                                                <th>Project</th>
-                                                <th>Assessment</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {% for sh0t in recent_sh0ts %}
-                                                <tr>
-                                                    <td><a href="/app/sh0t/{{ sh0t.id }}/">{{ sh0t.title }}</a></td>
-                                                    <td><a href="/app/project/{{ sh0t.assessment.project.id}}/">{{ sh0t.assessment.project.name }}</a></td>
-                                                    <td><a href="/app/assessment/{{ sh0t.assessment.id}}/">{{ sh0t.assessment.name }}</a></td>
-                                                </tr>
-                                            {% endfor %}
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="text-right">
-                                    <a href="/app/sh0ts/all/">View All <i class="fa fa-arrow-circle-right"></i></a>
-                                </div>
-                            {% else %}
-                                <h4><i class="fa fa-arrow-left"></i> Sh00t</h4>
-                            {% endif %}
                         </div>
                     </div>
+                {% endif %}
+                <div class="form-group">
+                    <label for="template">Template</label>
+                    <select id="template" class="form-control" name="template">
+                        <option value="">---- Choose from a template ----</option>
+                        {% for template in templates %}
+                            <option value="{{ template.id }}">{{ template.name }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /.container-fluid -->
+                <div class="form-group">
+                    <label>Title</label>
+                    <input class="form-control" name="title" id="title" autocomplete="off" />
+                </div>
+                <div class="form-group">
+                    <label>Severity</label>
+                    <select class="form-control" name="severity" id="severity">
+                            {% for sev in severities %}
+                                <option value={{sev}}> P{{sev}} </option>
+                            {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Body</label>
+                    <textarea class="form-control" rows="15" name="body" id="body"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="assessment">Assessment</label>
+                    <select id="assessment" class="form-control" name="assessment">
+                        {% for assessment in assessments_list %}
+                            <option value="{{ assessment.id }}">{{ assessment.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+                {% csrf_token %}
+            </form>
+        {% endif %}
     </div>
-    <!-- /#page-wrapper -->
+    <div class="col-lg-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title"><i class="fa fa-bullseye"></i> Recent Sh0ts</h4>
+            </div>
+            <div class="panel-body">
+                {% if recent_sh0ts %}
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Assessment</th>
+                                    <th>Severity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for sh0t in recent_sh0ts %}
+                                    <tr>
+                                        <td><a href="/app/sh0t/{{ sh0t.id }}/">{{ sh0t.title }}</a></td>
+                                        <td><a href="/app/assessment/{{ sh0t.assessment.id}}/">{{ sh0t.assessment.name }}</a></td>
+                                        <td>P{{ sh0t.severity }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="text-right">
+                        <a href="/app/sh0ts/all/">View All <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                {% else %}
+                    <br />
+                    <h5>No Sh0ts yet. Sh00t one.</h5>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
 {% block extra_foot %}
 <script type="text/javascript">

@@ -15,7 +15,7 @@ class ProjectTable(tables.Table):
 
 class FlagTable(tables.Table):
     selection = tables.CheckBoxColumn(accessor='pk', attrs={"th__input": {"onclick": "toggle(this)"}}, orderable=False)
-    name = tables.TemplateColumn('<a href="/app/flag/{{ record.pk }}"> {{ record.title }}</a>')
+    title = tables.TemplateColumn('<a href="/app/flag/{{ record.pk }}"> {{ record.title }}</a>')
     done = tables.BooleanColumn(yesno='done,')
     project = tables.TemplateColumn('<a href="/app/project/{{ record.assessment.project.pk}}">{{ record.assessment.project }}</a>')
     assessment = tables.TemplateColumn('<a href="/app/assessment/{{ record.assessment.pk}}"> '
@@ -24,8 +24,8 @@ class FlagTable(tables.Table):
     class Meta:
         model = Flag
         template_name = "django_tables2/bootstrap-responsive.html"
-        sequence = ('selection', 'name', 'done', 'project', 'assessment', 'added')
-        fields = ('name', 'added', 'done', 'project', 'assessment')
+        sequence = ('selection', 'title', 'done', 'assessment', 'added')
+        fields = ('title', 'added', 'done', 'assessment')
         empty_text = "No Flags yet"
 
 
@@ -53,8 +53,8 @@ class Sh0tTable(tables.Table):
     class Meta:
         model = Sh0t
         template_name = "django_tables2/bootstrap-responsive.html"
-        sequence = ('selection','severity', 'title', 'project', 'assessment', 'added')
-        fields = ('severity', 'title', 'project', 'assessment', 'added')
+        sequence = ('selection','title', 'severity', 'assessment', 'project', 'added')
+        fields = ('title', 'severity', 'assessment', 'project', 'added')
 
 
 class AssessmentTable(tables.Table):

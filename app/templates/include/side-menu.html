@@ -1,71 +1,66 @@
-<div class="collapse navbar-collapse navbar-ex1-collapse">
-    <ul class="nav navbar-nav side-nav">
-        <li {% if '/' == request.path %}class="active" {% endif %}>
-            <a href="/"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
-        </li>
-        <li {% if '/app/flag' in request.path %}class="active" {% endif %}>
-            <a href="javascript:;" data-toggle="collapse" data-target="#flagMenu"><i class="fa fa-fw fa-flag-o"></i> Flags <span id="flagArrow"><i class="fa fa-fw fa-caret-down"></i></span></a>
-            <ul id="flagMenu" class="collapse">
-                <li>
-                    <a href="/app/flags/new">New</a>
-                </li>
-                <li>
-                    <a href="/app/flags/open?sort=-added">Open</a>
-                </li>
-                <li>
-                    <a href="/app/flags/all?sort=-added">All</a>
-                </li>
-            </ul>
-        </li>
-        <li {% if '/app/sh0t' in request.path %}class="active" {% endif %}>
-            <a href="javascript:;" data-toggle="collapse" data-target="#sh0tMenu"><i class="fa fa-fw fa-bullseye"></i> Sh0ts <span id="sh0tArrow"><i id="sh0tArrow" class="fa fa-fw fa-caret-down"></i></span></a>
-            <ul id="sh0tMenu" class="collapse">
-                <li>
-                    <a href="/app/sh0ts/new">New</a>
-                </li>
-                <li>
-                    <a href="/app/sh0ts/all">All</a>
-                </li>
-            </ul>
-        </li>
-        <li {% if '/app/assessment' in request.path %}class="active" {% endif %}>
-            <a href="javascript:;" data-toggle="collapse" data-target="#assessmentMenu"><i class="fa fa-fw fa-cube"></i> Assessments <span id="assessmentArrow"><i class="fa fa-fw fa-caret-down"></i></span></a>
-            <ul id="assessmentMenu" class="collapse">
-                <li>
-                    <a href="/app/assessments/new">New</a>
-                </li>
-                <li>
-                    <a href="/app/assessments/all">All</a>
-                </li>
-            </ul>
-        </li>
-        <li {% if '/app/project' in request.path %}class="active" {% endif %}>
-            <a href="javascript:;" data-toggle="collapse" data-target="#projectMenu"><i class="fa fa-fw fa-cubes"></i> Projects <span id="projectArrow"><i id="projectArrow" class="fa fa-fw fa-caret-down"></i></span></a>
-            <ul id="projectMenu" class="collapse">
-                <li>
-                    <a href="/app/projects/new">New</a>
-                </li>
-                <li>
-                    <a href="/app/projects/all">All</a>
-                </li>
-            </ul>
-        </li>
-        <li {% if '/app/template' in request.path %}class="active" {% endif %}>
-            <a href="javascript:;" data-toggle="collapse" data-target="#configurationMenu"><i class="fa fa-fw fa-gear"></i> Configuration <span id="configurationArrow"><i class="fa fa-fw fa-caret-down"></i></span></a>
-            <ul id="configurationMenu" class="collapse">
-                <li>
-                    <a href="/app/templates/">Templates</a>
-                </li>
-                <li>
-                    <a href="/app/case-masters/">Case Master</a>
-                </li>
-                <li>
-                    <a href="/app/module-masters/">Module Master</a>
-                </li>
-                <li>
-                    <a href="/app/methodology-masters/">Methodology Master</a>
-                </li>
-            </ul>
-        </li>
-    </ul>
-</div>
+
+<ul class="sidebar navbar-nav">
+    <li class="nav-item active">
+      <a class="nav-link" href="/">
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Dashboard</span>
+      </a>
+    </li>
+    <li class="nav-item dropdown {% if '/app/flag' in request.path %}show{% endif %}">
+        <a class="nav-link dropdown-toggle" href="#" id="flagsDD" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <i class="fas fa-fw fa-flag"></i>
+            <span>Flags</span>
+        </a>
+        <div class="dropdown-menu {% if '/app/flag' in request.path %}show{% endif %}" aria-labelledby="flagsDD">
+            <a class="dropdown-item" href="/app/flags/new">New</a>
+            <a class="dropdown-item" href="/app/flags/open?sort=-added">Open</a>
+            <a class="dropdown-item" href="/app/flags/all?sort=-added">All</a>
+        </div>
+    </li>
+
+    <li class="nav-item dropdown {% if '/app/sh0t' in request.path %}show{% endif %}">
+        <a class="nav-link dropdown-toggle" href="#" id="sh0tsDD" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <i class="fas fa-fw fa-bullseye"></i>
+            <span>Sh0ts</span>
+        </a>
+        <div class="dropdown-menu {% if '/app/sh0t' in request.path %}show{% endif %}" aria-labelledby="sh0tsDD">
+            <a class="dropdown-item" href="/app/sh0ts/new">New</a>
+            <a class="dropdown-item" href="/app/sh0ts/all">All</a>
+        </div>
+    </li>
+
+    <li class="nav-item dropdown {% if '/app/assessment' in request.path %}show{% endif %}">
+        <a class="nav-link dropdown-toggle" href="#" id="assessmentDD" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <i class="fas fa-fw fa-cube"></i>
+            <span>Assessments</span>
+        </a>
+        <div class="dropdown-menu {% if '/app/assessment' in request.path %}show{% endif %}" aria-labelledby="assessmentDD">
+            <a class="dropdown-item" href="/app/assessments/new">New</a>
+            <a class="dropdown-item" href="/app/assessments/all">All</a>
+        </div>
+    </li>
+
+    <li class="nav-item dropdown {% if '/app/project' in request.path %}show{% endif %}">
+        <a class="nav-link dropdown-toggle" href="#" id="projectDD" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <i class="fas fa-fw fa-cubes"></i>
+            <span>Project</span>
+        </a>
+        <div class="dropdown-menu {% if '/app/project' in request.path %}show{% endif %}" aria-labelledby="projectDD">
+            <a class="dropdown-item" href="/app/projects/new">New</a>
+            <a class="dropdown-item" href="/app/projects/all">All</a>
+        </div>
+    </li>
+
+    <li class="nav-item dropdown {% if '/app/template' in request.path or '/app/case-master' in request.path or '/app/module-master' in request.path or '/app/methodology-master' in request.path  %}show{% endif %}">
+        <a class="nav-link dropdown-toggle" href="#" id="configDD" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Configuration</span>
+        </a>
+        <div class="dropdown-menu {% if '/app/template' in request.path or '/app/case-master' in request.path or '/app/module-master' in request.path or '/app/methodology-master' in request.path %}show{% endif %}" aria-labelledby="configDD">
+            <a class="dropdown-item" href="/app/templates">Templates</a>
+            <a class="dropdown-item" href="/app/case-masters">Case Master</a>
+            <a class="dropdown-item" href="/app/module-masters">Module Master</a>
+            <a class="dropdown-item" href="/app/methodology-masters">Methodology Master</a>
+        </div>
+    </li>
+</ul>

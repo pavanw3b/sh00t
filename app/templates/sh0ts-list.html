@@ -3,37 +3,30 @@
 {% block title %} List Sh0ts | sh00t{% endblock %}
 
 {% block page %}
-    <div id="page-wrapper">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Sh0ts</h1>
-                    <ol class="breadcrumb">
-                        <li><i class="fa fa-dashboard"></i>  <a href="/">Dashboard</a></li>
-                        <li class="active"><i class="fa fa-bullseye"></i> Sh0ts</li>
-                    </ol>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title"><i class="fa fa-bullseye"></i> All Sh0ts</h3>
-                        </div>
-                        <div class="panel-body">
-                            {% if count > 0 %}
-                                {% render_table table %}
-                                <div class="left">
-                                    <input type="button" value="Delete" id="delBtn" class="btn btn-danger" data-loading-text="Deleting.." />
-                            {% else %}
-                                <h4><a href="/app/sh0ts/new/">Add a sh0t</a></h4>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="/">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active"> <i class="fa fa-bullseye"></i> Sh0ts</li>
+</ol>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                {% if count > 0 %}
+                    {% render_table table %}
+                    <div class="left">
+                        <input type="button" value="Delete" id="delBtn" class="btn btn-danger" data-loading-text="Deleting.." />
+                {% else %}
+                    <h5>No Sh0ts yet. <a href="/app/sh0ts/new/">Add a sh0t</a></h5>
+                {% endif %}
             </div>
         </div>
     </div>
+</div>
+
 {% endblock %}
 {% block extra_foot %}
 <script src="/static/js/common-ajax.js"></script>

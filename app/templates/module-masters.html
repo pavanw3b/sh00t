@@ -1,99 +1,86 @@
 {% extends "base.html" %}
 {% block title %} Module Master | sh00t{% endblock %}
-
 {% block page %}
-    <div id="page-wrapper">
-        <div class="container-fluid">
-            <!-- Page Heading -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Module Masters</h1>
-                    <ol class="breadcrumb">
-                        <li><i class="fa fa-dashboard"></i>  <a href="/">Dashboard</a></li>
-                        <li class="active"><i class="fa fa-file-text"></i> Module Master</li>
-                    </ol>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6">
-                    <h3>New Module Master</h3>
-                    {% if not methodologies %}
-                        <b>No Methodologies found. A Module will belong to a Methodology. So, <a href="/app/methodology-masters/">Create a Methodology</a> before creating a Module Master</b>
-                    {% else %}
-                        <form role="form" method="post">
-                            {% if "success" == submitted %}
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="alert alert-info alert-dismissable">
-                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button> <i class="fa fa-info-circle"></i> Submitted
-                                        </div>
-                                    </div>
-                                </div>
-                            {% endif %}
-                            <div class="form-group">
-                                <label>Name</label>
-                                <input class="form-control" name="name" autocomplete="off" />
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+    <li class="breadcrumb-item active"><i class="fa fa-book"></i> Module Master</li>
+</ol>
+<div class="row">
+    <div class="col-lg-6">
+        {% if not methodologies %}
+            <br />
+            <p>No Methodologies found. A Module Master must be associated with a Methodology. <a href="/app/methodology-masters/">Create a Methodology Master</a> before a Module Master.</p>
+        {% else %}
+            <form role="form" method="post">
+                {% if "success" == submitted %}
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="alert alert-info alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button> <i class="fa fa-info-circle"></i> Submitted
                             </div>
-                            <div class="form-group">
-                                <label>Description</label>
-                                <textarea class="form-control" rows="10" name="description"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Methodology</label>
-                                <select name="methodology_master_id" class="form-control">
-                                    {% for methodology in methodologies %}
-                                        <option value="{{ methodology.id }}">{{ methodology.name}}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Order</label>
-                                <input type="number" class="form-control" name="order" autocomplete="off" />
-                            </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                            {% csrf_token %}
-                        </form>
-                    {% endif %}
-                </div>
-                <div class="col-lg-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title"><i class="fa fa-file-text"></i> Recent Module Masters</h3>
-                        </div>
-                        <div class="panel-body">
-                            {% if module_masters %}
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-hover table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Methodology</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {% for module_master in module_masters %}
-                                                <tr>
-                                                    <td><a
-                                                            href="/app/module-master/{{ module_master.id }}/">{{module_master.name }}</a></td>
-                                                    <td>{{ module_master.methodology }}</td>
-                                                </tr>
-                                            {% endfor %}
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="text-right">
-                                    <a href="/admin/configuration/modulemaster/" target="_blank">View All <i class="fa fa-arrow-circle-right"></i></a>
-                                </div>
-                            {% else %}
-                                <h4><i class="fa fa-arrow-left"></i> Add a Module Master</h4>
-                            {% endif %}
                         </div>
                     </div>
+                {% endif %}
+                <div class="form-group">
+                    <label>Name</label>
+                    <input class="form-control" name="name" autocomplete="off" />
                 </div>
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /.container-fluid -->
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea class="form-control" rows="10" name="description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Methodology</label>
+                    <select name="methodology_master_id" class="form-control">
+                        {% for methodology in methodologies %}
+                            <option value="{{ methodology.id }}">{{ methodology.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Order</label>
+                    <input type="number" class="form-control" name="order" autocomplete="off" />
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+                {% csrf_token %}
+            </form>
+        {% endif %}
     </div>
-    <!-- /#page-wrapper -->
+    <div class="col-lg-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title"><i class="fa fa-book"></i> Recent Module Masters</h4>
+            </div>
+            <div class="panel-body">
+                {% if module_masters %}
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Methodology</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for module_master in module_masters %}
+                                    <tr>
+                                        <td><a
+                                                href="/app/module-master/{{ module_master.id }}/">{{module_master.name }}</a></td>
+                                        <td>{{ module_master.methodology }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="text-right">
+                        <a href="/admin/configuration/modulemaster/" target="_blank">View All <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                {% else %}
+                        <br />
+                        <h5>No Module Masters yet. Add one.</h5>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
