@@ -6,6 +6,7 @@
 {% block page %}
 <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+    <li class="breadcrumb-item"><a href="/app/flags/all">All Flags</a></li>
     <li class="breadcrumb-item"><a href="/app/flags/open/">Open Flags</a></li>
     <li class="breadcrumb-item active"><i class="fa fa-flag"></i> {{ flag.title }} <span id="response" class="small"></span></li>
 </ol>
@@ -43,7 +44,7 @@
                 </select>
             </div>
            <div class="custom-control custom-checkbox mb-3">
-              <input type="checkbox" class="custom-control-input" id="done"
+              <input type="checkbox" class="custom-control-input" name="done" id="done"
                      {% if True == flag.done %} checked {% endif %}>
               <label class="custom-control-label" for="done">Done</label>
             </div>
