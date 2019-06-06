@@ -29,52 +29,53 @@ Sh00t
 
 
 ### Installation:
-Sh00t requires Python 3 and a few more packages. The simplest way to set up Sh00t is using Conda Environments. However, Anaconda is optional if you have Python 3 and pip installed - you can jump to **step 4** below.
+1. Get the latest Sh00t: `https://github.com/pavanw3b/sh00t/`
+Clone (requires `git` installed): 
 
-**Pre-requisite - One time setup:**
+`git clone https://github.com/pavanw3b/sh00t.git` or download the latest code as zip and extract it.
 
-1. Install the minimal version of Anaconda: [Miniconda](https://conda.io/miniconda.html) and follow 
-the [installation instruction](https://conda.io/docs/user-guide/install/index.html). Remember to 
-reload your bash profile or restart your terminal application to avail conda command. For windows, launch `Anaconda Prompt` and run all the below commands in that window only.
-2. Create a new Python 3 environment: `conda create -n sh00t python=3.6`
-3. Activate *sh00t* environment: `conda activate sh00t`. If you see an error message like 
-`CommandNotFoundError: Your shell has not been properly configured to use 'conda activate'.`, you have to manually enable conda command. Follow the instructions shown with the error message. You may have to reload your bash profile 
-or restart your terminal. Try activating sh00t again: `conda activate sh00t`. You should be seeing `(sh00t) XXXX$` in 
-your terminal.
-4. Clone or download the latest project into a location of your choice: `https://github.com/pavanw3b/sh00t`. `git clone` requires installation of Git.
-5. Navigate to the folder where sh00t is cloned or downloaded & extracted: `cd sh00t`. Note that this is the outer-most 
-*sh00t* directory in project files. Not *sh00t/sh00t*.
-6. Install Sh00t dependency packages: `pip install -r requirements.txt`
-7. Setup database: `python manage.py migrate`
-8. Create an User Account: `python manage.py createsuperuser` and follow the UI to create an 
-account.
-9. Optional but recommended: Avail 174 Security Test Cases from OWASP Testing Guide (OTG) and Web Application Hackers Handbook (WAHH): `python reset.py`.
+2. [Install Python3](https://www.python.org/downloads/) if not installed already. Note that it's Python 3, not Python 2.
 
-That's all for the first time. Follow the next steps whenever you want to start Sh00t.
+3. [Install Pip3](https://pip.pypa.io/en/stable/installing/) if not installed already. Make sure to install Python 3 pip, not Python 2.
 
-**Starting Sh00t:**
+4. Navigate to Sh00t directory on your Terminal: `cd sh00t`
+5. Run the setup:
 
-If you have Python 3 installed on your machine, you can jump to **Step 3**.
+Windows: `setup.bat`
 
-1. For Linux/Mac, Open Terminal. For Windows, open `Anaconda Prompt`.
-2. Activate sh00t environment if not on yet: `conda activate sh00t`
-3. Navigate to sh00t directory if not in already: `cd sh00t`
-4. Start Sh00t server: `python manage.py runserver`
-5. Access [http://127.0.0.1:8000/](http://127.0.0.1:8000/) on your favorite browser. Login with the user credentials 
-created in the one-time setup above.
-6. Welcome to Sh00t!
-7. Once you are done, stop the server: `Ctrl + C`
-8. [Optional] Deactivate sh00t environment to continue with your other work: `conda deactivate`.
+Linux/Mac: `./setup.sh`
 
+**Note:** You will be prompted to enter Username & Password of your choice. Remember the username and password entered at this step. You will need to login with these credentials when you use Sh00t.
+
+The setup script will install `virtualenv`, an isolated python environment, create a new environment named `env`, install the required dependencies in the environment, create & setup the database, create an user account, create 174 Security Test Cases from OWASP Testing Guide (OTG) and Web Application Hackers Handbook (WAHH) and start the server.
+
+6. Logon to [http://127.0.0.1:8000/](http://127.0.0.1:8000/) on your favorite browser. Login with the user credentials your provided in the previous step. 
+
+**Starting Sh00t later:**
+1. Run:
+
+Windows: `run.bat`
+
+Linux/Mac: `./run.sh`
+
+2. Logon to [http://127.0.0.1:8000/](http://127.0.0.1:8000/) on your favorite browser. Login with the user credentials your provided at the time of installation. 
 
 ### Upgrade:
-* Navigate to the folder where sh00t was cloned: `cd sh00t`
-* Stop the server if it's running: `Ctrl + C`
-* Pull the latest code base via git: `git pull` or download the source from github and replace the files.
-* Activate sh00t environment if not on yet: `conda activate sh00t`
-* Setup any additional dependencies: `pip install -r requirements.txt`
-* Make the latest database changes: `python manage.py migrate`
-* Start the server: `python manage.py runserver`
+1. Stop the server if it's running: `Ctrl + C`
+2. Navigate to the folder where Sh00t was set up: `cd sh00t`
+3. Get the latest source code either with `git pull` or download and copy the files. Make sure not to delete `db.sqlite3` file when copying files manually. You will lose your data if the file is lost.
+3. Run the upgrade script:
+
+Windows: `upgrage.bat`
+Linux/Mac: `./upgrade.sh`
+
+4. Start Sh00t again:
+
+Windows: `run.bat`
+
+Linux: `./run.sh`
+
+Logon to or reload: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 
 ### Troubleshoot:
 Sh00t is written in Python and powered by Django Web Framework. If you are stuck with any errors, Googling on the error 
