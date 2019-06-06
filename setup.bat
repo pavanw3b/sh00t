@@ -4,7 +4,7 @@ where python >nul 2>&1 && (
   pip3 >nul 2>&1 && (
     echo [INSTALL] Found pip3
   ) || (
-    echo [ERROR] pip3 is not available in PATH
+    echo [ERROR] pip3 is not available in PATH. Install pip3.
     pause
     exit /b
   )
@@ -30,5 +30,5 @@ where python >nul 2>&1 && (
   python manage.py runserver
 
 ) || (
-  echo [ERROR] python3 is not installed
+  echo [ERROR] python3 is not installed. Install Python3 and make it available to us!
 )

@@ -8,8 +8,8 @@ django.setup()
 from configuration.models import MethodologyMaster, ModuleMaster, CaseMaster
 from app.models import Project
 
-print("This will reset everything in the database and set up as fresh.")
-print("Are you wanna do this?")
+print("If you have setup Sh00t in this directory before, this action will reset everything and set up as fresh.")
+print("Are sure you wanna do this?")
 answer = input("[No] | Yes?\n") or ""
 if "yes" == answer.lower():
     order = ""

@@ -30,9 +30,11 @@ Sh00t
 
 ### Installation:
 1. Get the latest the latest source: `https://github.com/pavanw3b/sh00t/`
-Clone (requires `git` installed): `git clone https://github.com/pavanw3b/sh00t.git` or download the zip file
-2. [Install Python3](https://www.python.org/downloads/) if not installed already. 
-3. Run the setup:
+Clone (requires `git` installed): \n`git clone https://github.com/pavanw3b/sh00t.git` or download the latest code as zip and extract it.
+2. [Install Python3](https://www.python.org/downloads/) if not installed already.
+3. [Install Pip3]() if not installed already.
+3. Navigate to Sh00t directory on your Terminal: `cd sh00t`
+4. Run the setup:
 
 Windows: `setup.bat`
 
@@ -42,14 +44,14 @@ Linux/Mac: `./setup.sh`
 
 The setup script will install `virtualenv`, an isolated python environment, create a new environment named `env`, install the required dependencies in the environment, create & setup the database, create an user account, create 174 Security Test Cases from OWASP Testing Guide (OTG) and Web Application Hackers Handbook (WAHH) and start the server.
 
-3. Logon to [http://127.0.0.1:8000/](http://127.0.0.1:8000/) on your favorite browser. Login with the user credentials your provided in the previous step. 
+5. Logon to [http://127.0.0.1:8000/](http://127.0.0.1:8000/) on your favorite browser. Login with the user credentials your provided in the previous step. 
 
 **Starting Sh00t later:**
 1. Run:
 
 Windows: `run.bat`
 
-Linux/Mac: `run.sh`
+Linux/Mac: `sh  run.sh`
 
 2. Logon to [http://127.0.0.1:8000/](http://127.0.0.1:8000/) on your favorite browser. Login with the user credentials your provided at the time installation. 
 
@@ -60,13 +62,13 @@ Linux/Mac: `run.sh`
 3. Run the upgrade script:
 
 Windows: `upgrage.bat`
-Linux/Mac: `upgrade.sh`
+Linux/Mac: `sh upgrade.sh`
 
 4. Start Sh00t:
 
 Windows: `run.bat`
 
-Linux: `run.sh`
+Linux: `sh run.sh`
 
 Logon to or reload: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 
