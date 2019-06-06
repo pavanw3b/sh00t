@@ -20,7 +20,7 @@ else
 fi
 
 echo '[INSTALL] Installing Virtualenv'
-python3 -m pip install virtualenv
+python3 -m pip install virtualenv --user
 
 echo '[INSTALL] Using Virtualenv'
 virtualenv env -p python3
