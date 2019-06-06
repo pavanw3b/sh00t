@@ -53,7 +53,7 @@ Windows: `run.bat`
 
 Linux/Mac: `sh  run.sh`
 
-2. Logon to [http://127.0.0.1:8000/](http://127.0.0.1:8000/) on your favorite browser. Login with the user credentials your provided at the time installation. 
+2. Logon to [http://127.0.0.1:8000/](http://127.0.0.1:8000/) on your favorite browser. Login with the user credentials your provided at the time of installation. 
 
 ### Upgrade:
 1. Stop the server if it's running: `Ctrl + C`
