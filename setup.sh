@@ -30,16 +30,16 @@ echo '[INSTALL] Installing Requirements'
 pip install -r requirements.txt
 
 echo '[INSTALL] Setting up Database'
-python manage.py makemigrations
-python manage.py migrate
+python3 manage.py makemigrations
+python3 manage.py migrate
 
 echo '[INSTALL] Creating an user account for you'
-python manage.py createsuperuser
+python3 manage.py createsuperuser
 
 echo '[INSTALL] Setting up testcases from WAHH and OWASP Testing Methodologies'
-python reset.py
+python3 reset.py
 
 echo '[INSTALL] Installation Completed'
 
 echo '[RUN] Starting Sh00t..'
-python manage.py runserver
+python3 manage.py runserver
