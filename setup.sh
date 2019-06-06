@@ -23,7 +23,7 @@ echo '[INSTALL] Installing Virtualenv'
 python3 -m pip install virtualenv --user
 
 echo '[INSTALL] Using Virtualenv'
-python3 -m pip virtualenv env -p python3
+python3 -m virtualenv env -p python3
 source env/bin/activate
 
 echo '[INSTALL] Installing Requirements'
