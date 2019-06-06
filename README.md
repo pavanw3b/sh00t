@@ -56,7 +56,7 @@ The setup script will install `virtualenv`, an isolated python environment, crea
 
 Windows: `run.bat`
 
-Linux/Mac: `sh  run.sh`
+Linux/Mac: `./run.sh`
 
 2. Logon to [http://127.0.0.1:8000/](http://127.0.0.1:8000/) on your favorite browser. Login with the user credentials your provided at the time of installation. 
 
@@ -67,13 +67,13 @@ Linux/Mac: `sh  run.sh`
 3. Run the upgrade script:
 
 Windows: `upgrage.bat`
-Linux/Mac: `sh upgrade.sh`
+Linux/Mac: `./upgrade.sh`
 
-4. Start Sh00t:
+4. Start Sh00t again:
 
 Windows: `run.bat`
 
-Linux: `sh run.sh`
+Linux: `./run.sh`
 
 Logon to or reload: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 
