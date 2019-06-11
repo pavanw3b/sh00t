@@ -1,16 +1,32 @@
 import json
 import os
 import django
+import sys
+from os.path import dirname, abspath
 
+sh00t_path = dirname(dirname(abspath(__file__)))
+sys.path.append(sh00t_path)
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "sh00t.settings")
 django.setup()
 
 from configuration.models import MethodologyMaster, ModuleMaster, CaseMaster
 from app.models import Project
 
-print("If you have setup Sh00t in this directory before, this action will reset everything and set up as fresh.")
-print("Are sure you wanna do this?")
-answer = input("[No] | Yes?\n") or ""
+
+first_timer = False
+
+for arg in sys.argv:
+    if "first_timer" == arg:
+        first_timer = True
+        break
+
+if first_timer:
+    answer = "yes"
+else:
+    print("If you have setup Sh00t in this directory before, this action will reset everything and set up as fresh.")
+    print("Are sure you wanna do this?")
+    answer = input("[No] | Yes?\n") or ""
+
 if "yes" == answer.lower():
     order = ""
     description_consolidated = ""
