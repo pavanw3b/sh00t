@@ -29,7 +29,7 @@ Sh00t
 
 
 ### Installation:
-1. Install Docker if not available. Windows Home/Student users, refer the Alternative Installation instructions.
+1. [Install Docker](https://docs.docker.com/install/#desktop) if not available. Windows 10 Home users or older release users, refer the Alternative Installation instructions below.
 2. Pull Sh00t Docker image: `docker pull pavanw3b/sh00t:latest`
 3. Run the container: `docker run -it -p 8000:8000 --name sh00t pavanw3b/sh00t:latest`
 4. Logon to [http://127.0.0.1:8000/](http://127.0.0.1:8000/) on your favorite browser.
@@ -39,13 +39,16 @@ Sh00t
 **Alternate Installations:**
 - Not comfortable with Docker yet? We got you covered. [Installation without Docker](https://github.com/pavanw3b/sh00t/wiki/Installation-Without-Docker)
 - Django-pro and want to set up everything on own? We got you covered too: [Manual Setup](https://github.com/pavanw3b/sh00t/wiki/Manual-Installation)
-- Using a machine which does not have Hyper-V, like Windows Home and Windows Student? You can use [Docker Toolbox and Docker Quickstart Terminal](https://docs.docker.com/toolbox/toolbox_install_windows/). Your Sh00t will run on the default IP of your docker: `http://YOUR_DOCKER_IP:8000/`. The IP Address will be displayed on start of the Quickstart Terminal. You can also find it with `docker-machine ls` and `docker-machine ip MACHINE_NAME`.
+- Using a machine which does not have Hyper-V, like Windows Home? You can use [Docker Toolbox and Docker Quickstart Terminal](https://docs.docker.com/toolbox/toolbox_install_windows/). Your Sh00t will run on the default IP of your docker: `http://YOUR_DOCKER_IP:8000/`. The IP Address will be displayed on the start of the Quickstart Terminal. You can also find it with `docker-machine ls` and `docker-machine ip MACHINE_NAME`.
 
 
-**Starting Sh00t later:**
-1. Start the container: `docker run sh00t`
+**Using Sh00t later:**
+1. Start the container: `docker stop sh00t`
 2. Logon to `http://YOUR_IP:8000/` on your favorite browser
-3. Login with `sh00t` / `sh00t` if you haven't changed it.
+3. Login with `sh00t` / `sh00t` if you haven't changed it
+4. Stop container if you care: `docker stop sh00t`
+
+and repeat!
 
 ### Troubleshoot:
 Sh00t is written in Python and powered by Django Web Framework. If you are stuck with any errors, Googling on the error 
