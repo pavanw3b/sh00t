@@ -1,26 +1,29 @@
-FROM python:latest
+FROM ubuntu:18.04
 
 LABEL \
     name="Sh00t" \
     author="Pavan <@pavanw3b>" \
+    maintainer="Pavan <@pavanw3b>" \
     description="A Testing Environment for Manual Security Testers"
 
 
-# Install some necessary things.
-RUN apt-get update
+RUN apt-get update -y && apt-get install -y \
+    python3-pip \
+    python3-dev \
+    nginx
+
 
 # Copy files
 COPY . /root/sh00t
 WORKDIR /root/sh00t
 
-RUN pip3 install -r requirements.txt
+RUN pip3 install --upgrade pip
+RUN pip3 install virtualenv
+RUN virtualenv env
+RUN /bin/bash -c "source env/bin/activate"
 
-RUN pip3 install gunicorn
+RUN pip install -r requirements.txt
 
 EXPOSE 8000
 
-RUN chmod +x *.sh
-RUN bash setup.sh
-RUN bash run.sh
-
-CMD ["gunicorn", "-b", "0.0.0.0:8000", "sh00t.wsgi:application", "--workers=1", "--threads=1", "--timeout=1800"]
+RUN python3 manage.py migrate

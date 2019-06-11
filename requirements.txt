@@ -1,5 +1,5 @@
-Django==2.2.1
+Django>=2.0,<3.0
 djangorestframework==3.8.2
 pytz==2018.5
 django-tables2
-gunicorn
+gunicorn==19.9.0
