@@ -29,53 +29,23 @@ Sh00t
 
 
 ### Installation:
-1. Get the latest Sh00t: `https://github.com/pavanw3b/sh00t/`
-Clone (requires `git` installed): 
+1. Install Docker if not available. Windows Home/Student users, refer the Alternative Installation instructions.
+2. Pull Sh00t Docker image: `docker pull pavanw3b/sh00t:latest`
+3. Run the container: `docker run -it -p 8000:8000 --name sh00t pavanw3b/sh00t:latest`
+4. Logon to [http://127.0.0.1:8000/](http://127.0.0.1:8000/) on your favorite browser.
+5. Login with `sh00t` / `sh00t` credentials
+6. To stop: `Ctrl + C`
 
-`git clone https://github.com/pavanw3b/sh00t.git` or download the latest code as zip and extract it.
+**Alternate Installations:**
+- Not comfortable with Docker yet? We got you covered. [Installation without Docker](https://github.com/pavanw3b/sh00t/wiki/Installation-Without-Docker)
+- Django-pro and want to set up everything on own? We got you covered too: [Manual Setup](https://github.com/pavanw3b/sh00t/wiki/Manual-Installation)
+- Using a machine which does not have Hyper-V, like Windows Home and Windows Student? You can use [Docker Toolbox and Docker Quickstart Terminal](https://docs.docker.com/toolbox/toolbox_install_windows/). Your Sh00t will run on the default IP of your docker: `http://YOUR_DOCKER_IP:8000/`. The IP Address will be displayed on start of the Quickstart Terminal. You can also find it with `docker-machine ls` and `docker-machine ip MACHINE_NAME`.
 
-2. [Install Python3](https://www.python.org/downloads/) if not installed already. Note that it's Python 3, not Python 2.
-
-3. [Install Pip3](https://pip.pypa.io/en/stable/installing/) if not installed already. Make sure to install Python 3 pip, not Python 2.
-
-4. Navigate to Sh00t directory on your Terminal: `cd sh00t`
-5. Run the setup:
-
-Windows: `setup.bat`
-
-Linux/Mac: `./setup.sh`
-
-**Note:** You will be prompted to enter Username & Password of your choice. Remember the username and password entered at this step. You will need to login with these credentials when you use Sh00t.
-
-The setup script will install `virtualenv`, an isolated python environment, create a new environment named `env`, install the required dependencies in the environment, create & setup the database, create an user account, create 174 Security Test Cases from OWASP Testing Guide (OTG) and Web Application Hackers Handbook (WAHH) and start the server.
-
-6. Logon to [http://127.0.0.1:8000/](http://127.0.0.1:8000/) on your favorite browser. Login with the user credentials your provided in the previous step. 
 
 **Starting Sh00t later:**
-1. Run:
-
-Windows: `run.bat`
-
-Linux/Mac: `./run.sh`
-
-2. Logon to [http://127.0.0.1:8000/](http://127.0.0.1:8000/) on your favorite browser. Login with the user credentials your provided at the time of installation. 
-
-### Upgrade:
-1. Stop the server if it's running: `Ctrl + C`
-2. Navigate to the folder where Sh00t was set up: `cd sh00t`
-3. Get the latest source code either with `git pull` or download and copy the files. Make sure not to delete `db.sqlite3` file when copying files manually. You will lose your data if the file is lost.
-3. Run the upgrade script:
-
-Windows: `upgrage.bat`
-Linux/Mac: `./upgrade.sh`
-
-4. Start Sh00t again:
-
-Windows: `run.bat`
-
-Linux: `./run.sh`
-
-Logon to or reload: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+1. Start the container: `docker run sh00t`
+2. Logon to `http://YOUR_IP:8000/` on your favorite browser
+3. Login with `sh00t` / `sh00t` if you haven't changed it.
 
 ### Troubleshoot:
 Sh00t is written in Python and powered by Django Web Framework. If you are stuck with any errors, Googling on the error 
