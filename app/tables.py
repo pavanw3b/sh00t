@@ -24,8 +24,8 @@ class FlagTable(tables.Table):
     class Meta:
         model = Flag
         template_name = "django_tables2/bootstrap-responsive.html"
-        sequence = ('selection', 'title', 'done', 'assessment', 'added')
-        fields = ('title', 'added', 'done', 'assessment')
+        sequence = ('selection', 'id', 'title', 'done', 'assessment', 'added')
+        fields = ('id', 'title', 'added', 'done', 'assessment')
         empty_text = "No Flags yet"
 
 
@@ -39,8 +39,8 @@ class OpenFlagTable(tables.Table):
     class Meta:
         model = Flag
         template_name = "django_tables2/bootstrap-responsive.html"
-        sequence = ('selection', 'name', 'project', 'assessment', 'added')
-        fields = ('name', 'added', 'project', 'assessment')
+        sequence = ('selection', 'id', 'name', 'project', 'assessment', 'added')
+        fields = ('id', 'name', 'added', 'project', 'assessment')
 
 
 class Sh0tTable(tables.Table):
