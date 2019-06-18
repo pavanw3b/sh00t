@@ -31,7 +31,8 @@ Sh00t
 ### Installation:
 1. [Install Docker](https://docs.docker.com/install/#desktop) if not available. Windows 10 Home users or older release users, refer the Alternative Installation instructions below.
 2. Pull Sh00t Docker image: `docker pull pavanw3b/sh00t:latest`
-3. Run the container: `docker run -it -p 8000:8000 --name sh00t pavanw3b/sh00t:latest`
+3. Create Volume for data persistence across docker containers: `docker volume create --name sh00t`
+4. Run the container: `docker run -d -p 8000:8000 --name sh00t -v sh00t:/root/sh00t/db pavanw3b/sh00t:latest`
 4. Logon to [http://127.0.0.1:8000/](http://127.0.0.1:8000/) on your favorite browser.
 5. Login with `sh00t` / `sh00t` credentials
 6. To stop: `Ctrl + C`
@@ -40,7 +41,7 @@ Sh00t
 - Not comfortable with Docker yet? We got you covered. [Installation without Docker](https://github.com/pavanw3b/sh00t/wiki/Installation-Without-Docker)
 - Django-pro and want to set up everything on own? We got you covered too: [Manual Setup](https://github.com/pavanw3b/sh00t/wiki/Manual-Installation)
 - Using a machine which does not have Hyper-V, like Windows Home? You can use [Docker Toolbox and Docker Quickstart Terminal](https://docs.docker.com/toolbox/toolbox_install_windows/). Your Sh00t will run on the default IP of your docker: `http://YOUR_DOCKER_IP:8000/`. The IP Address will be displayed on the start of the Quickstart Terminal. You can also find it with `docker-machine ls` and `docker-machine ip MACHINE_NAME`.
-- If you want to move to Docker version of Sh00t from a previous setup without loosing any of your existing data, you have to manually replace the db.sqlite3 file on the docker container by your old sh00t setup.
+- If you want to move to Docker version of Sh00t from a previous setup without loosing any of your existing data, you have to manually replace the /root/sh00/db/db.sqlite3 file on the docker container by your old sh00t setup.
 
 **Using Sh00t later:**
 1. Start the container: `docker stop sh00t`
@@ -49,6 +50,21 @@ Sh00t
 4. Stop container if you care: `docker stop sh00t`
 
 and repeat!
+
+### Upgrade
+1. Remove the existing container: `docker container rm -f sh00t`
+Do not worry, your data is safe unless you remove the docker volume.
+2. Pull latest docker image: `docker pull pavanw3b/sh00t:latest` 
+3. Start a new container with the latest code, but still the old data:  `docker run -d -p 8000:8000 --name sh00t -v sh00t:/root/sh00t/db pavanw3b/sh00t:latest`
+
+### Uninstallation
+In the event you want to delete all Sh00t images, containers, and volumes, the following statements may be executed. **Note:** This is a destructive operation and cannot be undone.
+
+```bash
+docker rmi pavanw3b/sh00t:latest
+docker rm sh00t
+docker volume rm sh00t:/root/sh00t/db
+```
 
 ### Troubleshoot:
 Sh00t is written in Python and powered by Django Web Framework. If you are stuck with any errors, Googling on the error 
