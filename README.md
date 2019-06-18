@@ -35,7 +35,7 @@ Sh00t
 4. Run the container: `docker run -d -p 8000:8000 --name sh00t -v sh00t:/root/sh00t/db pavanw3b/sh00t:latest`
 4. Logon to [http://127.0.0.1:8000/](http://127.0.0.1:8000/) on your favorite browser.
 5. Login with `sh00t` / `sh00t` credentials
-6. To stop: `Ctrl + C`
+6. To stop: `docker stop sht00t`
 
 **Alternate Installations:**
 - Not comfortable with Docker yet? We got you covered. [Installation without Docker](https://github.com/pavanw3b/sh00t/wiki/Installation-Without-Docker)
@@ -52,6 +52,8 @@ Sh00t
 and repeat!
 
 ### Upgrade
+It's important to keep your Sh00t to latest to avail feature enhancements ang bug fixes. 
+
 1. Remove the existing container: `docker container rm -f sh00t`
 Do not worry, your data is safe unless you remove the docker volume.
 2. Pull latest docker image: `docker pull pavanw3b/sh00t:latest` 
