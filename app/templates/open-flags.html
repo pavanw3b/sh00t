@@ -18,12 +18,12 @@
                         <input type="button" value="Mark as done" id="doneBtn" class="btn btn-primary" />
                         <input type="button" value="Delete" id="delBtn" class="btn btn-danger" data-loading-text="Deleting.." />
                 {% else %}
-                    <h4>No flags yet. <a href="/app/flags/new">Add a flag</a> </h4>
+                        <h4>No flags yet. <a href="/app/flags/new">Add a flag</a> </h4>
                 {% endif %}
+                    </div>
             </div>
         </div>
     </div>
-</div>
     {% endblock %}
 {% block extra_foot %}
 <script src="/static/js/common-ajax.js"></script>
