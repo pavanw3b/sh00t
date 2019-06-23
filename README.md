@@ -62,11 +62,10 @@ Do not worry, your data is safe unless you remove the docker volume.
 ### Uninstallation
 In the event you want to delete all Sh00t images, containers, and volumes, the following statements may be executed. **Note:** This is a destructive operation and cannot be undone.
 
-```bash
-docker rmi pavanw3b/sh00t:latest
-docker rm sh00t
-docker volume rm sh00t:/root/sh00t/db
-```
+1. Remove image: `docker rmi pavanw3b/sh00t:latest`
+2. Remove container: `docker rm sh00t`
+3. Remove volume: `docker volume rm sh00t:/root/sh00t/db`
+
 
 ### Troubleshoot:
 Sh00t is written in Python and powered by Django Web Framework. If you are stuck with any errors, Googling on the error 
