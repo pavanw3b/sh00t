@@ -28,11 +28,11 @@ def get_secret_key(secret_file):
         if "manage.py" == sys.argv[0]:
             if "migrate" == sys.argv[1]:
                 return secret_key
-            else:
-                try:
-                    secret_key = open(secret_file).read().strip()
-                except IOError:
-                    secret_key = generate_secret_key(secret_file)
-                return secret_key
+
+        try:
+            secret_key = open(secret_file).read().strip()
+        except IOError:
+            secret_key = generate_secret_key(secret_file)
+        return secret_key
     except IndexError:
         return secret_key
