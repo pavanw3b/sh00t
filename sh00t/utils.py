@@ -24,7 +24,7 @@ def generate_secret_key(secret_file):
 def get_secret_key(secret_file):
     # Do not create secret for migrate
     if "migrate" == sys.argv[1]:
-        return ""
+        return " "
     else:
         try:
             secret_key = open(secret_file).read().strip()
