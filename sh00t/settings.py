@@ -1,5 +1,5 @@
 import os
-import utils
+from .utils import get_secret_key
 
 BANNER = """
       _      ___   ___  _

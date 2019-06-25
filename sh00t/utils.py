@@ -1,3 +1,4 @@
+from django.apps import apps
 
 def generate_secret_key(secret_file):
     try:
@@ -20,15 +21,16 @@ def generate_secret_key(secret_file):
 
 
 def get_secret_key(secret_file):
-    if not db_table_exists("auth_user"):
-        return "DUMMY!"
-
     try:
-        secret_key = open(secret_file).read().strip()
-    except IOError:
-        secret_key = generate_secret_key(secret_file)
-
-    return secret_key
+        if apps.get_models():
+            try:
+                secret_key = open(secret_file).read().strip()
+            except IOError:
+                secret_key = generate_secret_key(secret_file)
+            return secret_key
+    except Exception:
+        # In case the app not loaded yet, migrate time, return a constant key for now
+        return "&&c6x1*i7*0c5n9u6dv%-n(81200f15iuzmzbarlkr#p9)7#1s"
 
 
 def db_table_exists(table_name):
