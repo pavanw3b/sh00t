@@ -18,7 +18,7 @@ def reset_user():
         sh00t_user.set_password(sh00t_password)
         sh00t_user.save()
 
-    except User.DoesNotExists:
+    except User.DoesNotExist:
         User.objects.create_superuser('sh00t', 'sh00t@example.com', sh00t_password)
 
 
