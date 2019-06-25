@@ -1,4 +1,5 @@
-from django.apps import apps
+import sys
+
 
 def generate_secret_key(secret_file):
     try:
@@ -21,17 +22,12 @@ def generate_secret_key(secret_file):
 
 
 def get_secret_key(secret_file):
-    try:
-        if apps.get_models():
-            try:
-                secret_key = open(secret_file).read().strip()
-            except IOError:
-                secret_key = generate_secret_key(secret_file)
-            return secret_key
-    except Exception:
-        # In case the app not loaded yet, migrate time, return a constant key for now
-        return "&&c6x1*i7*0c5n9u6dv%-n(81200f15iuzmzbarlkr#p9)7#1s"
-
-
-def db_table_exists(table_name):
-    return table_name in connection.introspection.table_names()
+    # Do not create secret for migrate
+    if "migrate" == sys.argv[1]:
+        return ""
+    else:
+        try:
+            secret_key = open(secret_file).read().strip()
+        except IOError:
+            secret_key = generate_secret_key(secret_file)
+        return secret_key
