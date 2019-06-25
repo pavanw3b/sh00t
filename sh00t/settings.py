@@ -1,4 +1,5 @@
 import os
+import utils
 
 BANNER = """
       _      ___   ___  _
@@ -109,26 +110,6 @@ USE_TZ = True
 THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 DEFAULT_USERNAME = "sh00t"
 DEFAULT_PASSWORD = DEFAULT_USERNAME
-try:
-    SECRET_KEY
-except NameError:
-    SECRET_FILE = os.path.join(THIS_DIR, 'secret.txt')
-    try:
-        SECRET_KEY = open(SECRET_FILE).read().strip()
-    except IOError:
-        try:
-            # Ref: https://gist.github.com/ndarville/3452907#file-secret-key-gen-py
-            import random
-            SECRET_KEY = ''.join([random.SystemRandom().choice('abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)') for i in range(50)])
-            secret = open(SECRET_FILE, 'w')
-            secret.write(SECRET_KEY)
-            secret.close()
-            # First installation secret doesn't exists or upgraded so that the secret has changed. Reset user
-            from scripts.createsuperuser import reset_user
-            reset_user()
-        except IOError:
-            Exception('Looks like permission issue. Please create a %s file with random characters \
-            to generate your secret key!' % SECRET_FILE)
 
 LOGIN_URL = '/admin/login/'
 
@@ -147,3 +128,11 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 20,
 }
+
+SECRET_FILE = os.path.join(THIS_DIR, 'secret.txt')
+
+try:
+    SECRET_KEY
+except NameError:
+    SECRET_KEY = get_secret_key(SECRET_FILE)  # Defined in utils.py
+
