@@ -31,7 +31,6 @@ if "yes" == answer.lower():
     order = ""
     description_consolidated = ""
 
-    Project.objects.all().delete()  # Deleting Project will trigger to delete everything: Flags, Sh0ts, Assessments
     CaseMaster.objects.all().delete()
     ModuleMaster.objects.all().delete()
     MethodologyMaster.objects.all().delete()
