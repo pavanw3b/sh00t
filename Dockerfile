@@ -21,7 +21,8 @@ RUN pip install -r requirements.txt
 EXPOSE 8000
 
 RUN python3 manage.py migrate
-RUN python3 scripts/createsuperuser.py
-RUN python3 reset.py first_timer
 
-CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]8000
+CMD ["python3", "scripts/set_secret.py"]
+CMD ["python3", "scripts/createsuperuser.py"]
+CMD ["python3", "reset.py", "first_timer"]
+CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
