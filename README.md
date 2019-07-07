@@ -83,31 +83,40 @@ Begin with creating a new Assessment. Choose what methodology you want to test w
 Whenever a Flag is confirmed to be a valid bug, a Sh0t can be created. One can choose a bug template that matches best, and sh00t will auto fill the bug report based on the template chosen.
 
 
-### Screenshots:
-
-#### Dashboard:
-
-![dashboard](https://user-images.githubusercontent.com/11267537/43355841-9f6167e4-9281-11e8-87fe-761fa35ddc3c.png)
-
-#### Working on a Flag:
-
-![flag](https://user-images.githubusercontent.com/11267537/43355838-9ee99e58-9281-11e8-8724-b9e726fdc58d.png)
-
-
-#### Choosing Methodology and Test Cases while creating a new Assessment:
-![new-assessment](https://user-images.githubusercontent.com/11267537/43355840-9f3a3368-9281-11e8-8afd-0467a4ac00b4.png)
-
-#### Filing a bug pre-filled with a template:
-
-![new-sh0t-from-template](https://user-images.githubusercontent.com/11267537/43355839-9f117630-9281-11e8-8a33-a9b5babae698.png)
-
-
 ### Who can use Sh00t?
 - Application Security Engineers: Pentesting & Vulnerability Assessments
 - Bug bounty hunters
 - Independent Security Researchers
 - Blue team, developers who fix
 - Anybody who wants to hack
+
+
+### Screenshots:
+
+#### Dashboard:
+
+![dashboard](https://user-images.githubusercontent.com/11267537/60767075-e6a8b000-a0cf-11e9-9c39-e6eed4e1b143.jpg)
+
+#### Working on a Flag:
+
+![flag](https://user-images.githubusercontent.com/11267537/60767074-e6a8b000-a0cf-11e9-879c-ac8380ede31f.jpg)
+
+#### Editing in fullscreen:
+
+![flag_fullscreen](https://user-images.githubusercontent.com/11267537/60767073-e6a8b000-a0cf-11e9-9a62-176b7aebc92a.jpg)
+
+#### Choosing Methodology and Test Cases while creating a new Assessment:
+
+![assessment](https://user-images.githubusercontent.com/11267537/60767070-e6101980-a0cf-11e9-8046-b3d44136a47e.jpg)
+
+#### Filing a bug pre-filled with a template:
+
+![sh0t](https://user-images.githubusercontent.com/11267537/60767072-e6101980-a0cf-11e9-8248-b92802905fd1.jpg)
+
+#### Configruations:
+
+![configuration](https://user-images.githubusercontent.com/11267537/60767069-e5778300-a0cf-11e9-896c-f01e24d863f0.jpg)
+
 
 ### Implementation details:
 - Language: Python 3
