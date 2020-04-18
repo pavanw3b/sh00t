@@ -39,7 +39,7 @@ Sh00t
 
 **Alternate Installations:**
 - Not comfortable with Docker yet? We got you covered. [Installation without Docker](https://github.com/pavanw3b/sh00t/wiki/Installation-Without-Docker)
-- Django-pro and want to set up everything on own? We got you covered too: [Manual Setup](https://github.com/pavanw3b/sh00t/wiki/Manual-Installation)
+- Are you a Django-pro and want to set up everything on own? We got you covered too: [Manual Setup](https://github.com/pavanw3b/sh00t/wiki/Manual-Installation)
 - Using a machine which does not have Hyper-V, like Windows Home? You can use [Docker Toolbox and Docker Quickstart Terminal](https://docs.docker.com/toolbox/toolbox_install_windows/). Your Sh00t will run on the default IP of your docker: `http://YOUR_DOCKER_IP:8000/`. The IP Address will be displayed on the start of the Quickstart Terminal. You can also find it with `docker-machine ls` and `docker-machine ip MACHINE_NAME`.
 - If you want to move to Docker version of Sh00t from a previous setup without loosing any of your existing data, you have to manually replace the /root/sh00/db/db.sqlite3 file on the docker container by your old sh00t setup.
 
