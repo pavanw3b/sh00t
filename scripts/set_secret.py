@@ -27,7 +27,7 @@ def generate_secret_key():
         Exception('Looks like permission issue. Please create a %s file with random characters \
         to generate your secret key!' % secret_file)
 
-    return securet_key
+    return secret_key
 
 
 if __name__ == "__main__":
