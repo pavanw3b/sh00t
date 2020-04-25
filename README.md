@@ -44,12 +44,14 @@ Sh00t
 - If you want to move to Docker version of Sh00t from a previous setup without loosing any of your existing data, you have to manually replace the /root/sh00/db/db.sqlite3 file on the docker container by your old sh00t setup.
 
 **Using Sh00t later:**
-1. Start the container: `docker stop sh00t`
+1. Start the container: `docker start sh00t`
 2. Logon to `http://YOUR_IP:8000/` on your favorite browser
 3. Login with `sh00t` / `sh00t` if you haven't changed it
 4. Stop container if you care: `docker stop sh00t`
 
 and repeat!
+
+Note: Always use docker start and docker stop. You may loose your data if you remove the container or the volume.
 
 ### Upgrade
 It's important to keep your Sh00t to latest to avail feature enhancements ang bug fixes. 
