@@ -6,23 +6,10 @@ LABEL \
     maintainer="Pavan <@pavanw3b>" \
     description="A Testing Environment for Manual Security Testers"
 
-
-# Get latest files
-WORKDIR /root/
-RUN apk add git
-RUN git clone https://github.com/pavanw3b/sh00t --depth 1
+RUN mkdir sh00t
+COPY . /root/sh00t
 WORKDIR /root/sh00t
-
-
-RUN pip3 install --upgrade pip
-
-RUN pip install -r requirements.txt
-
+RUN pip3 install --upgrade pip && pip install -r requirements.txt
+RUN python3 manage.py migrate && python3 reset.py first_timer
 EXPOSE 8000
-
-RUN python3 manage.py migrate
-
-CMD ["python3", "scripts/set_secret.py"]
-CMD ["python3", "scripts/createsuperuser.py"]
-CMD ["python3", "reset.py", "first_timer"]
-CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["sh", "scripts/run_setup.sh"]

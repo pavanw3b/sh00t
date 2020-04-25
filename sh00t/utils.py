@@ -12,13 +12,13 @@ def generate_secret_key(secret_file):
         secret.write(secret_key)
         secret.close()
         # First installation secret doesn't exists or upgraded so that the secret has changed. Reset user
-        from scripts.createsuperuser import reset_user
-        reset_user()
+        #from scripts.createsuperuser import reset_user
+        #reset_user()
     except IOError:
         Exception('Looks like permission issue. Please create a %s file with random characters \
         to generate your secret key!' % secret_file)
 
-    return securet_key
+    return secret_key
 
 
 def get_secret_key(secret_file):

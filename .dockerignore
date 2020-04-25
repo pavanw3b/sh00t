@@ -1,0 +1,16 @@
+.git
+.github
+.tox
+.dockerignore
+db.sqlite3
+Dockerfile
+docker-compose.yml
+*.md
+setup.sh
+run.sh
+setup.bat
+run.bat
+downloads
+uploads
+logs
+secret
