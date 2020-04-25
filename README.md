@@ -54,7 +54,7 @@ and repeat!
 Note: Always use docker start and docker stop. You may loose your data if you remove the container or the volume.
 
 ### Upgrade
-It's important to keep your Sh00t to latest to avail feature enhancements ang bug fixes. 
+It's important to keep your Sh00t to latest to avail the new features ang bug fixes. 
 
 1. Remove the existing container: `docker container rm -f sh00t`
 Do not worry, your data is safe unless you remove the docker volume.
